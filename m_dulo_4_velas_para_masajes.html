@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4: Velas para Masajes - Tecnicatura de Velas Artesanales</title>
+  
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #m4-print-area, #m4-print-area * { visibility: visible; }
+      #m4-print-area { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; background: #fff; }
+      .m4-print-hide { display: none !important; }
+      .m4-print-show { display: block !important; }
+    }
+
+    /* Animaciones y estilos suplementarios */
+    .m4-toast-notify {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: none;
+      animation: fadeInToast 0.3s ease;
+    }
+
+    @keyframes fadeInToast {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 10px; background-color: #f8f9fa;">
+
+<!-- Contenedor de Notificaciones Toast (Reemplazo amigable de alert) -->
+<div id="m4-toast" class="m4-toast-notify"></div>
+
+<div id="m4-container" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background-color: #ffffff; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px; box-sizing: border-box; position: relative; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+
+    <!-- ================= ENCABEZADO ================= -->
+    <header id="m4-header" style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div style="font-size: 11px; font-weight: 700; color: #7BB11D; background: rgba(123, 177, 29, 0.1); padding: 3px 10px; border-radius: 4px; display: inline-block; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">
+                    Módulo 4
+                </div>
+                <div style="font-size: 12px; color: #F0A100; letter-spacing: 3px; margin: 0 0 4px 0; text-transform: uppercase; font-weight: 600;">
+                    Primer Año - Bases Técnicas
+                </div>
+                <h1 style="font-size: 26px; font-weight: 800; line-height: 1.1; margin: 0; color: #26A3C8; text-transform: uppercase;">
+                    Velas para Masajes
+                </h1>
+            </div>
+            <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;" fill="none">
+                    <path d="M15 40 C15 25, 25 18, 30 15 C35 18, 45 25, 45 40 C45 48, 38 52, 30 52 C22 52, 15 48, 15 40 Z" fill="#E10078" opacity="0.15" stroke="#E10078" stroke-width="1.5"/>
+                    <path d="M22 35 C25 30, 35 30, 38 35 C38 42, 34 45, 30 45 C26 45, 22 42, 22 35 Z" fill="#26A3C8" opacity="0.3"/>
+                    <circle cx="30" cy="22" r="3" fill="#F0A100"/>
+                    <path d="M18 18 C20 12, 40 12, 42 18" stroke="#7BB11D" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        <div style="height: 3px; background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%); border-radius: 2px; margin-top: 15px;"></div>
+    </header>
+
+    <!-- ================= OBJETIVOS ================= -->
+    <section id="m4-objetivos" style="background: rgba(225, 0, 120, 0.05); border-left: 4px solid #E10078; border-radius: 6px; padding: 16px 18px; margin-bottom: 22px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #E10078; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Objetivos de Aprendizaje</h2>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #26A3C8;">Objetivo Técnico:</strong> Dominar la formulación cosmética de velas de ultra-baja fusión (38°-42°C) combinando ceras vegetales suaves, mantecas nutritivas (karité, cacao) y aceites vegetales prensados en frío seguros para la piel.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #E10078;">Enfoque Emocional:</strong> Conexión cuerpo–emoción. Una experiencia que invita a habitar el cuerpo con presencia, afinar la sensibilidad al tacto, respetar límites personales y reconectar con el placer consciente.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0;"><strong style="color: #7BB11D;">Resultados Esperados:</strong> Al finalizar el módulo, formularás un óleo tibio dermocosmético en formato vela, aplicando estrictos parámetros de seguridad dermatológica y promoviendo el autocuidado corporal respetuoso.</p>
+    </section>
+
+    <!-- ================= SUBTÍTULO "CONTENIDO DEL MÓDULO" ================= -->
+    <div style="margin-bottom: 18px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 2px; margin: 0;">Contenido del Módulo</h2>
+        <div style="height: 2px; background: linear-gradient(90deg, #F0A100, transparent); border-radius: 1px; margin-top: 6px;"></div>
+    </div>
+
+    <!-- ================= DOS PANELES FIJOS ================= -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 22px;">
+
+        <!-- PANEL IZQUIERDO: INFORMACIÓN TÉCNICA -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(38, 163, 200, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #26A3C8; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Información Técnica</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Qué es -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">¿Qué es una vela para masajes?</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Es un bálsamo dermocosmético sólido que se transforma en un <strong>óleo tibio hidratante</strong> al encenderse. Está elaborada exclusivamente con ingredientes 100% naturales cosméticos (cera de soja de bajo punto, mantecas vegetales y aceites puros), sin parafinas ni químicos derivados del petróleo.</p>
+                </div>
+
+                <!-- Temperaturas -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas Clave Dermocosméticas</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Fundido Cera</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #26A3C8;">50°-55°C</div>
+                        </div>
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Adición AE</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #E10078;">45°C</div>
+                        </div>
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Uso en Piel</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #7BB11D;">38°-42°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dosis segura -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Concentración Segura para Piel</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Para aplicación directa sobre el cuerpo, la carga de aceites esenciales debe ser estrictamente cosmética: entre <strong>1% y 3%</strong> máximo. Superar este porcentaje puede ocasionar irritaciones o fotosensibilidad cutánea.</p>
+                </div>
+
+                <!-- Materiales -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Materiales Necesarios</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.7;">
+                        <div>Cera de soja bajo punto (50-60%) cosmética</div>
+                        <div>Manteca de Karité o Cacao (20-30%) para firmeza y nutrición</div>
+                        <div>Aceite de Almendras Dulces, Jojoba o Argán (10-20%)</div>
+                        <div>Vitamina E (0.5% a 1%) como antioxidante natural</div>
+                        <div>Aceites esenciales puros dérmicos (Lavanda, Naranja, Ylang Ylang)</div>
+                        <div>Mecha de algodón puro 100% sin plomo ni tratamientos duros</div>
+                        <div>Jarra de cerámica o gres con pico vertedor ergonómico</div>
+                    </div>
+                </div>
+
+                <!-- Procedimiento -->
+                <div style="margin-bottom: 0;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Procedimiento Paso a Paso</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.6;">
+                        <div><strong style="color: #26A3C8;">1.</strong> Desinfectar minuciosamente los utensilios con alcohol 70°.</div>
+                        <div><strong style="color: #26A3C8;">2.</strong> Pesar cera de soja, mantecas vegetales y aceites líquidos.</div>
+                        <div><strong style="color: #26A3C8;">3.</strong> Fundir cera y mantecas a baño María muy suave (máx. 55°C).</div>
+                        <div><strong style="color: #26A3C8;">4.</strong> Incorporar los aceites vegetales líquidos mezclando suavemente.</div>
+                        <div><strong style="color: #26A3C8;">5.</strong> Dejar descender la temperatura a 45°C.</div>
+                        <div><strong style="color: #26A3C8;">6.</strong> Añadir Vitamina E y aceites esenciales puros a dosis segura (1-2%).</div>
+                        <div><strong style="color: #26A3C8;">7.</strong> Fijar la mecha ecológica de algodón en la jarra con pico vertedor.</div>
+                        <div><strong style="color: #26A3C8;">8.</strong> Verter a 42°C y dejar solidificar lentamente a temperatura ambiente.</div>
+                        <div><strong style="color: #26A3C8;">9.</strong> Curado: reposo de 48 horas antes del primer encendido.</div>
+                        <div><strong style="color: #26A3C8;">10.</strong> Uso: apagar la llama, verificar temperatura en la muñeca y verter.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO: INTELIGENCIA EMOCIONAL -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(92, 32, 102, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Inteligencia Emocional</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Conexión cuerpo-emoción -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Conexión Cuerpo–Emoción</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">El cuerpo almacena memorias afectivas y tensiones acumuladas. La vela de masaje une el calor agradable, la nutrición botánica y la caricia consciente como un puente para reconectar con el propio esquema corporal desde el afecto y la calma.</p>
+                </div>
+
+                <!-- Sensibilidad al tacto -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Sensibilidad al Tacto</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">El tacto sutil estimula la liberación de oxitocina y reduce el cortisol. Cultivar la sensibilidad táctil durante la aplicación del óleo tibio entrena la mente para estar presente en las sensaciones físicas sin prisa ni juicios.</p>
+                </div>
+
+                <!-- Respeto por el cuerpo y límites -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Respeto y Conciencia de Límites</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.8;">
+                        <div><strong style="color: #E10078;">Cuidado propio:</strong> Escuchar lo que la piel y el cuerpo necesitan hoy.</div>
+                        <div><strong style="color: #26A3C8;">Respeto ajeno:</strong> Pedir consentimiento y adaptar la temperatura.</div>
+                        <div><strong style="color: #7BB11D;">Límites térmicos:</strong> Testear siempre en la muñeca antes del masaje.</div>
+                        <div><strong style="color: #F0A100;">Presencia plena:</strong> Desconectar pantallas para habitar el momento.</div>
+                    </div>
+                </div>
+
+                <!-- Placer consciente -->
+                <div style="margin-bottom: 0;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Creación Consciente y Bienestar</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">El placer corporal seguro no es un lujo, sino un pilar de salud mental. Elaborar tu propio óleo corporal de masaje valida el derecho a pausar, recibir calidez y cuidar el templo personal con dignidad y amor.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= SECCIÓN: BOTONES EXPANDIBLES (Izquierda: Tips + Checklist, Derecha: Calculadoras) ================= -->
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+
+            <!-- COLUMNA IZQUIERDA: Tips + Checklist -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Tips Claves -->
+                <button onclick="m4Toggle('m4-tips-content')" style="width: 100%; background: #ffffff; border: 2px solid #7BB11D; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#7BB11D'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Tips Claves Cosméticos
+                </button>
+                <div id="m4-tips-content" style="display: none; margin-bottom: 10px;">
+                    <div style="background: rgba(123, 177, 29, 0.06); border-left: 3px solid #7BB11D; border-radius: 4px; padding: 10px 12px; margin-bottom: 6px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #7BB11D; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Punto de Fusión Fisiológico</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La cera de soja sola puede resultar dura o caliente. Mezclar con un 20-30% de Manteca de Karité y 10-12% de Aceite de Almendras reduce el punto de fusión a agradables 38°-40°C.</p>
+                    </div>
+                    <div style="background: rgba(38, 163, 200, 0.06); border-left: 3px solid #26A3C8; border-radius: 4px; padding: 10px 12px; margin-bottom: 6px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #26A3C8; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Vitamina E Antioxidante</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Los aceites vegetales naturales se oxidan con facilidad. Añadir 0.5% a 1% de Tocofersol (Vitamina E) conserva la fórmula libre de enranciamiento durante meses.</p>
+                    </div>
+                    <div style="background: rgba(225, 0, 120, 0.06); border-left: 3px solid #E10078; border-radius: 4px; padding: 10px 12px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #E10078; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Prueba Térmica en Muñeca</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Tras apagar la llama y esperar 1-2 minutos, coloca siempre unas gotas en la cara interna de la muñeca antes de masajear áreas más extendidas.</p>
+                    </div>
+                </div>
+
+                <!-- Botón Checklist -->
+                <button onclick="m4Toggle('m4-checklist-content')" style="width: 100%; background: #ffffff; border: 2px solid #E10078; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Checklist del Masaje Consciente
+                </button>
+                <div id="m4-checklist-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #888888; margin: 0 0 8px 0;">Marca cada hito técnico y de autocuidado completado en tu sesión.</p>
+                    <div id="m4-step-1" onclick="m4ToggleStep('m4-step-1')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m4-check-1" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Desinfección higiénica de frascos y utensilios cosméticos</div>
+                    </div>
+                    <div id="m4-step-2" onclick="m4ToggleStep('m4-step-2')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m4-check-2" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Formulación tripartita: Cera + Manteca Karité + Aceite vegetal</div>
+                    </div>
+                    <div id="m4-step-3" onclick="m4ToggleStep('m4-step-3')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m4-check-3" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Adición de Vitamina E y Aceite Esencial a dosis segura (1-2% a 45°C)</div>
+                    </div>
+                    <div id="m4-step-4" onclick="m4ToggleStep('m4-step-4')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m4-check-4" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Vertido en jarra cerámica con pico y centrado de mecha algodón</div>
+                    </div>
+                    <div id="m4-step-5" onclick="m4ToggleStep('m4-step-5')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 0; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m4-check-5" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Prueba de tolerancia térmica en muñeca antes de masajear</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: Calculadoras -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Calculadora de Fórmulas -->
+                <button onclick="m4Toggle('m4-formula-content')" style="width: 100%; background: #ffffff; border: 2px solid #26A3C8; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#26A3C8'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Óleo Dermocosmético
+                </button>
+                <div id="m4-formula-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 10px 0;">Calcula la proporción tripartita balanceada (60% cera, 25% manteca, 15% aceite) e inclusión dérmica (máx 2%).</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; margin-bottom: 10px;">
+                        <div style="flex: 1; min-width: 100px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Gramos Total Vela</label>
+                            <input type="number" id="m4-gr-cera" placeholder="Ej: 200" style="width: 100%; background: #ffffff; border: 1px solid #26A3C8; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#26A3C8';"/>
+                        </div>
+                        <div style="width: 70px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">% AE Piel</label>
+                            <input type="number" id="m4-pct-fragancia" value="2" min="1" max="3" step="0.5" style="width: 100%; background: #ffffff; border: 1px solid #26A3C8; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#26A3C8';"/>
+                        </div>
+                        <button onclick="m4CalcularFormula()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 7px 12px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 34px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">CALCULAR</button>
+                    </div>
+                    <div id="m4-formula-resultados" style="display: none; background: rgba(38, 163, 200, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 70px; background: #ffffff; border-radius: 5px; padding: 6px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 8px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Cera Soja (60%)</div>
+                                <div id="m4-res-cera" style="font-size: 14px; color: #7BB11D; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 70px; background: #ffffff; border-radius: 5px; padding: 6px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 8px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Karité (25%)</div>
+                                <div id="m4-res-manteca" style="font-size: 14px; color: #5C2066; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 70px; background: #ffffff; border-radius: 5px; padding: 6px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 8px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Aceite Liq (15%)</div>
+                                <div id="m4-res-aceite" style="font-size: 14px; color: #26A3C8; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 70px; background: #ffffff; border-radius: 5px; padding: 6px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 8px; color: #F0A100; text-transform: uppercase; font-weight: 700;">AE Dermico</div>
+                                <div id="m4-res-fragancia" style="font-size: 14px; color: #E10078; font-weight: 900;">0g</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Calculadora de Precio Final -->
+                <button onclick="m4Toggle('m4-precio-content')" style="width: 100%; background: #ffffff; border: 2px solid #F0A100; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#F0A100'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Costo y Venta Cosmética
+                </button>
+                <div id="m4-precio-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 8px 0;">Calcula el costo total considerando materias primas cosméticas de alta calidad y la jarra con pico.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Cera+Mantecas ($)</label>
+                            <input type="number" id="m4-costo-cera" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">AE + Vit E ($)</label>
+                            <input type="number" id="m4-costo-fragancia" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Jarra Cerámica ($)</label>
+                            <input type="number" id="m4-costo-envase" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; align-items: flex-end; margin-bottom: 8px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mano Obra ($)</label>
+                            <input type="number" id="m4-costo-mo" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="width: 55px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Margen (x)</label>
+                            <input type="number" id="m4-margen" value="3.0" min="1" max="10" step="0.1" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <button onclick="m4CalcularPrecio()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 10px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 32px;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">CALCULAR</button>
+                    </div>
+                    <div id="m4-precio-resultados" style="display: none; background: rgba(240, 161, 0, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Costo Unidad</div>
+                                <div id="m4-res-costo" style="font-size: 16px; color: #F0A100; font-weight: 900;">$0.00</div>
+                            </div>
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #7BB11D; text-transform: uppercase; font-weight: 700;">Precio Sugerido</div>
+                                <div id="m4-res-venta" style="font-size: 18px; color: #7BB11D; font-weight: 900;">$0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= BOTÓN EXPANDIBLE: DIARIO DE INTELIGENCIA EMOCIONAL ================= -->
+    <div style="margin-bottom: 20px;">
+        <button onclick="m4Toggle('m4-diario-content')" style="width: 100%; background: #ffffff; border: 2px solid #5C2066; border-radius: 8px; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#5C2066'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Diario de Inteligencia Emocional (Conexión Cuerpo–Emoción)
+        </button>
+        <div id="m4-diario-content" style="display: none; margin-top: 10px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; padding: 14px; background: rgba(92, 32, 102, 0.02);">
+            <div style="background: rgba(92, 32, 102, 0.05); border-radius: 5px; padding: 10px 12px; margin-bottom: 10px;">
+                <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">¿Cómo viviste la experiencia de habitar tu cuerpo y conectar con la temperatura tibia del óleo? Reflexiona sobre el respeto por tus propios límites corporales y la sensibilidad al recibir o brindar cuidado.</p>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Sinergia Botánica y Vivencia Corporal</label>
+                <input type="text" id="m4-diario-aroma" placeholder="Ej: Karité y Lavanda - Sentí una profunda relajación muscular y presencia consciente en mis manos" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"/>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Reflexión sobre el Respeto de Límites y el Cuidado Consciente</label>
+                <textarea id="m4-diario-texto" placeholder="Escribe cómo el ritmo pausado del massage candle te enseñó a escuchar las alertas de tu cuerpo..." rows="3" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none; resize: vertical;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"></textarea>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+                <button onclick="m4DescargarDiarioPDF()" style="background: #5C2066; border: none; border-radius: 5px; padding: 7px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#4a1a52';" onmouseout="this.style.background='#5C2066';">
+                    <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Descargar Reflexión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= RETO DE APRENDIZAJE ================= -->
+    <div style="margin-bottom: 18px; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 8px; overflow: hidden; background: rgba(38, 163, 200, 0.02);">
+        <button onclick="m4Toggle('m4-reto-content')" style="width: 100%; background: #ffffff; border: none; border-bottom: 2px solid #26A3C8; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='rgba(38, 163, 200, 0.05)';" onmouseout="this.style.background='#ffffff';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Reto de Aprendizaje: Módulo 4
+        </button>
+        <div id="m4-reto-content" style="display: none; padding: 14px;">
+            <p style="font-size: 12px; color: #666666; margin: 0 0 10px 0;">Evalúa tus conocimientos sobre formulación cosmética, seguridad cutánea y conexión cuerpo-emoción. Mínimo <strong>70 puntos</strong> para aprobar.</p>
+
+            <div id="m4-quiz-container">
+                <div class="m4-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">1. ¿Cuál es el rango de temperatura seguro para aplicar el óleo tibio sobre la piel humana?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q1" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 60°C - 65°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q1" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 38°C - 42°C (temperatura fisiológica agradable)</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q1" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 20°C - 25°C</label>
+                    </div>
+                </div>
+                <div class="m4-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">2. Para prevenir sensibilizaciones en piel, ¿cuál es el porcentaje máximo recomendado de aceite esencial?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q2" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 1% a 3% máximo</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q2" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 10% a 12%</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q2" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Sin límite</label>
+                    </div>
+                </div>
+                <div class="m4-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">3. ¿Qué función cumple la manteca de karité en la formulación de velas para masajes?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q3" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Aporta nutrición, textura sedosa y baja la temperatura de fusión</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q3" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Endurece la cera para que no se derrita nunca</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q3" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Sirve como pigmento de color rosa</label>
+                    </div>
+                </div>
+                <div class="m4-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">4. En el plano emocional, ¿qué pilar promueve la práctica del masaje con vela tibia?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q4" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Ignorar los límites de fatiga corporal</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q4" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Conexión cuerpo-emoción, sensibilidad al tacto y respeto de límites</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q4" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Aumentar el ritmo de trabajo sin pausas</label>
+                    </div>
+                </div>
+                <div class="m4-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 0;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">5. ¿Por qué es fundamental añadir Vitamina E a la mezcla de mantecas y aceites?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q5" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Actúa como antioxidante evitando que las grasas vegetales se enranSystemen</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q5" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Para aumentar la llama de la mecha</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m4q5" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> No tiene ningún beneficio práctico</label>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="m4Evaluar()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 9px 20px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-top: 10px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">Enviar Respuestas</button>
+
+            <div id="m4-reto-resultado" style="display: none; border-radius: 5px; padding: 12px; margin-top: 10px;">
+                <div id="m4-reto-score" style="font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 5px;"></div>
+                <div id="m4-reto-feedback" style="font-size: 12px; text-align: center; color: #555555; line-height: 1.5;"></div>
+                <div id="m4-reto-botones" style="display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; justify-content: center;">
+                    <button onclick="m4DescargarRetoPDF()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">
+                        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Descargar Resultado
+                    </button>
+                </div>
+                <div style="text-align: center; margin-top: 8px;">
+                    <button onclick="m4Reintentar()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">Reintentar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= BOTÓN DESCARGAR PDF ================= -->
+    <div id="m4-download" style="margin-bottom: 16px; text-align: center;">
+        <button onclick="m4DescargarPDF()" style="background: linear-gradient(90deg, #7BB11D, #26A3C8); border: none; border-radius: 8px; padding: 10px 24px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.boxShadow='0 3px 12px rgba(123, 177, 29, 0.3)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar Contenido (PDF)
+        </button>
+    </div>
+
+    <!-- ================= PIE DE PÁGINA ================= -->
+    <footer id="m4-footer" style="background: rgba(123, 177, 29, 0.06); border: 1px solid rgba(123, 177, 29, 0.15); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: #333333; letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase;">Tecnicatura de Velas Artesanales</div>
+        <div style="font-size: 12px; font-weight: 600; color: #26A3C8; letter-spacing: 2px; text-transform: uppercase; margin: 0;">Con Enfoque en Inteligencia Emocional</div>
+        <div style="font-size: 10px; color: #5C2066; letter-spacing: 1px; margin-top: 5px; text-transform: uppercase;">Diseño académico y dirección: Prof. María Esther Espinoza Juárez</div>
+    </footer>
+
+    <!-- ================= ÁREA DE IMPRESIÓN (oculta, solo para PDF) ================= -->
+    <div id="m4-print-area" style="display: none;">
+        <div style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; padding: 30px; color: #333333; max-width: 700px; margin: 0 auto;">
+            <h1 style="font-size: 24px; color: #26A3C8; text-transform: uppercase; margin-bottom: 5px;">Módulo 4: Velas para Masajes</h1>
+            <p style="font-size: 12px; color: #F0A100; margin: 0 0 15px 0;">Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Año</p>
+            <hr style="border: none; border-top: 3px solid #26A3C8; margin-bottom: 20px;"/>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 20px;">Información Técnica</h2>
+            <h3 style="font-size: 14px; color: #F0A100;">¿Qué es una vela para masajes?</h3>
+            <p style="font-size: 12px; line-height: 1.6;">Es un bálsamo dermocosmético sólido que se transforma en un óleo tibio hidratante al encenderse. Está elaborada exclusivamente con ingredientes 100% naturales cosméticos (cera de soja de bajo punto, mantecas vegetales y aceites puros).</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Temperaturas Clave</h3>
+            <p style="font-size: 12px;">Fundido Cera: <strong>50°-55°C</strong> | Adición AE: <strong>45°C</strong> | Uso en Piel: <strong>38°-42°C</strong></p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Concentración Segura para Piel</h3>
+            <p style="font-size: 12px;">Carga de aceites esenciales puros: 1% a 3% máximo para prevenir reacciones alérgicas o fotosensibilización cutánea.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Materiales Necesarios</h3>
+            <p style="font-size: 12px;">Cera de soja cosmética bajo punto, Manteca de Karité, Aceite de Almendras Dulces, Vitamina E, Aceites esenciales puros, Mecha de algodón 100%, Jarra con pico vertedor.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Procedimiento Paso a Paso</h3>
+            <ol style="font-size: 12px; line-height: 1.8; padding-left: 20px;">
+                <li>Desinfectar minuciosamente utensilios con alcohol 70°.</li>
+                <li>Pesar cera de soja, mantecas y aceites líquidos.</li>
+                <li>Fundir cera y mantecas a baño María suave (máx. 55°C).</li>
+                <li>Incorporar aceites vegetales líquidos.</li>
+                <li>Dejar descender la temperatura a 45°C.</li>
+                <li>Añadir Vitamina E y aceites esenciales puros a dosis segura (1-2%).</li>
+                <li>Fijar mecha de algodón puro en la jarra cerámica.</li>
+                <li>Verter a 42°C y enfriar lentamente.</li>
+                <li>Reposo de curado: 48 horas.</li>
+                <li>Probar siempre la temperatura en la muñeca antes del masaje.</li>
+            </ol>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 25px;">Tips Claves</h2>
+            <h3 style="font-size: 14px; color: #7BB11D;">Punto de Fusión Fisiológico</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Formula con 20-30% de manteca de karité para una fusión tibia perfecta de 38°-40°C.</p>
+
+            <h2 style="font-size: 16px; color: #5C2066; margin-top: 25px;">Inteligencia Emocional</h2>
+            <h3 style="font-size: 14px; color: #5C2066;">Conexión Cuerpo–Emoción</h3>
+            <p style="font-size: 12px; line-height: 1.5;">El cuerpo como vehículo de presencia. Habitar las sensaciones táctiles desde la calma y el respeto mutuo.</p>
+
+            <hr style="border: none; border-top: 2px solid #7BB11D; margin-top: 25px; margin-bottom: 15px;"/>
+            <p style="font-size: 10px; color: #888888; text-align: center;">Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. María Esther Espinoza Juárez</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= COPILOTO PEDAGÓGICO IA ================= -->
+<button id="m4-copiloto-btn" onclick="m4ToggleCopiloto()" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7BB11D, #26A3C8); border: none; color: #ffffff; cursor: pointer; box-shadow: 0 4px 12px rgba(123, 177, 29, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" aria-label="Copiloto Pedagógico IA">
+    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<div id="m4-copiloto-panel" style="display: none; position: fixed; bottom: 82px; right: 20px; width: 280px; max-width: calc(100vw - 40px); max-height: 360px; background: #ffffff; border: 1px solid rgba(123, 177, 29, 0.3); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); z-index: 9999; overflow-y: auto; padding: 12px;">
+    <div style="font-size: 12px; font-weight: 700; color: #7BB11D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(123, 177, 29, 0.2);">Copiloto Pedagógico IA - Módulo 4</div>
+    <div id="m4-copiloto-content" style="font-size: 12px; color: #555555; line-height: 1.5; margin-bottom: 8px;">
+        <p style="margin: 0 0 5px 0;">¡Hola! Asistente para Velas de Masaje a tu servicio. ¿Qué consulta tienes?</p>
+        <ul style="margin: 0 0 6px 0; padding-left: 14px;">
+            <li>Fórmula de cera y karité</li>
+            <li>Prueba térmica de seguridad</li>
+            <li>Conexión cuerpo–emoción</li>
+        </ul>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <button onclick="m4CopilotoAccion('explicar')" style="background: rgba(123, 177, 29, 0.1); border: 1px solid #7BB11D; border-radius: 14px; padding: 4px 9px; color: #7BB11D; font-size: 10px; font-weight: 600; cursor: pointer;">Seguridad Piel</button>
+        <button onclick="m4CopilotoAccion('resumir')" style="background: rgba(38, 163, 200, 0.1); border: 1px solid #26A3C8; border-radius: 14px; padding: 4px 9px; color: #26A3C8; font-size: 10px; font-weight: 600; cursor: pointer;">Karité/Óleos</button>
+        <button onclick="m4CopilotoAccion('repaso')" style="background: rgba(225, 0, 120, 0.1); border: 1px solid #E10078; border-radius: 14px; padding: 4px 9px; color: #E10078; font-size: 10px; font-weight: 600; cursor: pointer;">Límites</button>
+    </div>
+</div>
+
+<!-- ================= LIBRERIA JSPDF (CDN) ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+(function() {
+    /* Sistema de notificaciones integradas (Toasts) */
+    window.m4ShowToast = function(msg, isError) {
+        var toast = document.getElementById('m4-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.background = isError ? '#E10078' : '#7BB11D';
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 3500);
+    };
+
+    // Toggle expandible (abrir/cerrar contenido)
+    window.m4Toggle = function(contentId) {
+        var el = document.getElementById(contentId);
+        if (!el) return;
+        if (el.style.display === 'none' || el.style.display === '') {
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    };
+
+    // Calculadora de Fórmulas Cosméticas
+    window.m4CalcularFormula = function() {
+        var grTotal = parseFloat(document.getElementById('m4-gr-cera').value);
+        var pctAE = parseFloat(document.getElementById('m4-pct-fragancia').value);
+        if (!grTotal || grTotal <= 0) { 
+            m4ShowToast('Ingresa una capacidad de jarra válida en gramos.', true); 
+            return; 
+        }
+        if (!pctAE || pctAE < 0.5 || pctAE > 3) { 
+            m4ShowToast('Para uso dérmico directo, se recomienda entre 1% y 3% máximo de aceite esencial.', true); 
+            return; 
+        }
+        var grCera = grTotal * 0.60;
+        var grKarite = grTotal * 0.25;
+        var grAceite = grTotal * 0.15;
+        var grAE = (grTotal * pctAE / 100);
+
+        document.getElementById('m4-res-cera').textContent = grCera.toFixed(1) + 'g';
+        document.getElementById('m4-res-manteca').textContent = grKarite.toFixed(1) + 'g';
+        document.getElementById('m4-res-aceite').textContent = grAceite.toFixed(1) + 'g';
+        document.getElementById('m4-res-fragancia').textContent = grAE.toFixed(1) + 'g';
+        document.getElementById('m4-formula-resultados').style.display = 'block';
+        m4ShowToast('Fórmula dermocosmética calculada exitosamente.');
+    };
+
+    // Calculadora de Precio Final
+    window.m4CalcularPrecio = function() {
+        var cera = parseFloat(document.getElementById('m4-costo-cera').value) || 0;
+        var frag = parseFloat(document.getElementById('m4-costo-fragancia').value) || 0;
+        var envase = parseFloat(document.getElementById('m4-costo-envase').value) || 0;
+        var mo = parseFloat(document.getElementById('m4-costo-mo').value) || 0;
+        var margen = parseFloat(document.getElementById('m4-margen').value) || 3.0;
+        var costoTotal = cera + frag + envase + mo;
+        var precioVenta = costoTotal * margen;
+        document.getElementById('m4-res-costo').textContent = '$' + costoTotal.toFixed(2);
+        document.getElementById('m4-res-venta').textContent = '$' + precioVenta.toFixed(2);
+        document.getElementById('m4-precio-resultados').style.display = 'block';
+        m4ShowToast('Precio sugerido de producto cosmético calculado.');
+    };
+
+    // Checklist interactiva
+    var m4Steps = {};
+    window.m4ToggleStep = function(stepId) {
+        m4Steps[stepId] = !m4Steps[stepId];
+        var step = document.getElementById(stepId);
+        var checkNum = stepId.split('-').pop();
+        var checkSvg = document.getElementById('m4-check-' + checkNum);
+        if (m4Steps[stepId]) {
+            step.style.borderColor = '#7BB11D';
+            step.style.background = 'rgba(123, 177, 29, 0.08)';
+            checkSvg.style.stroke = '#7BB11D';
+        } else {
+            step.style.borderColor = 'rgba(225, 0, 120, 0.2)';
+            step.style.background = '#ffffff';
+            checkSvg.style.stroke = 'transparent';
+        }
+    };
+
+    // Cargar jsPDF desde CDN
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : null;
+    if (!jsPDF) {
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        s.onload = function() { jsPDF = window.jspdf.jsPDF; };
+        document.head.appendChild(s);
+    }
+
+    // Descarga del Diario como PDF
+    window.m4DescargarDiarioPDF = function() {
+        var aroma = document.getElementById('m4-diario-aroma').value;
+        var texto = document.getElementById('m4-diario-texto').value;
+        if (!aroma && !texto) { 
+            m4ShowToast('Escribe al menos una reflexión antes de descargar.', true); 
+            return; 
+        }
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            
+            doc.setFillColor(92, 32, 102);
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text('Diario de Conexion Cuerpo-Emocion', 20, 20);
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 4: Velas para Masajes | Tecnicatura de Velas Artesanales', 20, 28);
+            
+            doc.setDrawColor(92, 32, 102);
+            doc.setLineWidth(0.5);
+            doc.line(20, 32, 190, 32);
+            
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(10);
+            doc.text('Fecha: ' + fecha, 20, 40);
+            
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Sinergia Botanica y Vivencia Corporal', 20, 50);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var aromaLines = doc.splitTextToSize(aroma || '—', 170);
+            doc.text(aromaLines, 20, 58);
+            
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            var yReflexion = 58 + (aromaLines.length * 6) + 8;
+            doc.text('Reflexion sobre el Respeto de Limites y el Cuidado Consciente', 20, yReflexion);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var textoLines = doc.splitTextToSize(texto || '—', 170);
+            doc.text(textoLines, 20, yReflexion + 8);
+            
+            doc.setDrawColor(92, 32, 102);
+            doc.line(20, yReflexion + 8 + (textoLines.length * 6) + 10, 190, yReflexion + 8 + (textoLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 20, yReflexion + 8 + (textoLines.length * 6) + 16);
+            doc.save('diario_emocional_mod4.pdf');
+            m4ShowToast('PDF descargado con éxito.');
+        } catch(e) {
+            m4ShowToast('Error al generar el PDF.', true);
+        }
+    };
+
+    // Descarga del Resultado del Reto como PDF
+    window.m4DescargarRetoPDF = function() {
+        var scoreText = document.getElementById('m4-reto-score').textContent;
+        var feedbackText = document.getElementById('m4-reto-feedback').textContent;
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            
+            doc.setFillColor(38, 163, 200);
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Certificado de Resultado - Modulo 4', 105, 30, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 4: Velas para Masajes | Tecnicatura de Velas Artesanales', 105, 38, { align: 'center' });
+            
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(136, 136, 136);
+            doc.text('Fecha: ' + fecha, 105, 53, { align: 'center' });
+            
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(36);
+            doc.setFont(undefined, 'bold');
+            doc.text(scoreText, 105, 80, { align: 'center' });
+            
+            doc.setTextColor(85, 85, 85);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var feedbackLines = doc.splitTextToSize(feedbackText, 150);
+            doc.text(feedbackLines, 105, 95, { align: 'center' });
+            
+            doc.setDrawColor(123, 177, 29);
+            doc.line(20, 95 + (feedbackLines.length * 6) + 10, 190, 95 + (feedbackLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 105, 95 + (feedbackLines.length * 6) + 16, { align: 'center' });
+            doc.save('resultado_reto_mod4.pdf');
+            m4ShowToast('Resultado exportado a PDF.');
+        } catch(e) {
+            m4ShowToast('Error al generar el PDF.', true);
+        }
+    };
+
+    // Reto de Aprendizaje
+    var m4Respuestas = { m4q1: 'b', m4q2: 'a', m4q3: 'a', m4q4: 'b', m4q5: 'a' };
+    var m4TotalPreguntas = 5;
+
+    window.m4Evaluar = function() {
+        var correctas = 0;
+        for (var key in m4Respuestas) {
+            var selected = document.querySelector('input[name="' + key + '"]:checked');
+            if (selected && selected.value === m4Respuestas[key]) { correctas++; }
+        }
+        var puntaje = Math.round((correctas / m4TotalPreguntas) * 100);
+        var aprobado = puntaje >= 70;
+        var resultadoDiv = document.getElementById('m4-reto-resultado');
+        var scoreDiv = document.getElementById('m4-reto-score');
+        var feedbackDiv = document.getElementById('m4-reto-feedback');
+        resultadoDiv.style.display = 'block';
+        document.getElementById('m4-reto-botones').style.display = 'flex';
+        scoreDiv.textContent = puntaje + '/100 puntos';
+        scoreDiv.style.color = aprobado ? '#7BB11D' : '#E10078';
+        if (aprobado) {
+            resultadoDiv.style.background = 'rgba(123, 177, 29, 0.08)';
+            resultadoDiv.style.border = '1px solid rgba(123, 177, 29, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #7BB11D;">¡Felicitaciones! Has aprobado el Reto del Módulo 4.</strong><br><br>Has comprendido la formulación dermocosmética segura y la importancia pedagógica de la conexión cuerpo-emoción.';
+            m4ShowToast('¡Reto Módulo 4 aprobado con éxito!');
+        } else {
+            resultadoDiv.style.background = 'rgba(225, 0, 120, 0.05)';
+            resultadoDiv.style.border = '1px solid rgba(225, 0, 120, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #E10078;">Aún no alcanzaste el puntaje mínimo (70).</strong><br><br>Repasa el rango de temperatura corporal (38-42°C) y el % máximo seguro de aceites esenciales antes de reintentar.';
+            m4ShowToast('Resultado evaluado. Revisa las recomendaciones.', true);
+        }
+    };
+
+    window.m4Reintentar = function() {
+        var radios = document.querySelectorAll('#m4-quiz-container input[type="radio"]');
+        for (var i = 0; i < radios.length; i++) { radios[i].checked = false; }
+        document.getElementById('m4-reto-resultado').style.display = 'none';
+        document.getElementById('m4-reto-botones').style.display = 'none';
+    };
+
+    // Descarga del Módulo completo como PDF
+    window.m4DescargarPDF = function() {
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            var pageH = 297;
+            var margin = 15;
+            var contentW = 180;
+            var y = 15;
+
+            function checkPage(needed) {
+                if (y + needed > pageH - margin) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+
+            // === ENCABEZADO ===
+            doc.setFillColor(38, 163, 200);
+            doc.rect(0, 0, 210, 35, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Modulo 4: Velas para Masajes', 105, 15, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Ano', 105, 23, { align: 'center' });
+            doc.setFontSize(8);
+            doc.text('Prof. Maria Esther Espinoza Juarez', 105, 30, { align: 'center' });
+            y = 42;
+
+            // === OBJETIVOS ===
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('OBJETIVOS DE APRENDIZAJE', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var obj1 = doc.splitTextToSize('Objetivo Tecnico: Dominar la formulacion cosmetica de velas de ultra-baja fusion (38-42C) combinando ceras vegetales suaves, mantecas nutritivas y aceites vegetales puros.', contentW);
+            checkPage(obj1.length * 4.5 + 12);
+            doc.text(obj1, margin, y); y += obj1.length * 4.5 + 6;
+            var obj2 = doc.splitTextToSize('Enfoque Emocional: Conexion cuerpo-emocion. Habitar el cuerpo con presencia, afinar la sensibilidad al tacto, respetar limites y conectar con el placer consciente.', contentW);
+            checkPage(obj2.length * 4.5 + 6);
+            doc.text(obj2, margin, y); y += obj2.length * 4.5 + 10;
+
+            doc.setDrawColor(38, 163, 200);
+            doc.setLineWidth(0.5);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === INFORMACION TECNICA ===
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('INFORMACION TECNICA', margin, y); y += 8;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.text('Que es una vela para masajes?', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var info = doc.splitTextToSize('Es un balsamo dermocosmetico solido que se transforma en un oleo tibio hidratante al encenderse. Elaborado con ingredientes 100% naturales cosmeticos.', contentW);
+            checkPage(info.length * 4.5 + 12);
+            doc.text(info, margin, y); y += info.length * 4.5 + 10;
+
+            // Temperaturas Clave
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(30);
+            doc.text('Temperaturas Clave Dermocosmeticas', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            doc.text('Fundido Cera: 50-55C | Adicion AE: 45C | Uso en Piel: 38-42C', margin, y); y += 6;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === INTELIGENCIA EMOCIONAL ===
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('INTELIGENCIA EMOCIONAL - CONEXION CUERPO-EMOCION', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var ieText = doc.splitTextToSize('El cuerpo como templo de presencia y cuidado. Cultivar la sensibilidad tactil de forma respetuosa, aprendiendo a escuchar las alertas del cuerpo y honrar los limites personales.', contentW);
+            checkPage(ieText.length * 4.5 + 10);
+            doc.text(ieText, margin, y); y += ieText.length * 4.5 + 10;
+
+            doc.save('modulo4_velas_para_masajes.pdf');
+            m4ShowToast('Documento Módulo 4 descargado en PDF.');
+        } catch(e) {
+            m4ShowToast('Error al generar el PDF del módulo.', true);
+        }
+    };
+
+    // Copiloto Pedagógico
+    window.m4ToggleCopiloto = function() {
+        var panel = document.getElementById('m4-copiloto-panel');
+        if (!panel) return;
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.m4CopilotoAccion = function(accion) {
+        var content = document.getElementById('m4-copiloto-content');
+        if (accion === 'explicar') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#7BB11D;">Seguridad en Piel:</strong></p><p style="margin:5px 0 0 0;">Mantén la temperatura de aplicación entre 38°C y 42°C. Utiliza un máximo del 1% a 3% de aceites esenciales puros para evitar reacciones dérmicas.</p>';
+        } else if (accion === 'resumir') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#26A3C8;">Karité y Óleos:</strong></p><p style="margin:5px 0 0 0;">La manteca de karité le otorga cuerpo y propiedades restauradoras. Combínala con cera de soja cosmética y aceite de almendras dulces.</p>';
+        } else if (accion === 'repaso') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#E10078;">Conexión y Límites:</strong></p><p style="margin:5px 0 0 0;">La vela de masaje invita a habitar el cuerpo, cultivar la sensibilidad táctil suave y respetar los ritmos físicos con afecto.</p>';
+        }
+    };
+})();
+</script>
+
+</body>
+</html>

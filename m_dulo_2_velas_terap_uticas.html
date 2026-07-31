@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2: Velas Terapéuticas - Tecnicatura de Velas Artesanales</title>
+  
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #m2-print-area, #m2-print-area * { visibility: visible; }
+      #m2-print-area { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; background: #fff; }
+      .m2-print-hide { display: none !important; }
+      .m2-print-show { display: block !important; }
+    }
+
+    /* Animaciones y estilos suplementarios */
+    .m2-toast-notify {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: none;
+      animation: fadeInToast 0.3s ease;
+    }
+
+    @keyframes fadeInToast {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 10px; background-color: #f8f9fa;">
+
+<!-- Contenedor de Notificaciones Toast (Reemplazo amigable de alert) -->
+<div id="m2-toast" class="m2-toast-notify"></div>
+
+<div id="m2-container" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background-color: #ffffff; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px; box-sizing: border-box; position: relative; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+
+    <!-- ================= ENCABEZADO ================= -->
+    <header id="m2-header" style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div style="font-size: 11px; font-weight: 700; color: #7BB11D; background: rgba(123, 177, 29, 0.1); padding: 3px 10px; border-radius: 4px; display: inline-block; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">
+                    Módulo 2
+                </div>
+                <div style="font-size: 12px; color: #F0A100; letter-spacing: 3px; margin: 0 0 4px 0; text-transform: uppercase; font-weight: 600;">
+                    Primer Año - Bases Técnicas
+                </div>
+                <h1 style="font-size: 26px; font-weight: 800; line-height: 1.1; margin: 0; color: #26A3C8; text-transform: uppercase;">
+                    Velas Terapéuticas
+                </h1>
+            </div>
+            <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: justify-center;">
+                <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;" fill="none">
+                    <circle cx="30" cy="30" r="24" fill="#7BB11D" opacity="0.15" stroke="#7BB11D" stroke-width="1.5"/>
+                    <path d="M30 18 C26 24, 20 28, 20 35 C20 41, 24.5 45, 30 45 C35.5 45, 40 41, 40 35 C40 28, 34 24, 30 18 Z" fill="#26A3C8" opacity="0.3"/>
+                    <line x1="30" y1="28" x2="30" y2="18" stroke="#F0A100" stroke-width="2" stroke-linecap="round"/>
+                    <ellipse cx="30" cy="15" rx="4" ry="7" fill="#F0A100" opacity="0.7"/>
+                </svg>
+            </div>
+        </div>
+        <div style="height: 3px; background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%); border-radius: 2px; margin-top: 15px;"></div>
+    </header>
+
+    <!-- ================= OBJETIVOS ================= -->
+    <section id="m2-objetivos" style="background: rgba(123, 177, 29, 0.05); border-left: 4px solid #7BB11D; border-radius: 6px; padding: 16px 18px; margin-bottom: 22px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #7BB11D; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Objetivos de Aprendizaje</h2>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #26A3C8;">Objetivo Técnico:</strong> Descubrir cómo las velas se convierten en aliadas del autocuidado y la calma diaria, dominando la incorporación de aceites esenciales puros y sinergias aromaterapéuticas.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #E10078;">Enfoque Emocional:</strong> Gestión emocional. Utilizar el acto de elaboración y encendido como recurso de autorregulación, diseño de rituales de autocuidado y creación consciente.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0;"><strong style="color: #7BB11D;">Resultados Esperados:</strong> Ideal para quienes buscan pausas conscientes y bienestar a través de la creación. Al finalizar, formularás velas de intención terapéutica calculando dosis de aceites y creando tu espacio de serenidad.</p>
+    </section>
+
+    <!-- ================= SUBTÍTULO "CONTENIDO DEL MÓDULO" ================= -->
+    <div style="margin-bottom: 18px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 2px; margin: 0;">Contenido del Módulo</h2>
+        <div style="height: 2px; background: linear-gradient(90deg, #F0A100, transparent); border-radius: 1px; margin-top: 6px;"></div>
+    </div>
+
+    <!-- ================= DOS PANELES FIJOS ================= -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 22px;">
+
+        <!-- PANEL IZQUIERDO: INFORMACIÓN TÉCNICA -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(38, 163, 200, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #26A3C8; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Información Técnica</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Qué es -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">¿Qué es una vela terapéutica?</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Vela creada con cera vegetal pura (soja o coco) enriquecida exclusivamente con <strong>aceites esenciales 100% puros y naturales</strong>. A diferencia de las velas decorativas, busca liberar fitocompuestos activos para promover la calma física y el equilibrio mental mediante la inhalación consciente.</p>
+                </div>
+
+                <!-- Temperaturas -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas y Punto de Inflamación</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Fundido</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #26A3C8;">80°C</div>
+                        </div>
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Aceites AE</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #E10078;">60°C</div>
+                        </div>
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Vertido</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #7BB11D;">52°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medida estándar -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Dosis Aromaterapéutica</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Carga terapéutica recomendada: <strong>5% a 7%</strong> del peso de la cera. Dado que los aceites esenciales son concentrados volátiles muy potentes, exceder el 8% puede alterar la llama y saturar el ambiente en vez de calmar.</p>
+                </div>
+
+                <!-- Materiales -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Materiales Necesarios</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.7;">
+                        <div>Cera de soja o cera de coco de baja fusión</div>
+                        <div>Aceites esenciales puros (Lavanda, Manzanilla, Bergamota, etc.)</div>
+                        <div>Mecha de algodón ecológico o mecha de madera crepitante</div>
+                        <div>Contenedor ambar o cerámico (protege la luz solar)</div>
+                        <div>Báscula y termómetro digital de alta precisión</div>
+                        <div>Flores o hierbas secas decorativas (lavanda, romero, caléndula)</div>
+                        <div>Pichel de vertido de acero o aluminio</div>
+                    </div>
+                </div>
+
+                <!-- Procedimiento -->
+                <div style="margin-bottom: 0;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Procedimiento Paso a Paso</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.6;">
+                        <div><strong style="color: #26A3C8;">1.</strong> Acondicionar un ambiente silencioso, iluminado y ventilado.</div>
+                        <div><strong style="color: #26A3C8;">2.</strong> Pesar cera y medir gotas/gramos de aceite esencial puro.</div>
+                        <div><strong style="color: #26A3C8;">3.</strong> Derretir la cera a baño María a fuego lento hasta 80°C.</div>
+                        <div><strong style="color: #26A3C8;">4.</strong> Fijar la mecha ecológica en el fondo del recipiente ámbar.</div>
+                        <div><strong style="color: #26A3C8;">5.</strong> Dejar enfriar a 60°C e incorporar el aceite esencial lentamente.</div>
+                        <div><strong style="color: #26A3C8;">6.</strong> Revolver suavemente en sentido horario durante 2 minutos.</div>
+                        <div><strong style="color: #26A3C8;">7.</strong> Dejar descender a 52°C y verter pacientemente en el recipiente.</div>
+                        <div><strong style="color: #26A3C8;">8.</strong> Colocar botánicos secos en la superficie en el punto cremoso.</div>
+                        <div><strong style="color: #26A3C8;">9.</strong> Curar por 72 horas protegida de corrientes de aire y luz directa.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO: INTELIGENCIA EMOCIONAL -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(92, 32, 102, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Inteligencia Emocional</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Gestión emocional -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Gestión Emocional</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La gestión emocional implica la capacidad de regular las respuestas afectivas ante el estrés. Crear y encender una vela terapéutica funciona como un catalizador para transformar estados de agitación en espacios de serenidad y perspectiva interior.</p>
+                </div>
+
+                <!-- La vela como recurso de calma -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">La Vela como Recurso de Calma</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La danza de la llama suave y el sonido crepitante actúan como anclajes visuales y auditivos que disminuyen el ritmo cardíaco. Al enfocar la atención en el parpadeo de la luz y el aroma, se activa la respuesta de relajación del sistema nervioso parasimpático.</p>
+                </div>
+
+                <!-- Rituales de autocuidado -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Rituales de Autocuidado Diario</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.8;">
+                        <div><strong style="color: #7BB11D;">Mañana (Energía):</strong> Romero + Bergamota para enfocar mente</div>
+                        <div><strong style="color: #26A3C8;">Tarde (Pausa):</strong> Naranja + Menta para despejar tensión laboral</div>
+                        <div><strong style="color: #5C2066;">Noche (Calma):</strong> Lavanda + Manzanilla para inducir el descanso</div>
+                        <div><strong style="color: #E10078;">Introspección:</strong> Incienso + Cedarwood para meditar</div>
+                    </div>
+                </div>
+
+                <!-- Creación consciente -->
+                <div style="margin-bottom: 0;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Creación Consciente para el Bienestar</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Dedicar tiempo a hacer una vela propia es un acto radical de amor propio. Transforma un proceso artesanal en una meditación activa donde cada gota de aceite lleva una intención explícita de salud, descanso y contención afectiva.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= SECCIÓN: BOTONES EXPANDIBLES (Izquierda: Tips + Checklist, Derecha: Calculadoras) ================= -->
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+
+            <!-- COLUMNA IZQUIERDA: Tips + Checklist -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Tips Claves -->
+                <button onclick="m2Toggle('m2-tips-content')" style="width: 100%; background: #ffffff; border: 2px solid #7BB11D; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#7BB11D'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Tips Claves Terapéuticos
+                </button>
+                <div id="m2-tips-content" style="display: none; margin-bottom: 10px;">
+                    <div style="background: rgba(123, 177, 29, 0.06); border-left: 3px solid #7BB11D; border-radius: 4px; padding: 10px 12px; margin-bottom: 6px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #7BB11D; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Flashpoint y Conservación</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Nunca agregues aceites esenciales por encima de 60°C. Si superas esa temperatura, las moléculas biomédicas volátiles se destruyen, evaporando el valor terapéutico del aceite.</p>
+                    </div>
+                    <div style="background: rgba(38, 163, 200, 0.06); border-left: 3px solid #26A3C8; border-radius: 4px; padding: 10px 12px; margin-bottom: 6px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #26A3C8; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Contenedores Ámbar u Opacos</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Los aceites esenciales son fotosensibles. Utiliza envases de vidrio oscuro (ámbar, cobalto) o cerámica para evitar que la luz solar degrade los principios activos del aroma.</p>
+                    </div>
+                    <div style="background: rgba(225, 0, 120, 0.06); border-left: 3px solid #E10078; border-radius: 4px; padding: 10px 12px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #E10078; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Uso de Mechas de Madera</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Las mechas de madera producen un leve sonido similar a una chimenea leñosa. Este estímulo auditivo complementa la aromaterapia favoreciendo la meditación profunda.</p>
+                    </div>
+                </div>
+
+                <!-- Botón Checklist -->
+                <button onclick="m2Toggle('m2-checklist-content')" style="width: 100%; background: #ffffff; border: 2px solid #E10078; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Checklist del Ritual Terapéutico
+                </button>
+                <div id="m2-checklist-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #888888; margin: 0 0 8px 0;">Marca cada paso completado en tu sesión de elaboración terapéutica.</p>
+                    <div id="m2-step-1" onclick="m2ToggleStep('m2-step-1')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m2-check-1" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Preparación consciente del espacio (música suave, ventilación)</div>
+                    </div>
+                    <div id="m2-step-2" onclick="m2ToggleStep('m2-step-2')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m2-check-2" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Pesaje riguroso de la cera vegetal y aceites esenciales puros</div>
+                    </div>
+                    <div id="m2-step-3" onclick="m2ToggleStep('m2-step-3')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m2-check-3" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Incorporación de aceites a exactamente 60°C mezclando 2 min</div>
+                    </div>
+                    <div id="m2-step-4" onclick="m2ToggleStep('m2-step-4')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m2-check-4" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Vertido lento a 52°C en frasco ámbar y fijación de mecha</div>
+                    </div>
+                    <div id="m2-step-5" onclick="m2ToggleStep('m2-step-5')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 0; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m2-check-5" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Curado protegido de 72 horas con afirmación de intención personal</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: Calculadoras -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Calculadora de Fórmulas -->
+                <button onclick="m2Toggle('m2-formula-content')" style="width: 100%; background: #ffffff; border: 2px solid #26A3C8; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#26A3C8'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Sinergia Terapéutica
+                </button>
+                <div id="m2-formula-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 10px 0;">Ingresa los gramos de cera deseados para calcular la cantidad exacta de aceites esenciales puros (máx 7%).</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; margin-bottom: 10px;">
+                        <div style="flex: 1; min-width: 100px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Gramos de Cera Total</label>
+                            <input type="number" id="m2-gr-cera" placeholder="Ej: 400" style="width: 100%; background: #ffffff; border: 1px solid #26A3C8; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#26A3C8';"/>
+                        </div>
+                        <div style="width: 70px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">% Aceites AE</label>
+                            <input type="number" id="m2-pct-fragancia" value="6" min="3" max="8" style="width: 100%; background: #ffffff; border: 1px solid #26A3C8; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#26A3C8';"/>
+                        </div>
+                        <button onclick="m2CalcularFormula()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 7px 12px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 34px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">CALCULAR</button>
+                    </div>
+                    <div id="m2-formula-resultados" style="display: none; background: rgba(38, 163, 200, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Cera Vegetal</div>
+                                <div id="m2-res-cera" style="font-size: 16px; color: #7BB11D; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Aceite AE Puro</div>
+                                <div id="m2-res-fragancia" style="font-size: 16px; color: #26A3C8; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Gotas Aprox</div>
+                                <div id="m2-res-gotas" style="font-size: 16px; color: #E10078; font-weight: 900;">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Calculadora de Precio Final -->
+                <button onclick="m2Toggle('m2-precio-content')" style="width: 100%; background: #ffffff; border: 2px solid #F0A100; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#F0A100'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Costo y Venta
+                </button>
+                <div id="m2-precio-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 8px 0;">Ingresa los costos de tu vela terapéutica (los aceites esenciales puros suelen elevar el costo unitario).</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Cera ($)</label>
+                            <input type="number" id="m2-costo-cera" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Aceites AE ($)</label>
+                            <input type="number" id="m2-costo-fragancia" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mecha Madera ($)</label>
+                            <input type="number" id="m2-costo-mecha" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; align-items: flex-end; margin-bottom: 8px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Frasco Ámbar ($)</label>
+                            <input type="number" id="m2-costo-envase" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mano de Obra ($)</label>
+                            <input type="number" id="m2-costo-mo" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="width: 55px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Margen (x)</label>
+                            <input type="number" id="m2-margen" value="2.8" min="1" max="10" step="0.1" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <button onclick="m2CalcularPrecio()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 10px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 32px;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">CALCULAR</button>
+                    </div>
+                    <div id="m2-precio-resultados" style="display: none; background: rgba(240, 161, 0, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Costo Total</div>
+                                <div id="m2-res-costo" style="font-size: 16px; color: #F0A100; font-weight: 900;">$0.00</div>
+                            </div>
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #7BB11D; text-transform: uppercase; font-weight: 700;">Precio Sugerido</div>
+                                <div id="m2-res-venta" style="font-size: 18px; color: #7BB11D; font-weight: 900;">$0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= BOTÓN EXPANDIBLE: DIARIO DE INTELIGENCIA EMOCIONAL ================= -->
+    <div style="margin-bottom: 20px;">
+        <button onclick="m2Toggle('m2-diario-content')" style="width: 100%; background: #ffffff; border: 2px solid #5C2066; border-radius: 8px; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#5C2066'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Diario de Inteligencia Emocional (Gestión Emocional)
+        </button>
+        <div id="m2-diario-content" style="display: none; margin-top: 10px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; padding: 14px; background: rgba(92, 32, 102, 0.02);">
+            <div style="background: rgba(92, 32, 102, 0.05); border-radius: 5px; padding: 10px 12px; margin-bottom: 10px;">
+                <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">¿Cómo te ayuda el proceso de elaboración de esta vela a gestionar la tensión o la ansiedad cotidiana? Registra la sinergia elegida, la emoción que buscabas regular y la experiencia de tu ritual de autocuidado.</p>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Sinergia e Intención Terapéutica</label>
+                <input type="text" id="m2-diario-aroma" placeholder="Ej: Lavanda y Bergamota - Pausa y serenidad ante el cansancio laboral" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"/>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Reflexión personal (Ritual y regulación de emociones)</label>
+                <textarea id="m2-diario-texto" placeholder="Describe cómo viviste la calma durante el mezclado y cómo percibes el impacto de esta práctica en tu bienestar..." rows="3" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none; resize: vertical;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"></textarea>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+                <button onclick="m2DescargarDiarioPDF()" style="background: #5C2066; border: none; border-radius: 5px; padding: 7px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#4a1a52';" onmouseout="this.style.background='#5C2066';">
+                    <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Descargar Reflexión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= RETO DE APRENDIZAJE ================= -->
+    <div style="margin-bottom: 18px; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 8px; overflow: hidden; background: rgba(38, 163, 200, 0.02);">
+        <button onclick="m2Toggle('m2-reto-content')" style="width: 100%; background: #ffffff; border: none; border-bottom: 2px solid #26A3C8; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='rgba(38, 163, 200, 0.05)';" onmouseout="this.style.background='#ffffff';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Reto de Aprendizaje: Módulo 2
+        </button>
+        <div id="m2-reto-content" style="display: none; padding: 14px;">
+            <p style="font-size: 12px; color: #666666; margin: 0 0 10px 0;">Demuestra tus conocimientos técnicos y emocionales sobre velas terapéuticas. Necesitas al menos <strong>70 puntos</strong> para aprobar.</p>
+
+            <div id="m2-quiz-container">
+                <div class="m2-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">1. ¿Cuál es el rango recomendado para vertido de la cera vegetal en recipientes terapéuticos?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q1" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 75°C - 80°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q1" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 50°C - 55°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q1" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 30°C - 35°C</label>
+                    </div>
+                </div>
+                <div class="m2-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">2. ¿Por qué no debe superarse la temperatura de flashpoint al agregar aceites esenciales puros?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q2" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Porque la cera se cuaja instantáneamente</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q2" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Se queman y evaporan los fitocompuestos medicinales del aceite</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q2" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> No ocurre ningún cambio negativo</label>
+                    </div>
+                </div>
+                <div class="m2-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">3. En el ámbito emocional, ¿qué significa la Gestión Emocional durante el taller?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q3" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Reprimir las emociones molestas</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q3" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Reconocer y encauzar las emociones para autorregular la ansiedad</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q3" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Trabajar apresuradamente sin pensar</label>
+                    </div>
+                </div>
+                <div class="m2-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">4. ¿Qué porcentaje de carga aromática pura es ideal para evitar saturaciones?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q4" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 1% a 2%</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q4" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 5% a 7%</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q4" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 15% a 20%</label>
+                    </div>
+                </div>
+                <div class="m2-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 0;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">5. ¿Por qué es recomendable utilizar envases ámbar u opacos para las velas de aromaterapia?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q5" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Protegen la fotosensibilidad de los aceites esenciales frente a la luz</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q5" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Únicamente por estética visual</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m2q5" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Para acelerar la fusión de la cera</label>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="m2Evaluar()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 9px 20px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-top: 10px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">Enviar Respuestas</button>
+
+            <div id="m2-reto-resultado" style="display: none; border-radius: 5px; padding: 12px; margin-top: 10px;">
+                <div id="m2-reto-score" style="font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 5px;"></div>
+                <div id="m2-reto-feedback" style="font-size: 12px; text-align: center; color: #555555; line-height: 1.5;"></div>
+                <div id="m2-reto-botones" style="display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; justify-content: center;">
+                    <button onclick="m2DescargarRetoPDF()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">
+                        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Descargar Resultado
+                    </button>
+                </div>
+                <div style="text-align: center; margin-top: 8px;">
+                    <button onclick="m2Reintentar()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">Reintentar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= BOTÓN DESCARGAR PDF ================= -->
+    <div id="m2-download" style="margin-bottom: 16px; text-align: center;">
+        <button onclick="m2DescargarPDF()" style="background: linear-gradient(90deg, #7BB11D, #26A3C8); border: none; border-radius: 8px; padding: 10px 24px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.boxShadow='0 3px 12px rgba(123, 177, 29, 0.3)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar Contenido (PDF)
+        </button>
+    </div>
+
+    <!-- ================= PIE DE PÁGINA ================= -->
+    <footer id="m2-footer" style="background: rgba(123, 177, 29, 0.06); border: 1px solid rgba(123, 177, 29, 0.15); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: #333333; letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase;">Tecnicatura de Velas Artesanales</div>
+        <div style="font-size: 12px; font-weight: 600; color: #26A3C8; letter-spacing: 2px; text-transform: uppercase; margin: 0;">Con Enfoque en Inteligencia Emocional</div>
+        <div style="font-size: 10px; color: #5C2066; letter-spacing: 1px; margin-top: 5px; text-transform: uppercase;">Diseño académico y dirección: Prof. María Esther Espinoza Juárez</div>
+    </footer>
+
+    <!-- ================= ÁREA DE IMPRESIÓN (oculta, solo para PDF) ================= -->
+    <div id="m2-print-area" style="display: none;">
+        <div style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; padding: 30px; color: #333333; max-width: 700px; margin: 0 auto;">
+            <h1 style="font-size: 24px; color: #26A3C8; text-transform: uppercase; margin-bottom: 5px;">Módulo 2: Velas Terapéuticas</h1>
+            <p style="font-size: 12px; color: #F0A100; margin: 0 0 15px 0;">Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Año</p>
+            <hr style="border: none; border-top: 3px solid #26A3C8; margin-bottom: 20px;"/>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 20px;">Información Técnica</h2>
+            <h3 style="font-size: 14px; color: #F0A100;">¿Qué es una vela terapéutica?</h3>
+            <p style="font-size: 12px; line-height: 1.6;">Vela creada con cera vegetal pura (soja o coco) enriquecida exclusivamente con aceites esenciales 100% puros. Busca liberar fitocompuestos activos para promover la calma física y el equilibrio mental mediante la inhalación consciente.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Temperaturas Clave</h3>
+            <p style="font-size: 12px;">Fundido: <strong>80°C</strong> | Aceites esenciales: <strong>60°C</strong> | Vertido: <strong>52°C</strong></p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Dosis Aromaterapéutica</h3>
+            <p style="font-size: 12px;">Carga terapéutica recomendada: 5% a 7% del peso de la cera. Dado que los aceites esenciales son concentrados volátiles muy potentes, exceder el 8% puede alterar la llama y saturar el ambiente.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Materiales Necesarios</h3>
+            <p style="font-size: 12px;">Cera de soja o coco de baja fusión, Aceites esenciales puros (Lavanda, Bergamota, Manzanilla), Mecha de algodón eco o madera, Contenedor ámbar, Báscula y termómetro digital de precisión.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Procedimiento Paso a Paso</h3>
+            <ol style="font-size: 12px; line-height: 1.8; padding-left: 20px;">
+                <li>Acondicionar un ambiente silencioso, iluminado y ventilado.</li>
+                <li>Pesar cera y medir gotas/gramos de aceite esencial puro.</li>
+                <li>Derretir la cera a baño María a fuego lento hasta 80°C.</li>
+                <li>Fijar la mecha ecológica en el fondo del recipiente ámbar.</li>
+                <li>Dejar enfriar a 60°C e incorporar el aceite esencial lentamente.</li>
+                <li>Revolver suavemente en sentido horario durante 2 minutos.</li>
+                <li>Dejar descender a 52°C y verter pacientemente en el recipiente.</li>
+                <li>Colocar botánicos secos en la superficie en el punto cremoso.</li>
+                <li>Curar por 72 horas protegida de corrientes de aire y luz directa.</li>
+            </ol>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 25px;">Tips Claves Terapéuticos</h2>
+            <h3 style="font-size: 14px; color: #7BB11D;">Flashpoint y Conservación</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Nunca agregues aceites esenciales por encima de 60°C para no destruir sus moléculas terapéuticas.</p>
+            <h3 style="font-size: 14px; color: #26A3C8;">Contenedores Ámbar u Opacos</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Evita que la radiación solar altere los fitocompuestos sensibles del aceite esencial.</p>
+
+            <h2 style="font-size: 16px; color: #5C2066; margin-top: 25px;">Inteligencia Emocional</h2>
+            <h3 style="font-size: 14px; color: #5C2066;">Gestión Emocional</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Regulación de estados emocionales ante situaciones agitadas cotidianas, utilizando el ritual de creación como espacio pacificador.</p>
+
+            <hr style="border: none; border-top: 2px solid #7BB11D; margin-top: 25px; margin-bottom: 15px;"/>
+            <p style="font-size: 10px; color: #888888; text-align: center;">Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. María Esther Espinoza Juárez</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= COPILOTO PEDAGÓGICO IA ================= -->
+<button id="m2-copiloto-btn" onclick="m2ToggleCopiloto()" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7BB11D, #26A3C8); border: none; color: #ffffff; cursor: pointer; box-shadow: 0 4px 12px rgba(123, 177, 29, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" aria-label="Copiloto Pedagógico IA">
+    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<div id="m2-copiloto-panel" style="display: none; position: fixed; bottom: 82px; right: 20px; width: 280px; max-width: calc(100vw - 40px); max-height: 360px; background: #ffffff; border: 1px solid rgba(123, 177, 29, 0.3); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); z-index: 9999; overflow-y: auto; padding: 12px;">
+    <div style="font-size: 12px; font-weight: 700; color: #7BB11D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(123, 177, 29, 0.2);">Copiloto Pedagógico IA - Módulo 2</div>
+    <div id="m2-copiloto-content" style="font-size: 12px; color: #555555; line-height: 1.5; margin-bottom: 8px;">
+        <p style="margin: 0 0 5px 0;">¡Hola! Soy tu asistente de Velas Terapéuticas. ¿En qué te ayudo hoy?</p>
+        <ul style="margin: 0 0 6px 0; padding-left: 14px;">
+            <li>Cálculo de gotas por frasco</li>
+            <li>Selección de aceites para el estrés</li>
+            <li>Consejos sobre mechas de madera</li>
+        </ul>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <button onclick="m2CopilotoAccion('explicar')" style="background: rgba(123, 177, 29, 0.1); border: 1px solid #7BB11D; border-radius: 14px; padding: 4px 9px; color: #7BB11D; font-size: 10px; font-weight: 600; cursor: pointer;">Punto Inflamación</button>
+        <button onclick="m2CopilotoAccion('resumir')" style="background: rgba(38, 163, 200, 0.1); border: 1px solid #26A3C8; border-radius: 14px; padding: 4px 9px; color: #26A3C8; font-size: 10px; font-weight: 600; cursor: pointer;">Ritual Calma</button>
+        <button onclick="m2CopilotoAccion('repaso')" style="background: rgba(225, 0, 120, 0.1); border: 1px solid #E10078; border-radius: 14px; padding: 4px 9px; color: #E10078; font-size: 10px; font-weight: 600; cursor: pointer;">Repaso Quiz</button>
+    </div>
+</div>
+
+<!-- ================= LIBRERIA JSPDF (CDN) ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+(function() {
+    /* Sistema de notificaciones integradas (Toasts) */
+    window.m2ShowToast = function(msg, isError) {
+        var toast = document.getElementById('m2-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.background = isError ? '#E10078' : '#7BB11D';
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 3500);
+    };
+
+    // Toggle expandible (abrir/cerrar contenido)
+    window.m2Toggle = function(contentId) {
+        var el = document.getElementById(contentId);
+        if (!el) return;
+        if (el.style.display === 'none' || el.style.display === '') {
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    };
+
+    // Calculadora de Fórmulas
+    window.m2CalcularFormula = function() {
+        var grCera = parseFloat(document.getElementById('m2-gr-cera').value);
+        var pctFrag = parseFloat(document.getElementById('m2-pct-fragancia').value);
+        if (!grCera || grCera <= 0) { 
+            m2ShowToast('Ingresa una cantidad válida de cera.', true); 
+            return; 
+        }
+        if (!pctFrag || pctFrag < 3 || pctFrag > 8) { 
+            m2ShowToast('Para aceites esenciales puros, el porcentaje óptimo es entre 3% y 8%.', true); 
+            return; 
+        }
+        var grFragancia = (grCera * pctFrag / 100);
+        var grCeraFinal = grCera - grFragancia;
+        var gotasAprox = Math.round(grFragancia * 20); // Aprox 20 gotas por gramo
+        document.getElementById('m2-res-cera').textContent = grCeraFinal.toFixed(1) + 'g';
+        document.getElementById('m2-res-fragancia').textContent = grFragancia.toFixed(1) + 'g';
+        document.getElementById('m2-res-gotas').textContent = '~' + gotasAprox;
+        document.getElementById('m2-formula-resultados').style.display = 'block';
+        m2ShowToast('Dosis terapéutica calculada.');
+    };
+
+    // Calculadora de Precio Final
+    window.m2CalcularPrecio = function() {
+        var cera = parseFloat(document.getElementById('m2-costo-cera').value) || 0;
+        var frag = parseFloat(document.getElementById('m2-costo-fragancia').value) || 0;
+        var mecha = parseFloat(document.getElementById('m2-costo-mecha').value) || 0;
+        var envase = parseFloat(document.getElementById('m2-costo-envase').value) || 0;
+        var mo = parseFloat(document.getElementById('m2-costo-mo').value) || 0;
+        var margen = parseFloat(document.getElementById('m2-margen').value) || 2.8;
+        var costoTotal = cera + frag + mecha + envase + mo;
+        var precioVenta = costoTotal * margen;
+        document.getElementById('m2-res-costo').textContent = '$' + costoTotal.toFixed(2);
+        document.getElementById('m2-res-venta').textContent = '$' + precioVenta.toFixed(2);
+        document.getElementById('m2-precio-resultados').style.display = 'block';
+        m2ShowToast('Precio sugerido de vela terapéutica calculado.');
+    };
+
+    // Checklist interactiva
+    var m2Steps = {};
+    window.m2ToggleStep = function(stepId) {
+        m2Steps[stepId] = !m2Steps[stepId];
+        var step = document.getElementById(stepId);
+        var checkNum = stepId.split('-').pop();
+        var checkSvg = document.getElementById('m2-check-' + checkNum);
+        if (m2Steps[stepId]) {
+            step.style.borderColor = '#7BB11D';
+            step.style.background = 'rgba(123, 177, 29, 0.08)';
+            checkSvg.style.stroke = '#7BB11D';
+        } else {
+            step.style.borderColor = 'rgba(225, 0, 120, 0.2)';
+            step.style.background = '#ffffff';
+            checkSvg.style.stroke = 'transparent';
+        }
+    };
+
+    // Cargar jsPDF desde CDN
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : null;
+    if (!jsPDF) {
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        s.onload = function() { jsPDF = window.jspdf.jsPDF; };
+        document.head.appendChild(s);
+    }
+
+    // Descarga del Diario como PDF
+    window.m2DescargarDiarioPDF = function() {
+        var aroma = document.getElementById('m2-diario-aroma').value;
+        var texto = document.getElementById('m2-diario-texto').value;
+        if (!aroma && !texto) { 
+            m2ShowToast('Escribe al menos una reflexión antes de descargar.', true); 
+            return; 
+        }
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            
+            doc.setFillColor(92, 32, 102);
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text('Diario de Gestión Emocional y Autocuidado', 20, 20);
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 2: Velas Terapeuticas | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 20, 28);
+            
+            doc.setDrawColor(92, 32, 102);
+            doc.setLineWidth(0.5);
+            doc.line(20, 32, 190, 32);
+            
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(10);
+            doc.text('Fecha: ' + fecha, 20, 40);
+            
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Sinergia e Intencion Terapeutica', 20, 50);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var aromaLines = doc.splitTextToSize(aroma || '—', 170);
+            doc.text(aromaLines, 20, 58);
+            
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            var yReflexion = 58 + (aromaLines.length * 6) + 8;
+            doc.text('Reflexion personal (Ritual y autorregulacion)', 20, yReflexion);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var textoLines = doc.splitTextToSize(texto || '—', 170);
+            doc.text(textoLines, 20, yReflexion + 8);
+            
+            doc.setDrawColor(92, 32, 102);
+            doc.line(20, yReflexion + 8 + (textoLines.length * 6) + 10, 190, yReflexion + 8 + (textoLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 20, yReflexion + 8 + (textoLines.length * 6) + 16);
+            doc.save('diario_emocional_mod2.pdf');
+            m2ShowToast('PDF descargado con éxito.');
+        } catch(e) {
+            m2ShowToast('Error al generar el PDF.', true);
+        }
+    };
+
+    // Descarga del Resultado del Reto como PDF
+    window.m2DescargarRetoPDF = function() {
+        var scoreText = document.getElementById('m2-reto-score').textContent;
+        var feedbackText = document.getElementById('m2-reto-feedback').textContent;
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            
+            doc.setFillColor(38, 163, 200);
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Certificado de Resultado - Modulo 2', 105, 30, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 2: Velas Terapeuticas | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, 38, { align: 'center' });
+            
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(136, 136, 136);
+            doc.text('Fecha: ' + fecha, 105, 53, { align: 'center' });
+            
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(36);
+            doc.setFont(undefined, 'bold');
+            doc.text(scoreText, 105, 80, { align: 'center' });
+            
+            doc.setTextColor(85, 85, 85);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var feedbackLines = doc.splitTextToSize(feedbackText, 150);
+            doc.text(feedbackLines, 105, 95, { align: 'center' });
+            
+            doc.setDrawColor(123, 177, 29);
+            doc.line(20, 95 + (feedbackLines.length * 6) + 10, 190, 95 + (feedbackLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 105, 95 + (feedbackLines.length * 6) + 16, { align: 'center' });
+            doc.save('resultado_reto_mod2.pdf');
+            m2ShowToast('Resultado exportado a PDF.');
+        } catch(e) {
+            m2ShowToast('Error al generar el PDF.', true);
+        }
+    };
+
+    // Reto de Aprendizaje
+    var m2Respuestas = { m2q1: 'b', m2q2: 'b', m2q3: 'b', m2q4: 'b', m2q5: 'a' };
+    var m2TotalPreguntas = 5;
+
+    window.m2Evaluar = function() {
+        var correctas = 0;
+        for (var key in m2Respuestas) {
+            var selected = document.querySelector('input[name="' + key + '"]:checked');
+            if (selected && selected.value === m2Respuestas[key]) { correctas++; }
+        }
+        var puntaje = Math.round((correctas / m2TotalPreguntas) * 100);
+        var aprobado = puntaje >= 70;
+        var resultadoDiv = document.getElementById('m2-reto-resultado');
+        var scoreDiv = document.getElementById('m2-reto-score');
+        var feedbackDiv = document.getElementById('m2-reto-feedback');
+        resultadoDiv.style.display = 'block';
+        document.getElementById('m2-reto-botones').style.display = 'flex';
+        scoreDiv.textContent = puntaje + '/100 puntos';
+        scoreDiv.style.color = aprobado ? '#7BB11D' : '#E10078';
+        if (aprobado) {
+            resultadoDiv.style.background = 'rgba(123, 177, 29, 0.08)';
+            resultadoDiv.style.border = '1px solid rgba(123, 177, 29, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #7BB11D;">¡Felicitaciones! Has aprobado el Reto del Módulo 2.</strong><br><br>Has comprendido los principios de la formulación terapéutica y la gestión emocional a través del ritual.';
+            m2ShowToast('¡Reto Módulo 2 aprobado con éxito!');
+        } else {
+            resultadoDiv.style.background = 'rgba(225, 0, 120, 0.05)';
+            resultadoDiv.style.border = '1px solid rgba(225, 0, 120, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #E10078;">Aún no alcanzaste el puntaje mínimo (70).</strong><br><br>Repasa el concepto de flashpoint y la conservación en envases ámbar antes de volver a intentar.';
+            m2ShowToast('Resultado evaluado. Revisa las recomendaciones.', true);
+        }
+    };
+
+    window.m2Reintentar = function() {
+        var radios = document.querySelectorAll('#m2-quiz-container input[type="radio"]');
+        for (var i = 0; i < radios.length; i++) { radios[i].checked = false; }
+        document.getElementById('m2-reto-resultado').style.display = 'none';
+        document.getElementById('m2-reto-botones').style.display = 'none';
+    };
+
+    // Descarga del Módulo completo como PDF
+    window.m2DescargarPDF = function() {
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            var pageH = 297;
+            var margin = 15;
+            var contentW = 180;
+            var y = 15;
+
+            function checkPage(needed) {
+                if (y + needed > pageH - margin) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+
+            // === ENCABEZADO ===
+            doc.setFillColor(38, 163, 200);
+            doc.rect(0, 0, 210, 35, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Modulo 2: Velas Terapeuticas', 105, 15, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Ano', 105, 23, { align: 'center' });
+            doc.setFontSize(8);
+            doc.text('Prof. Maria Esther Espinoza Juarez', 105, 30, { align: 'center' });
+            y = 42;
+
+            // === OBJETIVOS ===
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('OBJETIVOS DE APRENDIZAJE', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var obj1 = doc.splitTextToSize('Objetivo Tecnico: Descubrir como las velas se convierten en aliadas del autocuidado y la calma diaria, dominando la incorporacion de aceites esenciales puros.', contentW);
+            checkPage(obj1.length * 4.5 + 12);
+            doc.text(obj1, margin, y); y += obj1.length * 4.5 + 6;
+            var obj2 = doc.splitTextToSize('Enfoque Emocional: Gestion emocional. Utilizar la elaboracion como recurso de autorregulacion, diseno de rituales de autocuidado y creacion consciente.', contentW);
+            checkPage(obj2.length * 4.5 + 6);
+            doc.text(obj2, margin, y); y += obj2.length * 4.5 + 10;
+
+            doc.setDrawColor(38, 163, 200);
+            doc.setLineWidth(0.5);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === INFORMACION TECNICA ===
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('INFORMACION TECNICA', margin, y); y += 8;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.text('Que es una vela terapeutica?', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var info = doc.splitTextToSize('Vela creada con cera vegetal pura (soja o coco) enriquecida exclusivamente con aceites esenciales 100% puros. Libera fitocompuestos activos para promover la calma fisica y el equilibrio mental.', contentW);
+            checkPage(info.length * 4.5 + 12);
+            doc.text(info, margin, y); y += info.length * 4.5 + 10;
+
+            // Temperaturas Clave
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(30);
+            doc.text('Temperaturas Clave', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            doc.text('Fundido: 80C | Aceites esenciales: 60C | Vertido: 52C', margin, y); y += 6;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === INTELIGENCIA EMOCIONAL ===
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('INTELIGENCIA EMOCIONAL - GESTION EMOCIONAL', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var ieText = doc.splitTextToSize('La gestion emocional implica la capacidad de regular las respuestas afectivas ante el estres. Crear y encender una vela terapeutica funciona como un catalizador para transformar estados de agitacion en espacios de serenidad y perspectiva interior.', contentW);
+            checkPage(ieText.length * 4.5 + 10);
+            doc.text(ieText, margin, y); y += ieText.length * 4.5 + 10;
+
+            doc.save('modulo2_velas_terapeuticas.pdf');
+            m2ShowToast('Documento Módulo 2 descargado en PDF.');
+        } catch(e) {
+            m2ShowToast('Error al generar el PDF del módulo.', true);
+        }
+    };
+
+    // Copiloto Pedagógico
+    window.m2ToggleCopiloto = function() {
+        var panel = document.getElementById('m2-copiloto-panel');
+        if (!panel) return;
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.m2CopilotoAccion = function(accion) {
+        var content = document.getElementById('m2-copiloto-content');
+        if (accion === 'explicar') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#7BB11D;">Punto de Inflamación:</strong></p><p style="margin:5px 0 0 0;">Los aceites puros se degradan sobre los 60°C. Mantén tu termómetro cerca para conservar la propiedad aromaterapéutica.</p>';
+        } else if (accion === 'resumir') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#26A3C8;">Ritual de Calma:</strong></p><p style="margin:5px 0 0 0;">Enciende tu vela en momentos de tensión laboral o antes de dormir. La luz suave reenfoca tu ritmo cardíaco.</p>';
+        } else if (accion === 'repaso') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#E10078;">Consejo para el Quiz:</strong></p><p style="margin:5px 0 0 0;">Recuerda que la dosis ideal de aceites es del 5% al 7% y que el envase ámbar preserva la luz.</p>';
+        }
+    };
+})();
+</script>
+
+</body>
+</html>

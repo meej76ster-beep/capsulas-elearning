@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1: Velas Aromáticas - Tecnicatura de Velas Artesanales</title>
+  
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #m1-print-area, #m1-print-area * { visibility: visible; }
+      #m1-print-area { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; background: #fff; }
+      .m1-print-hide { display: none !important; }
+      .m1-print-show { display: block !important; }
+    }
+
+    /* Animaciones y estilos suplementarios */
+    .m1-toast-notify {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: none;
+      animation: fadeInToast 0.3s ease;
+    }
+
+    @keyframes fadeInToast {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 10px; background-color: #f8f9fa;">
+
+<!-- Contenedor de Notificaciones Toast (Reemplazo amigable de alert) -->
+<div id="m1-toast" class="m1-toast-notify"></div>
+
+<div id="m1-container" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background-color: #ffffff; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px; box-sizing: border-box; position: relative; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+
+    <!-- ================= ENCABEZADO ================= -->
+    <header id="m1-header" style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div style="font-size: 11px; font-weight: 700; color: #7BB11D; background: rgba(123, 177, 29, 0.1); padding: 3px 10px; border-radius: 4px; display: inline-block; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">
+                    Módulo 1
+                </div>
+                <div style="font-size: 12px; color: #F0A100; letter-spacing: 3px; margin: 0 0 4px 0; text-transform: uppercase; font-weight: 600;">
+                    Primer Año - Bases Técnicas
+                </div>
+                <h1 style="font-size: 26px; font-weight: 800; line-height: 1.1; margin: 0; color: #26A3C8; text-transform: uppercase;">
+                    Velas Aromáticas
+                </h1>
+            </div>
+            <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;" fill="none">
+                    <rect x="22" y="28" width="16" height="26" rx="2" fill="#E10078" opacity="0.2" stroke="#E10078" stroke-width="1"/>
+                    <line x1="30" y1="28" x2="30" y2="18" stroke="#F0A100" stroke-width="2" stroke-linecap="round"/>
+                    <ellipse cx="30" cy="15" rx="5" ry="8" fill="#F0A100" opacity="0.3"/>
+                    <ellipse cx="30" cy="14" rx="3" ry="5" fill="#F0A100" opacity="0.5"/>
+                </svg>
+            </div>
+        </div>
+        <div style="height: 3px; background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%); border-radius: 2px; margin-top: 15px;"></div>
+    </header>
+
+    <!-- ================= OBJETIVOS ================= -->
+    <section id="m1-objetivos" style="background: rgba(38, 163, 200, 0.05); border-left: 4px solid #26A3C8; border-radius: 6px; padding: 16px 18px; margin-bottom: 22px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #26A3C8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Objetivos de Aprendizaje</h2>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #26A3C8;">Objetivo Técnico:</strong> Aprender a crear velas aromáticas de soja desde cero, eligiendo fragancias que acompañen el estado emocional y los deseos.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #E10078;">Enfoque Emocional:</strong> Autoconciencia emocional. Identificación de emociones a través del olfato, asociación aroma-emoción y práctica de atención plena.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0;"><strong style="color: #7BB11D;">Resultados Esperados:</strong> Al finalizar este módulo, la estudiante será capaz de formular una vela aromática con proporciones correctas, calcular su precio de venta y reflexionar sobre su estado emocional durante el proceso creativo.</p>
+    </section>
+
+    <!-- ================= SUBTÍTULO "CONTENIDO DEL MÓDULO" ================= -->
+    <div style="margin-bottom: 18px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 2px; margin: 0;">Contenido del Módulo</h2>
+        <div style="height: 2px; background: linear-gradient(90deg, #F0A100, transparent); border-radius: 1px; margin-top: 6px;"></div>
+    </div>
+
+    <!-- ================= DOS PANELES FIJOS ================= -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 22px;">
+
+        <!-- PANEL IZQUIERDO: INFORMACIÓN TÉCNICA -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(38, 163, 200, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #26A3C8; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Información Técnica</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Qué es -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">¿Qué es una vela aromática de soja?</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Vela artesanal elaborada con cera de soja (extracto vegetal del frijol de soja). Produce <strong>90% menos hollín</strong> que la parafina, no emite químicos tóxicos y es biodegradable. Retiene mejor las fragancias y produce combustión lenta y uniforme.</p>
+                </div>
+
+                <!-- Temperaturas -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas Clave</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Derretido</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #26A3C8;">85°C</div>
+                        </div>
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Fragancia</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #E10078;">65°C</div>
+                        </div>
+                        <div style="flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 5px; padding: 8px 6px; text-align: center;">
+                            <div style="font-size: 9px; color: #5C2066; text-transform: uppercase; font-weight: 600;">Vertido</div>
+                            <div style="font-size: 17px; font-weight: 900; color: #7BB11D;">57°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medida estándar -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Medida Estándar</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Carga de fragancia recomendada: <strong>6-8%</strong> del peso total. Regla general: <strong>28g de fragancia por cada 454g de cera</strong> (6.25%). Máximo: 10-12%. La cera es como una esponja: solo encapsula cierta cantidad.</p>
+                </div>
+
+                <!-- Materiales -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Materiales Necesarios</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.7;">
+                        <div>Cera de soja en escamas (Golden Brands 464)</div>
+                        <div>Fragancia para velas (no perfume ni colonia)</div>
+                        <div>Mecha con base metálica (series CD, ECO, LX)</div>
+                        <div>Contenedor resistente al calor (vidrio, cerámica, metal)</div>
+                        <div>Báscula digital + Termómetro digital</div>
+                        <div>Sticker de mecha + Centrador de mecha</div>
+                        <div>Pitcher de aluminio para vertido</div>
+                        <div>Etiqueta de seguridad</div>
+                    </div>
+                </div>
+
+                <!-- Procedimiento -->
+                <div style="margin-bottom: 0;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Procedimiento Paso a Paso</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.6;">
+                        <div><strong style="color: #26A3C8;">1.</strong> Preparar baño María (olla con agua a 1/3, calor medio-alto).</div>
+                        <div><strong style="color: #26A3C8;">2.</strong> Pesar materiales con báscula digital (por peso, no volumen).</div>
+                        <div><strong style="color: #26A3C8;">3.</strong> Derretir cera hasta 85°C en baño María.</div>
+                        <div><strong style="color: #26A3C8;">4.</strong> Preparar contenedores: pegar mecha al fondo y centrar.</div>
+                        <div><strong style="color: #26A3C8;">5.</strong> RETIRAR del calor, agregar fragancia a 65°C. Mezclar 1-2 min.</div>
+                        <div><strong style="color: #26A3C8;">6.</strong> Enfriar hasta 57°C (cera ligeramente opaca).</div>
+                        <div><strong style="color: #26A3C8;">7.</strong> Verter en contenedores hasta 6mm del borde.</div>
+                        <div><strong style="color: #26A3C8;">8.</strong> Centrar mecha y dejar enfriar sin mover.</div>
+                        <div><strong style="color: #26A3C8;">9.</strong> Reposo: 24-48h curado inicial, 1-2 semanas completo.</div>
+                        <div><strong style="color: #26A3C8;">10.</strong> Recortar mecha a 6mm y agregar etiqueta de seguridad.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO: INTELIGENCIA EMOCIONAL -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(92, 32, 102, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Inteligencia Emocional</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Autoconciencia -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Autoconciencia Emocional</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La autoconciencia emocional es la base de la inteligencia emocional (Daniel Goleman). Implica reconocer tus propias emociones y comprender su impacto en tus decisiones. Durante la creación de una vela aromática, este proceso se activa naturalmente a través del olfato.</p>
+                </div>
+
+                <!-- Olfato y sistema límbico -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">El Olfato y el Sistema Límbico</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Los aromas viajan directamente al <strong>sistema límbico</strong> del cerebro (amígdala e hipocampo), regiones relacionadas con la emoción y la memoria. Por esto, un aroma puede evocar recuerdos emocionales de manera inmediata y profunda (Harvard Gazette, 2020). Los aceites esenciales estimulan el hipotálamo para producir neuroquímicos que regulan el ánimo (NIH, 2021).</p>
+                </div>
+
+                <!-- Asociación aroma-emoción -->
+                <div style="margin-bottom: 14px;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Asociación Aroma - Emoción</h4>
+                    <div style="font-size: 12px; color: #555555; line-height: 1.8;">
+                        <div><strong style="color: #26A3C8;">Lavanda</strong> → Calma, serenidad</div>
+                        <div><strong style="color: #26A3C8;">Vainilla</strong> → Confort, calidez</div>
+                        <div><strong style="color: #26A3C8;">Cítricos</strong> → Alegría, energía</div>
+                        <div><strong style="color: #26A3C8;">Rosa</strong> → Amor, ternura</div>
+                        <div><strong style="color: #26A3C8;">Menta</strong> → Concentración</div>
+                        <div><strong style="color: #26A3C8;">Sandalia</strong> → Meditación, introspección</div>
+                    </div>
+                </div>
+
+                <!-- Atención plena -->
+                <div style="margin-bottom: 0;">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Atención Plena (Mindfulness)</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La práctica de atención plena durante la elaboración permite: observar los cambios de temperatura sin ansiedad, oler conscientemente la integración de la fragancia, conectar la intención emocional con el producto final, y transformar la actividad en una experiencia meditativa.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= SECCIÓN: BOTONES EXPANDIBLES (Izquierda: Tips + Checklist, Derecha: Calculadoras) ================= -->
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+
+            <!-- COLUMNA IZQUIERDA: Tips + Checklist -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Tips Claves -->
+                <button onclick="m1Toggle('m1-tips-content')" style="width: 100%; background: #ffffff; border: 2px solid #7BB11D; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#7BB11D'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Tips Claves
+                </button>
+                <div id="m1-tips-content" style="display: none; margin-bottom: 10px;">
+                    <div style="background: rgba(123, 177, 29, 0.06); border-left: 3px solid #7BB11D; border-radius: 4px; padding: 10px 12px; margin-bottom: 6px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #7BB11D; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Selección de Esencias</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Aceites esenciales = extractos naturales con propiedades aromaterapéuticas. Fragancias sintéticas = compuestos diseñados para velas con mayor rendimiento. Para producción, la fragancia sintética ofrece mejor "hold" y "throw".</p>
+                    </div>
+                    <div style="background: rgba(38, 163, 200, 0.06); border-left: 3px solid #26A3C8; border-radius: 4px; padding: 10px 12px; margin-bottom: 6px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #26A3C8; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Combinación de Aromas</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;"><strong>Notas altas</strong> (cítricos, menta), <strong>Notas medias</strong> (florales, hierbas), <strong>Notas bajas</strong> (vainilla, ámbar, maderas). Combinar al menos 2 niveles para experiencia completa.</p>
+                    </div>
+                    <div style="background: rgba(225, 0, 120, 0.06); border-left: 3px solid #E10078; border-radius: 4px; padding: 10px 12px;">
+                        <p style="font-size: 12px; font-weight: 700; color: #E10078; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px;">Temperatura de Vertido</p>
+                        <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Si está muy caliente, el aroma se evapora. Si está muy fría, no se integra bien. Puntualidad: <strong>65°C</strong> es la zona ideal para soja.</p>
+                    </div>
+                </div>
+
+                <!-- Botón Checklist -->
+                <button onclick="m1Toggle('m1-checklist-content')" style="width: 100%; background: #ffffff; border: 2px solid #E10078; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Checklist de Pasos
+                </button>
+                <div id="m1-checklist-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #888888; margin: 0 0 8px 0;">Marca cada paso completado durante tu proceso.</p>
+                    <div id="m1-step-1" onclick="m1ToggleStep('m1-step-1')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m1-check-1" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Pesaje de materiales (Cera y Fragancia)</div>
+                    </div>
+                    <div id="m1-step-2" onclick="m1ToggleStep('m1-step-2')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m1-check-2" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Calentamiento de la cera a 85°C (baño María)</div>
+                    </div>
+                    <div id="m1-step-3" onclick="m1ToggleStep('m1-step-3')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m1-check-3" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Retirar del calor, agregar fragancia a 65°C y mezclar</div>
+                    </div>
+                    <div id="m1-step-4" onclick="m1ToggleStep('m1-step-4')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m1-check-4" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Verter en contenedor a 57°C con mecha centrada</div>
+                    </div>
+                    <div id="m1-step-5" onclick="m1ToggleStep('m1-step-5')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 0; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m1-check-5" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Reposo 24-48h (curado inicial) sin mover</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: Calculadoras -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Calculadora de Fórmulas -->
+                <button onclick="m1Toggle('m1-formula-content')" style="width: 100%; background: #ffffff; border: 2px solid #26A3C8; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#26A3C8'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Fórmulas
+                </button>
+                <div id="m1-formula-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 10px 0;">Ingresa la cantidad total de cera de soja (en gramos) que deseas preparar.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; margin-bottom: 10px;">
+                        <div style="flex: 1; min-width: 100px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Gramos de cera total</label>
+                            <input type="number" id="m1-gr-cera" placeholder="Ej: 500" style="width: 100%; background: #ffffff; border: 1px solid #26A3C8; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#26A3C8';"/>
+                        </div>
+                        <div style="width: 70px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">% Fragancia</label>
+                            <input type="number" id="m1-pct-fragancia" value="8" min="3" max="15" style="width: 100%; background: #ffffff; border: 1px solid #26A3C8; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#26A3C8';"/>
+                        </div>
+                        <button onclick="m1CalcularFormula()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 7px 12px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 34px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">CALCULAR</button>
+                    </div>
+                    <div id="m1-formula-resultados" style="display: none; background: rgba(38, 163, 200, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Cera de Soja</div>
+                                <div id="m1-res-cera" style="font-size: 16px; color: #7BB11D; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Fragancia</div>
+                                <div id="m1-res-fragancia" style="font-size: 16px; color: #26A3C8; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Temp.</div>
+                                <div id="m1-res-temp" style="font-size: 16px; color: #E10078; font-weight: 900;">65°C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Calculadora de Precio Final -->
+                <button onclick="m1Toggle('m1-precio-content')" style="width: 100%; background: #ffffff; border: 2px solid #F0A100; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#F0A100'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Precio Final
+                </button>
+                <div id="m1-precio-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 8px 0;">Ingresa los costos de cada componente para obtener tu precio de venta sugerido.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Cera ($)</label>
+                            <input type="number" id="m1-costo-cera" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Fragancia ($)</label>
+                            <input type="number" id="m1-costo-fragancia" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mecha ($)</label>
+                            <input type="number" id="m1-costo-mecha" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; align-items: flex-end; margin-bottom: 8px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Envase ($)</label>
+                            <input type="number" id="m1-costo-envase" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mano de Obra ($)</label>
+                            <input type="number" id="m1-costo-mo" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="width: 55px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Margen (x)</label>
+                            <input type="number" id="m1-margen" value="2.5" min="1" max="10" step="0.1" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <button onclick="m1CalcularPrecio()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 10px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 32px;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">CALCULAR</button>
+                    </div>
+                    <div id="m1-precio-resultados" style="display: none; background: rgba(240, 161, 0, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Costo Total</div>
+                                <div id="m1-res-costo" style="font-size: 16px; color: #F0A100; font-weight: 900;">$0.00</div>
+                            </div>
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #7BB11D; text-transform: uppercase; font-weight: 700;">Precio de Venta</div>
+                                <div id="m1-res-venta" style="font-size: 18px; color: #7BB11D; font-weight: 900;">$0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= BOTÓN EXPANDIBLE: DIARIO DE INTELIGENCIA EMOCIONAL ================= -->
+    <div style="margin-bottom: 20px;">
+        <button onclick="m1Toggle('m1-diario-content')" style="width: 100%; background: #ffffff; border: 2px solid #5C2066; border-radius: 8px; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#5C2066'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Diario de Inteligencia Emocional
+        </button>
+        <div id="m1-diario-content" style="display: none; margin-top: 10px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; padding: 14px; background: rgba(92, 32, 102, 0.02);">
+            <div style="background: rgba(92, 32, 102, 0.05); border-radius: 5px; padding: 10px 12px; margin-bottom: 10px;">
+                <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Durante la elaboración de tu vela aromática, presta atención a: ¿Qué emoción asociaste con el aroma elegido? ¿Cómo te sentiste durante la práctica de atención plena al calentar la cera y observar la fragancia integrarse?</p>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Aroma elegido y emoción asociada</label>
+                <input type="text" id="m1-diario-aroma" placeholder="Ej: Lavanda - Calma y serenidad" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"/>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Reflexión personal (atención plena)</label>
+                <textarea id="m1-diario-texto" placeholder="Escribe cómo te sentiste durante el proceso..." rows="3" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none; resize: vertical;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"></textarea>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+                <button onclick="m1DescargarDiarioPDF()" style="background: #5C2066; border: none; border-radius: 5px; padding: 7px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#4a1a52';" onmouseout="this.style.background='#5C2066';">
+                    <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Descargar Reflexión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= RETO DE APRENDIZAJE ================= -->
+    <div style="margin-bottom: 18px; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 8px; overflow: hidden; background: rgba(38, 163, 200, 0.02);">
+        <button onclick="m1Toggle('m1-reto-content')" style="width: 100%; background: #ffffff; border: none; border-bottom: 2px solid #26A3C8; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='rgba(38, 163, 200, 0.05)';" onmouseout="this.style.background='#ffffff';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Reto de Aprendizaje
+        </button>
+        <div id="m1-reto-content" style="display: none; padding: 14px;">
+            <p style="font-size: 12px; color: #666666; margin: 0 0 10px 0;">Responde las siguientes preguntas para evaluar tu comprensión. Necesitas al menos <strong>70 puntos</strong> para aprobar. Puedes reintentarlo las veces que necesites.</p>
+
+            <div id="m1-quiz-container">
+                <div class="m1-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">1. ¿A qué temperatura se debe incorporar la fragancia a la cera de soja?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q1" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 85°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q1" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 65°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q1" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 50°C</label>
+                    </div>
+                </div>
+                <div class="m1-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">2. ¿Qué tipo de notas olfativas fijan el aroma de la vela?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q2" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Notas altas</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q2" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Notas medias</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q2" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Notas bajas</label>
+                    </div>
+                </div>
+                <div class="m1-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">3. ¿Es recomendable usar aceites esenciales puros para velas industriales de bajo costo?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q3" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Verdadero</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q3" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Falso</label>
+                    </div>
+                </div>
+                <div class="m1-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">4. ¿Cuál es el porcentaje de carga de fragancia recomendado para velas de soja?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q4" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 3-5%</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q4" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 6-10%</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q4" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> 12-15%</label>
+                    </div>
+                </div>
+                <div class="m1-pregunta" style="background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 0;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">5. ¿Qué pasa si se agrega la fragancia a una temperatura mayor a 65°C?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q5" value="a" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> El aroma se evapora</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q5" value="b" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> La vela se oscurece</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m1q5" value="c" style="width: 14px; height: 14px; accent-color: #7BB11D;"/> Se mejora la combustión</label>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="m1Evaluar()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 9px 20px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-top: 10px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">Enviar Respuestas</button>
+
+            <div id="m1-reto-resultado" style="display: none; border-radius: 5px; padding: 12px; margin-top: 10px;">
+                <div id="m1-reto-score" style="font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 5px;"></div>
+                <div id="m1-reto-feedback" style="font-size: 12px; text-align: center; color: #555555; line-height: 1.5;"></div>
+                <div id="m1-reto-botones" style="display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; justify-content: center;">
+                    <button onclick="m1DescargarRetoPDF()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">
+                        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Descargar Resultado
+                    </button>
+                </div>
+                <div style="text-align: center; margin-top: 8px;">
+                    <button onclick="m1Reintentar()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">Reintentar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= BOTÓN DESCARGAR PDF ================= -->
+    <div id="m1-download" style="margin-bottom: 16px; text-align: center;">
+        <button onclick="m1DescargarPDF()" style="background: linear-gradient(90deg, #7BB11D, #26A3C8); border: none; border-radius: 8px; padding: 10px 24px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.boxShadow='0 3px 12px rgba(123, 177, 29, 0.3)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar Contenido (PDF)
+        </button>
+    </div>
+
+    <!-- ================= PIE DE PÁGINA ================= -->
+    <footer id="m1-footer" style="background: rgba(123, 177, 29, 0.06); border: 1px solid rgba(123, 177, 29, 0.15); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: #333333; letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase;">Tecnicatura de Velas Artesanales</div>
+        <div style="font-size: 12px; font-weight: 600; color: #26A3C8; letter-spacing: 2px; text-transform: uppercase; margin: 0;">Con Enfoque en Inteligencia Emocional</div>
+        <div style="font-size: 10px; color: #5C2066; letter-spacing: 1px; margin-top: 5px; text-transform: uppercase;">Diseño académico y dirección: Prof. María Esther Espinoza Juárez</div>
+    </footer>
+
+    <!-- ================= ÁREA DE IMPRESIÓN (oculta, solo para PDF) ================= -->
+    <div id="m1-print-area" style="display: none;">
+        <div style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; padding: 30px; color: #333333; max-width: 700px; margin: 0 auto;">
+            <h1 style="font-size: 24px; color: #26A3C8; text-transform: uppercase; margin-bottom: 5px;">Módulo 1: Velas Aromáticas</h1>
+            <p style="font-size: 12px; color: #F0A100; margin: 0 0 15px 0;">Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Año</p>
+            <hr style="border: none; border-top: 3px solid #26A3C8; margin-bottom: 20px;"/>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 20px;">Información Técnica</h2>
+            <h3 style="font-size: 14px; color: #F0A100;">¿Qué es una vela aromática de soja?</h3>
+            <p style="font-size: 12px; line-height: 1.6;">Vela artesanal elaborada con cera de soja (extracto vegetal del frijol de soja). Produce 90% menos hollín que la parafina, no emite químicos tóxicos (tolueno, benceno, naftaleno) y es biodegradable y renovable. Retiene mejor las fragancias y produce una combustión más lenta y uniforme.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Temperaturas Clave</h3>
+            <p style="font-size: 12px;">Derretido: <strong>85°C</strong> | Adición de fragancia: <strong>65°C</strong> | Vertido: <strong>57°C</strong></p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Medida Estándar (Fragrance Load)</h3>
+            <p style="font-size: 12px;">Carga de fragancia recomendada: 6-8% del peso total. Regla general: 28g de fragancia por cada 454g de cera (6.25%). Máximo: 10-12%.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Materiales Necesarios</h3>
+            <p style="font-size: 12px;">Cera de soja en escamas, Fragancia para velas, Mecha con base metálica (series CD, ECO, LX), Contenedor resistente al calor, Báscula digital, Termómetro digital, Sticker de mecha, Centrador de mecha, Pitcher de aluminio, Etiqueta de seguridad.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Procedimiento Paso a Paso</h3>
+            <ol style="font-size: 12px; line-height: 1.8; padding-left: 20px;">
+                <li>Preparar baño María (olla con agua a 1/3, calor medio-alto).</li>
+                <li>Pesar materiales con báscula digital (por peso, no volumen).</li>
+                <li>Derretir cera hasta 85°C en baño María.</li>
+                <li>Preparar contenedores: pegar mecha al fondo y centrar.</li>
+                <li>RETIRAR del calor, agregar fragancia a 65°C. Mezclar 1-2 minutos.</li>
+                <li>Enfriar hasta 57°C (cera ligeramente opaca).</li>
+                <li>Verter en contenedores hasta 6mm del borde.</li>
+                <li>Centrar mecha y dejar enfriar sin mover.</li>
+                <li>Reposo: 24-48h curado inicial, 1-2 semanas curado completo.</li>
+                <li>Recortar mecha a 6mm y agregar etiqueta de seguridad.</li>
+            </ol>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 25px;">Tips Claves</h2>
+            <h3 style="font-size: 14px; color: #7BB11D;">Selección de Esencias</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Aceites esenciales = extractos naturales con propiedades aromaterapéuticas. Fragancias sintéticas = compuestos diseñados para velas con mayor rendimiento. Para producción, la fragancia sintética ofrece mejor "hold" y "throw".</p>
+            <h3 style="font-size: 14px; color: #26A3C8;">Combinación de Aromas</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Notas altas (cítricos, menta), Notas medias (florales, hierbas), Notas bajas (vainilla, ámbar, maderas). Combinar al menos 2 niveles.</p>
+            <h3 style="font-size: 14px; color: #E10078;">Temperatura de Vertido</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Si está muy caliente, el aroma se evapora. Si está muy fría, no se integra bien. Puntualidad: 65°C es la zona ideal para soja.</p>
+
+            <h2 style="font-size: 16px; color: #5C2066; margin-top: 25px;">Inteligencia Emocional</h2>
+            <h3 style="font-size: 14px; color: #5C2066;">Autoconciencia Emocional</h3>
+            <p style="font-size: 12px; line-height: 1.5;">La autoconciencia emocional es la base de la inteligencia emocional (Daniel Goleman). Implica reconocer tus propias emociones y comprender su impacto en tus decisiones.</p>
+            <h3 style="font-size: 14px; color: #5C2066;">El Olfato y el Sistema Límbico</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Los aromas viajan directamente al sistema límbico del cerebro (amígdala e hipocampo), regiones relacionadas con la emoción y la memoria. Un aroma puede evocar recuerdos emocionales de manera inmediata y profunda.</p>
+            <h3 style="font-size: 14px; color: #5C2066;">Asociación Aroma - Emoción</h3>
+            <p style="font-size: 12px;">Lavanda → Calma | Vainilla → Confort | Cítricos → Alegría | Rosa → Amor | Menta → Concentración | Sandalia → Meditación</p>
+            <h3 style="font-size: 14px; color: #5C2066;">Atención Plena (Mindfulness)</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Observar cambios de temperatura sin ansiedad, oler conscientemente la fragancia, conectar la intención emocional con el producto final.</p>
+
+            <hr style="border: none; border-top: 2px solid #7BB11D; margin-top: 25px; margin-bottom: 15px;"/>
+            <p style="font-size: 10px; color: #888888; text-align: center;">Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. María Esther Espinoza Juárez</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= COPILOTO PEDAGÓGICO IA ================= -->
+<button id="m1-copiloto-btn" onclick="m1ToggleCopiloto()" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7BB11D, #26A3C8); border: none; color: #ffffff; cursor: pointer; box-shadow: 0 4px 12px rgba(123, 177, 29, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" aria-label="Copiloto Pedagógico IA">
+    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<div id="m1-copiloto-panel" style="display: none; position: fixed; bottom: 82px; right: 20px; width: 280px; max-width: calc(100vw - 40px); max-height: 360px; background: #ffffff; border: 1px solid rgba(123, 177, 29, 0.3); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); z-index: 9999; overflow-y: auto; padding: 12px;">
+    <div style="font-size: 12px; font-weight: 700; color: #7BB11D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(123, 177, 29, 0.2);">Copiloto Pedagógico IA</div>
+    <div id="m1-copiloto-content" style="font-size: 12px; color: #555555; line-height: 1.5; margin-bottom: 8px;">
+        <p style="margin: 0 0 5px 0;">Hola! Soy tu asistente de estudio del Módulo 1. Puedo ayudarte con:</p>
+        <ul style="margin: 0 0 6px 0; padding-left: 14px;">
+            <li>Explicar conceptos técnicos</li>
+            <li>Resumir los tips claves</li>
+            <li>Recomendar qué repasar</li>
+        </ul>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <button onclick="m1CopilotoAccion('explicar')" style="background: rgba(123, 177, 29, 0.1); border: 1px solid #7BB11D; border-radius: 14px; padding: 4px 9px; color: #7BB11D; font-size: 10px; font-weight: 600; cursor: pointer;">Fórmulas</button>
+        <button onclick="m1CopilotoAccion('resumir')" style="background: rgba(38, 163, 200, 0.1); border: 1px solid #26A3C8; border-radius: 14px; padding: 4px 9px; color: #26A3C8; font-size: 10px; font-weight: 600; cursor: pointer;">Tips</button>
+        <button onclick="m1CopilotoAccion('repaso')" style="background: rgba(225, 0, 120, 0.1); border: 1px solid #E10078; border-radius: 14px; padding: 4px 9px; color: #E10078; font-size: 10px; font-weight: 600; cursor: pointer;">Repasar</button>
+    </div>
+</div>
+
+<!-- ================= LIBRERIA JSPDF (CDN) ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+(function() {
+    /* Sistema de notificaciones integradas (Toasts) */
+    window.m1ShowToast = function(msg, isError) {
+        var toast = document.getElementById('m1-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.background = isError ? '#E10078' : '#7BB11D';
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 3500);
+    };
+
+    // Toggle expandible (abrir/cerrar contenido)
+    window.m1Toggle = function(contentId) {
+        var el = document.getElementById(contentId);
+        if (!el) return;
+        if (el.style.display === 'none' || el.style.display === '') {
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    };
+
+    // Calculadora de Fórmulas
+    window.m1CalcularFormula = function() {
+        var grCera = parseFloat(document.getElementById('m1-gr-cera').value);
+        var pctFrag = parseFloat(document.getElementById('m1-pct-fragancia').value);
+        if (!grCera || grCera <= 0) { 
+            m1ShowToast('Ingresa una cantidad válida de cera.', true); 
+            return; 
+        }
+        if (!pctFrag || pctFrag < 3 || pctFrag > 15) { 
+            m1ShowToast('El porcentaje debe estar entre 3% y 15%.', true); 
+            return; 
+        }
+        var grFragancia = (grCera * pctFrag / 100);
+        var grCeraFinal = grCera - grFragancia;
+        document.getElementById('m1-res-cera').textContent = grCeraFinal.toFixed(1) + 'g';
+        document.getElementById('m1-res-fragancia').textContent = grFragancia.toFixed(1) + 'g';
+        document.getElementById('m1-res-temp').textContent = '65°C';
+        document.getElementById('m1-formula-resultados').style.display = 'block';
+        m1ShowToast('Fórmula calculada exitosamente.');
+    };
+
+    // Calculadora de Precio Final
+    window.m1CalcularPrecio = function() {
+        var cera = parseFloat(document.getElementById('m1-costo-cera').value) || 0;
+        var frag = parseFloat(document.getElementById('m1-costo-fragancia').value) || 0;
+        var mecha = parseFloat(document.getElementById('m1-costo-mecha').value) || 0;
+        var envase = parseFloat(document.getElementById('m1-costo-envase').value) || 0;
+        var mo = parseFloat(document.getElementById('m1-costo-mo').value) || 0;
+        var margen = parseFloat(document.getElementById('m1-margen').value) || 2.5;
+        var costoTotal = cera + frag + mecha + envase + mo;
+        var precioVenta = costoTotal * margen;
+        document.getElementById('m1-res-costo').textContent = '$' + costoTotal.toFixed(2);
+        document.getElementById('m1-res-venta').textContent = '$' + precioVenta.toFixed(2);
+        document.getElementById('m1-precio-resultados').style.display = 'block';
+        m1ShowToast('Precio de venta sugerido calculado.');
+    };
+
+    // Checklist interactiva
+    var m1Steps = {};
+    window.m1ToggleStep = function(stepId) {
+        m1Steps[stepId] = !m1Steps[stepId];
+        var step = document.getElementById(stepId);
+        var checkNum = stepId.split('-').pop();
+        var checkSvg = document.getElementById('m1-check-' + checkNum);
+        if (m1Steps[stepId]) {
+            step.style.borderColor = '#7BB11D';
+            step.style.background = 'rgba(123, 177, 29, 0.08)';
+            checkSvg.style.stroke = '#7BB11D';
+        } else {
+            step.style.borderColor = 'rgba(225, 0, 120, 0.2)';
+            step.style.background = '#ffffff';
+            checkSvg.style.stroke = 'transparent';
+        }
+    };
+
+    // Cargar jsPDF desde CDN
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : null;
+    if (!jsPDF) {
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        s.onload = function() { jsPDF = window.jspdf.jsPDF; };
+        document.head.appendChild(s);
+    }
+
+    // Descarga del Diario como PDF
+    window.m1DescargarDiarioPDF = function() {
+        var aroma = document.getElementById('m1-diario-aroma').value;
+        var texto = document.getElementById('m1-diario-texto').value;
+        if (!aroma && !texto) { 
+            m1ShowToast('Escribe al menos una reflexión antes de descargar.', true); 
+            return; 
+        }
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            
+            doc.setFillColor(92, 32, 102);
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text('Diario de Inteligencia Emocional', 20, 20);
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 1: Velas Aromaticas | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 20, 28);
+            
+            doc.setDrawColor(92, 32, 102);
+            doc.setLineWidth(0.5);
+            doc.line(20, 32, 190, 32);
+            
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(10);
+            doc.text('Fecha: ' + fecha, 20, 40);
+            
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Aroma elegido y emocion asociada', 20, 50);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var aromaLines = doc.splitTextToSize(aroma || '—', 170);
+            doc.text(aromaLines, 20, 58);
+            
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            var yReflexion = 58 + (aromaLines.length * 6) + 8;
+            doc.text('Reflexion personal (atencion plena)', 20, yReflexion);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var textoLines = doc.splitTextToSize(texto || '—', 170);
+            doc.text(textoLines, 20, yReflexion + 8);
+            
+            doc.setDrawColor(92, 32, 102);
+            doc.line(20, yReflexion + 8 + (textoLines.length * 6) + 10, 190, yReflexion + 8 + (textoLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 20, yReflexion + 8 + (textoLines.length * 6) + 16);
+            doc.save('diario_emocional_mod1.pdf');
+            m1ShowToast('PDF de tu reflexión descargado.');
+        } catch(e) {
+            m1ShowToast('Error al generar el PDF. Intenta nuevamente.', true);
+        }
+    };
+
+    // Descarga del Resultado del Reto como PDF
+    window.m1DescargarRetoPDF = function() {
+        var scoreText = document.getElementById('m1-reto-score').textContent;
+        var feedbackText = document.getElementById('m1-reto-feedback').textContent;
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            
+            doc.setFillColor(38, 163, 200);
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Certificado de Resultado', 105, 30, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 1: Velas Aromaticas | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, 38, { align: 'center' });
+            
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(136, 136, 136);
+            doc.text('Fecha: ' + fecha, 105, 53, { align: 'center' });
+            
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(36);
+            doc.setFont(undefined, 'bold');
+            doc.text(scoreText, 105, 80, { align: 'center' });
+            
+            doc.setTextColor(85, 85, 85);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var feedbackLines = doc.splitTextToSize(feedbackText, 150);
+            doc.text(feedbackLines, 105, 95, { align: 'center' });
+            
+            doc.setDrawColor(123, 177, 29);
+            doc.line(20, 95 + (feedbackLines.length * 6) + 10, 190, 95 + (feedbackLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 105, 95 + (feedbackLines.length * 6) + 16, { align: 'center' });
+            doc.save('resultado_reto_mod1.pdf');
+            m1ShowToast('Resultado exportado a PDF.');
+        } catch(e) {
+            m1ShowToast('Error al generar el PDF.', true);
+        }
+    };
+
+    // Reto de Aprendizaje
+    var m1Respuestas = { m1q1: 'b', m1q2: 'c', m1q3: 'b', m1q4: 'b', m1q5: 'a' };
+    var m1TotalPreguntas = 5;
+
+    window.m1Evaluar = function() {
+        var correctas = 0;
+        for (var key in m1Respuestas) {
+            var selected = document.querySelector('input[name="' + key + '"]:checked');
+            if (selected && selected.value === m1Respuestas[key]) { correctas++; }
+        }
+        var puntaje = Math.round((correctas / m1TotalPreguntas) * 100);
+        var aprobado = puntaje >= 70;
+        var resultadoDiv = document.getElementById('m1-reto-resultado');
+        var scoreDiv = document.getElementById('m1-reto-score');
+        var feedbackDiv = document.getElementById('m1-reto-feedback');
+        resultadoDiv.style.display = 'block';
+        document.getElementById('m1-reto-botones').style.display = 'flex';
+        scoreDiv.textContent = puntaje + '/100 puntos';
+        scoreDiv.style.color = aprobado ? '#7BB11D' : '#E10078';
+        if (aprobado) {
+            resultadoDiv.style.background = 'rgba(123, 177, 29, 0.08)';
+            resultadoDiv.style.border = '1px solid rgba(123, 177, 29, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #7BB11D;">¡Felicitaciones! Has aprobado el Reto de Aprendizaje.</strong><br><br>Demuestras comprensión de los conceptos fundamentales. Puedes avanzar al siguiente módulo.';
+            m1ShowToast('¡Reto aprobado con éxito!');
+        } else {
+            resultadoDiv.style.background = 'rgba(225, 0, 120, 0.05)';
+            resultadoDiv.style.border = '1px solid rgba(225, 0, 120, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #E10078;">Aún no alcanzaste el puntaje mínimo (70).</strong><br><br>Repasa las Fichas de Tips Claves, especialmente sobre temperaturas y notas olfativas. Puedes reintentar.';
+            m1ShowToast('Resultado evaluado. Revisa las sugerencias.', true);
+        }
+    };
+
+    window.m1Reintentar = function() {
+        var radios = document.querySelectorAll('#m1-quiz-container input[type="radio"]');
+        for (var i = 0; i < radios.length; i++) { radios[i].checked = false; }
+        document.getElementById('m1-reto-resultado').style.display = 'none';
+        document.getElementById('m1-reto-botones').style.display = 'none';
+    };
+
+    // Descarga del Módulo completo como PDF
+    window.m1DescargarPDF = function() {
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            var pageH = 297;
+            var margin = 15;
+            var contentW = 180;
+            var y = 15;
+
+            function checkPage(needed) {
+                if (y + needed > pageH - margin) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+
+            // === ENCABEZADO ===
+            doc.setFillColor(38, 163, 200);
+            doc.rect(0, 0, 210, 35, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Modulo 1: Velas Aromaticas', 105, 15, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Ano', 105, 23, { align: 'center' });
+            doc.setFontSize(8);
+            doc.text('Prof. Maria Esther Espinoza Juarez', 105, 30, { align: 'center' });
+            y = 42;
+
+            // === OBJETIVOS ===
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('OBJETIVOS DE APRENDIZAJE', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var obj1 = doc.splitTextToSize('Objetivo Tecnico: Aprender a crear velas aromaticas de soja desde cero, eligiendo fragancias que acompanen el estado emocional y los deseos.', contentW);
+            checkPage(obj1.length * 4.5 + 12);
+            doc.text(obj1, margin, y); y += obj1.length * 4.5 + 6;
+            var obj2 = doc.splitTextToSize('Enfoque Emocional: Autoconciencia emocional. Identificacion de emociones a traves del olfato, asociacion aroma-emocion y practica de atencion plena.', contentW);
+            checkPage(obj2.length * 4.5 + 6);
+            doc.text(obj2, margin, y); y += obj2.length * 4.5 + 10;
+
+            doc.setDrawColor(38, 163, 200);
+            doc.setLineWidth(0.5);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === INFORMACION TECNICA ===
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('INFORMACION TECNICA', margin, y); y += 8;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.text('Que es una vela aromatica de soja?', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var info = doc.splitTextToSize('Vela artesanal elaborada con cera de soja (extracto vegetal del frijol de soja). Produce 90% menos hollin que la parafina, no emite quimicos toxicos (tolueno, benceno, naftaleno) y es biodegradable y renovable. Retiene mejor las fragancias y produce una combustion mas lenta y uniforme. Es el material mas seguro y ecologico para la creacion artesanal.', contentW);
+            checkPage(info.length * 4.5 + 12);
+            doc.text(info, margin, y); y += info.length * 4.5 + 10;
+
+            // Temperaturas Clave
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(30);
+            doc.text('Temperaturas Clave', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            doc.text('Derretido: 85C | Adicion de fragancia: 65C | Vertido: 57C', margin, y); y += 6;
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(8);
+            var tempNote = doc.splitTextToSize('La temperatura correcta es crucial: si se agrega la fragancia a mas de 65C, el aroma se evapora. Si se vierte a mas de 57C, la superficie queda irregular.', contentW);
+            checkPage(tempNote.length * 4.5 + 10);
+            doc.text(tempNote, margin, y); y += tempNote.length * 4.5 + 10;
+
+            // Medida Estandar
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Medida Estandar (Fragrance Load)', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var medida = doc.splitTextToSize('Carga de fragancia recomendada: 6-8% del peso total. Regla general: 28g de fragancia por cada 454g de cera (6.25%). Maximo: 10-12%. La cera es como una esponja: solo encapsula cierta cantidad de fragancia.', contentW);
+            checkPage(medida.length * 4.5 + 10);
+            doc.text(medida, margin, y); y += medida.length * 4.5 + 10;
+
+            // Materiales
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(40);
+            doc.text('Materiales Necesarios', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var matList = [
+                '- Cera de soja en escamas (Golden Brands 464)',
+                '- Fragancia para velas (no perfume ni colonia)',
+                '- Mecha con base metalica (series CD, ECO, LX)',
+                '- Contenedor resistente al calor (vidrio, ceramica, metal)',
+                '- Bascula digital + Termometro digital',
+                '- Sticker de mecha + Centrador de mecha',
+                '- Pitcher de aluminio para vertido',
+                '- Etiqueta de seguridad'
+            ];
+            for (var m = 0; m < matList.length; m++) {
+                checkPage(6);
+                doc.text(matList[m], margin, y); y += 5;
+            }
+            y += 8;
+
+            // Procedimiento
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(50);
+            doc.text('Procedimiento Paso a Paso', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var procList = [
+                '1. Preparar bano Maria (olla con agua a 1/3, calor medio-alto).',
+                '2. Pesar materiales con bascula digital (por peso, no volumen).',
+                '3. Derretir cera hasta 85C en bano Maria.',
+                '4. Preparar contenedores: pegar mecha al fondo y centrar.',
+                '5. RETIRAR del calor, agregar fragancia a 65C. Mezclar 1-2 min.',
+                '6. Enfriar hasta 57C (cera ligeramente opaca).',
+                '7. Verter en contenedores hasta 6mm del borde.',
+                '8. Centrar mecha y dejar enfriar sin mover.',
+                '9. Reposo: 24-48h curado inicial, 1-2 semanas completo.',
+                '10. Recortar mecha a 6mm y agregar etiqueta de seguridad.'
+            ];
+            for (var p = 0; p < procList.length; p++) {
+                checkPage(7);
+                doc.text(procList[p], margin, y); y += 6;
+            }
+            y += 5;
+
+            doc.setDrawColor(200, 200, 200);
+            doc.setLineWidth(0.3);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === TIPS CLAVES ===
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(30);
+            doc.text('FICHAS DE TIPS CLAVES', margin, y); y += 8;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('Tip 1: Seleccion de Esencias', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var tip1 = doc.splitTextToSize('Aceites esenciales = extractos naturales con propiedades aromaterapeuticas. Fragancias sinteticas = compuestos disenados para velas con mayor rendimiento. Para produccion, la fragancia sintetica ofrece mejor "hold" y "throw". La ratio recomendada es 6-10% del peso total de la cera.', contentW);
+            checkPage(tip1.length * 4.5 + 12);
+            doc.text(tip1, margin, y); y += tip1.length * 4.5 + 10;
+
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Tip 2: Piramide Olfativa', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var tip2 = doc.splitTextToSize('Notas altas (citricos, menta, verdes) se evaporan primero. Notas medias (florales, hierbas, especias) forman el corazon. Notas bajas (vainilla, ambar, maderas) fijan el aroma. Combinar al menos 2 niveles para una fragancia completa.', contentW);
+            checkPage(tip2.length * 4.5 + 10);
+            doc.text(tip2, margin, y); y += tip2.length * 4.5 + 10;
+
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Tip 3: Temperatura de Vertido', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var tip3 = doc.splitTextToSize('El momento critico es la incorporacion de la fragancia a 65C. Si se agrega a mayor temperatura, el aroma se evapora. Si es menor, no se integra correctamente con la cera. Puntualidad: 65C es la zona ideal para soja.', contentW);
+            checkPage(tip3.length * 4.5 + 12);
+            doc.text(tip3, margin, y); y += tip3.length * 4.5 + 8;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === CALCULADORAS ===
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('CALCULADORA DE FORMULAS', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var calc = doc.splitTextToSize('Formula: Fragancia = (Gramos totales x %) / 100. Cera neta = Gramos totales - Fragancia. Ejemplo: 500g de cera al 8% = 40g de fragancia, 460g de cera neta. Temperatura de adicion: 65C.', contentW);
+            checkPage(calc.length * 4.5 + 12);
+            doc.text(calc, margin, y); y += calc.length * 4.5 + 10;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('CALCULADORA DE PRECIO FINAL', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var precio = doc.splitTextToSize('Costo Total = Cera + Fragancia + Mecha + Envase + Mano de Obra. Precio de Venta = Costo Total x 2.5 (margen recomendado para artesanal). Ejemplo: Costo $500 -> Venta sugerida $1,250.', contentW);
+            checkPage(precio.length * 4.5 + 12);
+            doc.text(precio, margin, y); y += precio.length * 4.5 + 10;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // === INTELIGENCIA EMOCIONAL ===
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('INTELIGENCIA EMOCIONAL', margin, y); y += 8;
+
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Autoconciencia Emocional', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var ie1 = doc.splitTextToSize('La autoconciencia emocional es la base de la inteligencia emocional (Daniel Goleman). Implica reconocer tus propias emociones y comprender su impacto en tus decisiones. Durante la creacion de una vela aromatica, este proceso se activa naturalmente a traves del olfato.', contentW);
+            checkPage(ie1.length * 4.5 + 12);
+            doc.text(ie1, margin, y); y += ie1.length * 4.5 + 10;
+
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('El Olfato y el Sistema Limbico', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var ie2 = doc.splitTextToSize('Los aromas viajan directamente al sistema limbico del cerebro (amigdala e hipocampo), regiones relacionadas con la emocion y la memoria. Por esto, un aroma puede evocar recuerdos emocionales de manera inmediata y profunda (Harvard Gazette, 2020).', contentW);
+            checkPage(ie2.length * 4.5 + 12);
+            doc.text(ie2, margin, y); y += ie2.length * 4.5 + 10;
+
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('Asociacion Aroma - Emocion', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var ie3 = doc.splitTextToSize('Lavanda -> Calma, serenidad | Vainilla -> Confort, calidez | Citricos -> Alegria, energia | Rosa -> Amor, ternura | Menta -> Concentracion | Sandalia -> Meditacion, introspeccion', contentW);
+            checkPage(ie3.length * 4.5 + 10);
+            doc.text(ie3, margin, y); y += ie3.length * 4.5 + 10;
+
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Atencion Plena (Mindfulness)', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var ie4 = doc.splitTextToSize('La practica de atencion plena durante la elaboracion permite: observar los cambios de temperatura sin ansiedad, oler conscientemente la integracion de la fragancia, conectar la intencion emocional con el producto final, y transformar la actividad en una experiencia meditativa.', contentW);
+            checkPage(ie4.length * 4.5 + 12);
+            doc.text(ie4, margin, y); y += ie4.length * 4.5 + 10;
+
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            checkPage(15);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(8);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, y, { align: 'center' }); y += 5;
+            doc.text('Prof. Maria Esther Espinoza Juarez | 2026', 105, y, { align: 'center' });
+
+            doc.save('modulo1_velas_aromaticas.pdf');
+            m1ShowToast('Documento completo descargado en PDF.');
+        } catch(e) {
+            m1ShowToast('Error al generar el PDF del módulo.', true);
+        }
+    };
+
+    // Copiloto Pedagógico
+    window.m1ToggleCopiloto = function() {
+        var panel = document.getElementById('m1-copiloto-panel');
+        if (!panel) return;
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.m1CopilotoAccion = function(accion) {
+        var content = document.getElementById('m1-copiloto-content');
+        if (accion === 'explicar') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#7BB11D;">Fórmulas:</strong></p><p style="margin:5px 0 0 0;">Fragancia = (Gramos totales × %) / 100.<br>Derretido: 85°C.<br>Fragancia: 65°C.<br>Vertido: 57°C.</p>';
+        } else if (accion === 'resumir') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#26A3C8;">Tips clave:</strong></p><p style="margin:5px 0 0 0;">1. La fragancia sintética tiene mayor estabilidad en producción.<br>2. Pirámide olfativa: notas altas, medias y bajas.<br>3. Mezclar fragancia estrictamente a 65°C.</p>';
+        } else if (accion === 'repaso') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#E10078;">Sugerencia de Repaso:</strong></p><p style="margin:5px 0 0 0;">Repasa la Temperatura de Vertido y el estímulo olfativo en el Sistema Límbico antes de realizar el Reto.</p>';
+        }
+    };
+})();
+</script>
+
+</body>
+</html>
