@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5: Velas Gourmet - Tecnicatura de Velas Artesanales</title>
+  
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #m5-print-area, #m5-print-area * { visibility: visible; }
+      #m5-print-area { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; background: #fff; }
+      .m5-print-hide { display: none !important; }
+      .m5-print-show { display: block !important; }
+    }
+    .m5-toast-notify {
+      position: fixed; top: 20px; right: 20px; padding: 12px 20px; color: #ffffff;
+      font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600;
+      border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 10000; display: none; animation: fadeInToast 0.3s ease;
+    }
+    @keyframes fadeInToast {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .m5-nav-bar {
+      position: sticky; top: 0; z-index: 1000;
+      background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%);
+      border-radius: 12px 12px 0 0; padding: 10px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px; margin-bottom: 0;
+    }
+    .m5-nav-bar a, .m5-nav-bar button {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: all 0.2s ease; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+    .m5-nav-btn-back { background: #ffffff; color: #7BB11D; }
+    .m5-nav-btn-back:hover { background: rgba(255,255,255,0.85); transform: translateY(-1px); }
+    .m5-nav-title { color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .m5-subsection { margin-bottom: 14px; }
+    .m5-subsection p { font-size: 12px; color: #555555; line-height: 1.5; margin: 0; }
+    .m5-subsection .m5-list { font-size: 12px; color: #555555; line-height: 1.7; }
+    .m5-subsection .m5-list > div { margin-bottom: 2px; }
+    .m5-btn-expand {
+      width: 100%; background: #ffffff; border: 2px solid; border-radius: 8px;
+      padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif;
+      font-size: 13px; font-weight: 700; text-align: left; cursor: pointer;
+      transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+    }
+    .m5-btn-expand:hover { transform: translateY(-1px); }
+    .m5-tip-card { border-radius: 4px; padding: 10px 12px; margin-bottom: 6px; }
+    .m5-tip-card:last-child { margin-bottom: 0; }
+    .m5-tip-card p:first-child { font-size: 12px; font-weight: 700; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+    .m5-tip-card p:last-child { font-size: 12px; color: #555555; line-height: 1.5; margin: 0; }
+    .m5-technique-block { background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.2); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
+    .m5-technique-block h5 { font-size: 12px; font-weight: 700; color: #26A3C8; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; }
+    .m5-technique-block .m5-list { font-size: 12px; color: #555555; line-height: 1.6; }
+    .m5-technique-block .m5-list > div { margin-bottom: 3px; }
+    .m5-temp-box { flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; padding: 8px 6px; text-align: center; }
+    .m5-temp-box .m5-temp-label { font-size: 9px; color: rgba(255,255,255,0.8); text-transform: uppercase; font-weight: 600; }
+    .m5-temp-box .m5-temp-value { font-size: 17px; font-weight: 900; }
+  </style>
+</head>
+<body style="margin: 0; padding: 10px; background-color: #f8f9fa;">
+
+<div id="m5-toast" class="m5-toast-notify"></div>
+
+<div id="m5-container" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background-color: #ffffff; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px; box-sizing: border-box; position: relative; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="m5-nav-bar">
+        <div class="m5-nav-title">Tecnicatura de Velas Artesanales</div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <a href="index.html" class="m5-nav-btn-back" title="Regresar al menú principal">
+                <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:none; stroke:#7BB11D; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                Regresar al menú principal
+            </a>
+        </div>
+    </nav>
+
+    <!-- ENCABEZADO -->
+    <header id="m5-header" style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div style="font-size: 11px; font-weight: 700; color: #E10078; background: rgba(225, 0, 120, 0.1); padding: 3px 10px; border-radius: 4px; display: inline-block; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">
+                    Módulo 5
+                </div>
+                <div style="font-size: 12px; color: #F0A100; letter-spacing: 3px; margin: 0 0 4px 0; text-transform: uppercase; font-weight: 600;">
+                    Primer Año - Bases Técnicas
+                </div>
+                <h1 style="font-size: 26px; font-weight: 800; line-height: 1.1; margin: 0; color: #E10078; text-transform: uppercase;">
+                    Velas Gourmet
+                </h1>
+            </div>
+            <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;" fill="none">
+                    <rect x="18" y="22" width="24" height="30" rx="3" fill="#F0A100" opacity="0.15" stroke="#F0A100" stroke-width="1.2"/>
+                    <ellipse cx="30" cy="22" rx="12" ry="5" fill="#E10078" opacity="0.1" stroke="#E10078" stroke-width="1"/>
+                    <circle cx="26" cy="28" r="2" fill="#E10078" opacity="0.4"/>
+                    <circle cx="34" cy="30" r="1.5" fill="#7BB11D" opacity="0.4"/>
+                    <circle cx="30" cy="35" r="2.5" fill="#F0A100" opacity="0.3"/>
+                    <line x1="30" y1="22" x2="30" y2="16" stroke="#F0A100" stroke-width="1.5" stroke-linecap="round"/>
+                    <ellipse cx="30" cy="14" rx="3" ry="5" fill="#F0A100" opacity="0.3"/>
+                </svg>
+            </div>
+        </div>
+        <div style="height: 3px; background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%); border-radius: 2px; margin-top: 15px;"></div>
+    </header>
+
+    <!-- OBJETIVOS -->
+    <section id="m5-objetivos" style="background: rgba(225, 0, 120, 0.05); border-left: 4px solid #E10078; border-radius: 6px; padding: 16px 18px; margin-bottom: 22px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #E10078; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Objetivos de Aprendizaje</h2>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #E10078;">Objetivo Técnico:</strong> Aprender a crear velas gourmet decorativas en vaso o contenedor, combinando capas de color, toppings texturizados, técnicas de glaseado y chantilly para lograr piezas que imiten postres reales con acabados profesionales.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #5C2066;">Enfoque Emocional:</strong> Creatividad y disfrute consciente. Jugar sin juicio, permitir el placer creativo y reconocer el valor de lo lúdico en la vida adulta.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0;"><strong style="color: #7BB11D;">Resultados Esperados:</strong> Al finalizar este módulo, la estudiante será capaz de formular una vela gourmet con acabado gourmet profesional (capas, glaseado o chantilly), aplicar toppings decorativos, calcular su precio de venta y reflexionar sobre el goce creativo durante el proceso.</p>
+    </section>
+
+    <!-- CONTENIDO DEL MÓDULO -->
+    <div style="margin-bottom: 18px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 2px; margin: 0;">Contenido del Módulo</h2>
+        <div style="height: 2px; background: linear-gradient(90deg, #F0A100, transparent); border-radius: 1px; margin-top: 6px;"></div>
+    </div>
+
+    <!-- DOS PANELES FIJOS: INFORMACIÓN TÉCNICA + INTELIGENCIA EMOCIONAL -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 22px;">
+
+        <!-- PANEL IZQUIERDO: INFORMACIÓN TÉCNICA -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(225, 0, 120, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #E10078; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Información Técnica</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Qué es -->
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">¿Qué es una vela gourmet?</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Vela artesanal decorativa elaborada con cera de soja que imita visualmente un postre o gourmand. Combina <strong>capas de color diferenciadas</strong>, fragancias gourmand (vainilla, caramelo, chocolate, canela) y <strong>toppings texturizados</strong> como café molido, canela en polvo, pétalos secos o chispas de color. Incluye técnicas de acabado como el <strong>glaseado</strong> (capa fina brillante) y el <strong>chantilly</strong> (cera batida tipo crema). Es una de las categorías más demandadas del mercado artesanal.</p>
+                </div>
+
+                <!-- Temperaturas -->
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas Clave (Base)</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Derretido</div>
+                            <div class="m5-temp-value" style="color: #E10078;">80°C</div>
+                        </div>
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Colorante</div>
+                            <div class="m5-temp-value" style="color: #F0A100;">70°C</div>
+                        </div>
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Fragancia</div>
+                            <div class="m5-temp-value" style="color: #26A3C8;">65°C</div>
+                        </div>
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Vertido base</div>
+                            <div class="m5-temp-value" style="color: #7BB11D;">58°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temperaturas técnicas especiales -->
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas Técnicas Especiales</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Glaseado</div>
+                            <div class="m5-temp-value" style="color: #5C2066;">55-60°C</div>
+                        </div>
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Chantilly</div>
+                            <div class="m5-temp-value" style="color: #7BB11D;">45-50°C</div>
+                        </div>
+                        <div class="m5-temp-box">
+                            <div class="m5-temp-label">Drip</div>
+                            <div class="m5-temp-value" style="color: #F0A100;">60-65°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medida estándar -->
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Medida Estándar</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Carga de fragancia: <strong>6-8%</strong> del peso total. Colorante en aceite o polvo: <strong>0.01-0.1%</strong> (1 gota o pizca mínima por cada 454g). Toppings decorativos: <strong>10-15g</strong> sobre la superficie superior. Regla de capas: la cera debe estar entre 55-58°C al verter cada capa para que se adhiera sin fundir la anterior. Para glaseado: verter a 55-60°C. Para chantilly: batir a 45-50°C.</p>
+                </div>
+
+                <!-- Materiales -->
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Materiales Necesarios</h4>
+                    <div class="m5-list">
+                        <div>Cera de soja en escamas (para contenedor, punto de fusión bajo)</div>
+                        <div>Fragancia gourmand para velas (vainilla, caramelo, chocolate, canela)</div>
+                        <div>Colorante en aceite o polvo específico para velas (NO colorante alimenticio)</div>
+                        <div>Mecha con base metálica (según diámetro del vaso)</div>
+                        <div>Vaso de vidrio transparente o contenedor decorativo</div>
+                        <div>Toppings: café molido, canela en polvo, pétalos de rosa secos, chispas de color, glitter cosmético</div>
+                        <div>Báscula digital + Termómetro digital</div>
+                        <div>Sticker de mecha + Centrador de mecha</div>
+                        <div>Pitchers de aluminio (mínimo 2 para trabajar capas)</div>
+                        <div>Batidora eléctrica de mano (dedicada solo a velas)</div>
+                        <div>Manga pastelera con boquillas (para chantilly)</div>
+                        <div>Espátula pequeña (para chantilly)</div>
+                        <div>Bowl con agua fría (para enfriamiento rápido del chantilly)</div>
+                        <div>Etiqueta de seguridad</div>
+                    </div>
+                </div>
+
+                <!-- Procedimiento genérico -->
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Procedimiento General (Base)</h4>
+                    <div class="m5-list">
+                        <div><strong style="color: #E10078;">1.</strong> Preparar baño María (olla con agua a 1/3, calor medio-alto).</div>
+                        <div><strong style="color: #E10078;">2.</strong> Pesar la cera necesaria y derretir hasta 80°C.</div>
+                        <div><strong style="color: #E10078;">3.</strong> Preparar el vaso: pegar mecha al fondo y centrar con sticker + centrador.</div>
+                        <div><strong style="color: #E10078;">4.</strong> Dividir la cera derretida según la técnica elegida (ver botones expandibles).</div>
+                        <div><strong style="color: #E10078;">5.</strong> Agregar colorante a 70°C a cada porción y mezclar suavemente.</div>
+                        <div><strong style="color: #E10078;">6.</strong> RETIRAR del calor, agregar fragancia a 65°C. Mezclar 1-2 min.</div>
+                        <div><strong style="color: #E10078;">7.</strong> Aplicar la técnica de acabado elegida (capas, glaseado o chantilly). Ver sección Técnica.</div>
+                        <div><strong style="color: #E10078;">8.</strong> Agregar toppings decorativos si corresponde (sobre superficie húmeda).</div>
+                        <div><strong style="color: #E10078;">9.</strong> Reposo: 24-48h curado inicial, 1-2 semanas curado completo.</div>
+                        <div><strong style="color: #E10078;">10.</strong> Recortar mecha a 6mm y agregar etiqueta de seguridad.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO: INTELIGENCIA EMOCIONAL -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(92, 32, 102, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Inteligencia Emocional</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Creatividad y Disfrute Consciente</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La creatividad no es un don exclusivo de artistas: es una capacidad humana universal que se activa cuando nos permitimos jugar sin miedo al error. En las velas gourmet, cada capa, cada topping y cada combinación de color es una oportunidad para <strong>experimentar sin juicio</strong> y reconectar con el goce creativo.</p>
+                </div>
+
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Jugar sin Juicio</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">El juego creativo implica soltar la exigencia de perfección. Durante este módulo, se invita a probar combinaciones de colores inesperadas, toppings fuera de lo convencional y fragancias que no "combinan" en teoría pero que sorprenden en la práctica. <strong>No hay errores, solo descubrimientos.</strong></p>
+                </div>
+
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Permitir el Placer Creativo</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">El placer creativo es el disfrute intrínseco del proceso de crear. Incluye la satisfacción de ver una capa adherirse perfectamente, la alegría de elegir un color vibrante o la ternura de decorar con pétalos. <strong>Crear por el placer de crear</strong> es una forma de autocuidado emocional.</p>
+                </div>
+
+                <div class="m5-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">El Valor de lo Lúdico en la Vida Adulta</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La psicología del desarrollo reconoce que el juego no es exclusivo de la infancia. Los adultos necesitamos espacios lúdicos para mantener la flexibilidad mental, reducir el estrés y fortalecer la resiliencia. Este módulo es un <strong>espacio seguro para reconectar con la alegría de experimentar</strong> sin objetivos de rendimiento.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: BOTONES EXPANDIBLES -->
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+
+            <!-- COLUMNA IZQUIERDA: Tips Claves + Técnica -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Tips Claves -->
+                <button onclick="m5Toggle('m5-tips-content')" style="width: 100%; background: #ffffff; border: 2px solid #7BB11D; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#7BB11D'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Tips Claves
+                </button>
+                <div id="m5-tips-content" style="display: none; margin-bottom: 10px;">
+                    <div class="m5-tip-card" style="background: rgba(225, 0, 120, 0.06); border-left: 3px solid #E10078;">
+                        <p style="color: #E10078;">Capas de Color y Adherencia</p>
+                        <p>Cada capa debe verterse entre <strong>55-58°C</strong> sobre la anterior ya cristalizada. Si está muy caliente, fundirá la capa inferior y se mezclarán los colores. Si está muy fría, no se adherirá y la capa se despegará. La clave es la temperatura exacta del vertido.</p>
+                    </div>
+                    <div class="m5-tip-card" style="background: rgba(38, 163, 200, 0.06); border-left: 3px solid #26A3C8;">
+                        <p style="color: #26A3C8;">Fragancias Gourmand</p>
+                        <p><strong>Gourmand</strong> = categoría olfativa que evoca postres y alimentos dulces. Las más populares en velas: vainilla bourbon, caramelo salado, chocolate caliente, canela especia, café, fresa con crema, tarta de manzana. Combinar 2 gourmand diferentes crea una experiencia olfativa compleja y apetitosa.</p>
+                    </div>
+                    <div class="m5-tip-card" style="background: rgba(240, 161, 0, 0.06); border-left: 3px solid #F0A100;">
+                        <p style="color: #F0A100;">Toppings Decorativos</p>
+                        <p>Se aplican <strong>sobre la capa superior aún húmeda</strong> (a los 2-3 minutos del vertido) para que se adhieran naturalmente al solidificarse. Opciones: café molido fino, canela en polvo, pétalos de rosa secos, chispas cosméticas, glitter biodegradable, mini canelitas. No usar ingredientes que puedan pudrirse o atraer insectos.</p>
+                    </div>
+                </div>
+
+                <!-- Botón Técnica (NUEVO) -->
+                <button onclick="m5Toggle('m5-tecnica-content')" style="width: 100%; background: #ffffff; border: 2px solid #26A3C8; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#26A3C8'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Técnica
+                </button>
+                <div id="m5-tecnica-content" style="display: none; margin-bottom: 10px;">
+
+                    <!-- Técnica de Glaseado -->
+                    <div class="m5-technique-block">
+                        <h5>Técnica de Glaseado</h5>
+                        <div class="m5-list">
+                            <div><strong style="color: #26A3C8;">Qué es:</strong> Capa fina de cera derretida que se vierte sobre la vela base para crear un acabado brillante, liso y acristalado. Imita el glaseado de una torta o donut. También puede usarse para crear efecto "drip" (chorreos) sobre los bordes del vaso.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #F0A100;">Temperaturas:</strong> Derretido: 80-85°C | Colorante: 70°C | Fragancia: 65°C | Vertido glaseado: <strong>55-60°C</strong> | Vertido drip: <strong>60-65°C</strong> (desde mayor altura)</div>
+                            <div style="margin-top: 6px;"><strong style="color: #7BB11D;">Procedimiento:</strong></div>
+                            <div>1. Derretir cera a 80-85°C en baño María.</div>
+                            <div>2. Agregar colorante a 70°C y mezclar bien.</div>
+                            <div>3. RETIRAR del calor, agregar fragancia a 65°C. Mezclar 1-2 min.</div>
+                            <div>4. Enfriar hasta 55-60°C (para glaseado liso) o 60-65°C (para drip).</div>
+                            <div>5. Verter capa fina sobre la vela base ya solidificada (o desde mayor altura para efecto drip).</div>
+                            <div>6. Dejar cristalizar 20-30 minutos.</div>
+                            <div>7. El glaseado es el acabado final: no agregar toppings encima.</div>
+                        </div>
+                    </div>
+
+                    <!-- Técnica de Chantilly -->
+                    <div class="m5-technique-block">
+                        <h5>Técnica de Chantilly (Whipped Wax)</h5>
+                        <div class="m5-list">
+                            <div><strong style="color: #26A3C8;">Qué es:</strong> Cera batida y aireada que se trabaja hasta obtener una textura cremosa similar a la crema chantilly. Se aplica con espátula o manga pastelera para crear efectos de crema batida, merengue o espuma sobre la vela. Imita visualmente el frosting de repostería.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #F0A100;">Temperaturas:</strong> Derretido: 80°C | Colorante/Fragancia: 70-65°C | Punto de batido: <strong>45-50°C</strong> (cuando los bordes empiezan a solidificar)</div>
+                            <div style="margin-top: 6px;"><strong style="color: #7BB11D;">Procedimiento:</strong></div>
+                            <div>1. Derretir cera a 80°C en baño María.</div>
+                            <div>2. Agregar colorante a 70°C y fragancia a 65°C. Mezclar 1-2 min.</div>
+                            <div>3. Colocar el pitcher en un bowl con agua fría (o hielo) para enfriamiento rápido.</div>
+                            <div>4. Cuando la cera alrededor de los bordes empiece a solidificar y se forme una película opaca en la superficie (aprox. 45-50°C), comenzar a batir vigorosamente con batidor manual.</div>
+                            <div>5. Cuando la cera se vuelva blanca pero aún fluida, pasar a batidora eléctrica (dedicada solo a velas).</div>
+                            <div>6. Alternar batido y enfriamiento hasta obtener consistencia cremosa firme y opaca (3-7 min).</div>
+                            <div>7. Transferir inmediatamente a manga pastelera con boquilla o aplicar con espátula sobre la vela base.</div>
+                            <div>8. Crear rosetones, montículos o remolinos antes de que se enfríe completamente.</div>
+                            <div>9. Agregar toppings decorativos sobre el chantilly aún fresco (si se desea).</div>
+                        </div>
+                    </div>
+
+                    <!-- Toppings Decorativos -->
+                    <div class="m5-technique-block">
+                        <h5>Toppings Decorativos</h5>
+                        <div class="m5-list">
+                            <div><strong style="color: #26A3C8;">Qué son:</strong> Elementos texturizados que se espolvorean o colocan sobre la superficie de la vela para simular ingredientes de repostería y dar realismo al acabado gourmet.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #F0A100;">Cuándo se aplican:</strong> Sobre la superficie aún húmeda (2-3 minutos del vertido) para que se adhieran naturalmente al solidificarse. También pueden colocarse sobre el chantilly fresco.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #7BB11D;">Opciones de toppings:</strong></div>
+                            <div>Café molido fino (imita granos de café o tierra de galleta)</div>
+                            <div>Canela en polvo (imita canela de postre)</div>
+                            <div>Pétalos de rosa secos (decoración floral)</div>
+                            <div>Chispas de color cosméticas (confetti)</div>
+                            <div>Glitter biodegradable (brillo sutil)</div>
+                            <div>Mini canelitas decorativas</div>
+                            <div>Figuras de cera (frutas, hojas, esferas)</div>
+                            <div><strong style="color: #E10078;">Importante:</strong> No usar ingredientes orgánicos que puedan pudrirse o atraer insectos (frutas reales, chocolate real, azúcar).</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botón Checklist -->
+                <button onclick="m5Toggle('m5-checklist-content')" style="width: 100%; background: #ffffff; border: 2px solid #E10078; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Checklist de Pasos
+                </button>
+                <div id="m5-checklist-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #888888; margin: 0 0 8px 0;">Marca cada paso completado durante tu proceso. ¡Diviértete!</p>
+                    <div id="m5-step-1" onclick="m5ToggleStep('m5-step-1')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-1" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Preparar baño María y derretir cera a 80°C</div>
+                    </div>
+                    <div id="m5-step-2" onclick="m5ToggleStep('m5-step-2')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-2" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Preparar vaso: pegar mecha y centrar</div>
+                    </div>
+                    <div id="m5-step-3" onclick="m5ToggleStep('m5-step-3')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-3" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Agregar colorante a 70°C y mezclar</div>
+                    </div>
+                    <div id="m5-step-4" onclick="m5ToggleStep('m5-step-4')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-4" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Agregar fragancia a 65°C y mezclar 1-2 min</div>
+                    </div>
+                    <div id="m5-step-5" onclick="m5ToggleStep('m5-step-5')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-5" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Aplicar técnica de acabado (capas, glaseado o chantilly)</div>
+                    </div>
+                    <div id="m5-step-6" onclick="m5ToggleStep('m5-step-6')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-6" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Agregar toppings decorativos si corresponde</div>
+                    </div>
+                    <div id="m5-step-7" onclick="m5ToggleStep('m5-step-7')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-7" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Reposo: 24-48h curado inicial</div>
+                    </div>
+                    <div id="m5-step-8" onclick="m5ToggleStep('m5-step-8')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 0; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m5-check-8" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Recortar mecha a 6mm y agregar etiqueta de seguridad</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: Calculadoras -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Calculadora de Fórmulas -->
+                <button onclick="m5Toggle('m5-formula-content')" style="width: 100%; background: #ffffff; border: 2px solid #F0A100; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#F0A100'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Fórmulas
+                </button>
+                <div id="m5-formula-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 10px 0;">Ingresa la cantidad total de cera (en gramos) y el porcentaje de fragancia para calcular las proporciones exactas.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; margin-bottom: 10px;">
+                        <div style="flex: 1; min-width: 100px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Gramos de cera total</label>
+                            <input type="number" id="m5-gr-cera" placeholder="Ej: 400" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="width: 70px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">% Frag.</label>
+                            <input type="number" id="m5-pct-fragancia" value="7" min="3" max="15" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <button onclick="m5CalcularFormula()" style="background: #F0A100; border: none; border-radius: 5px; padding: 7px 12px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 34px;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">CALCULAR</button>
+                    </div>
+                    <div id="m5-formula-resultados" style="display: none; background: rgba(240, 161, 0, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Cera neta</div>
+                                <div id="m5-res-cera" style="font-size: 16px; color: #7BB11D; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Fragancia</div>
+                                <div id="m5-res-fragancia" style="font-size: 16px; color: #26A3C8; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Temp. Frag.</div>
+                                <div id="m5-res-temp" style="font-size: 16px; color: #E10078; font-weight: 900;">65°C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Calculadora de Precio Final -->
+                <button onclick="m5Toggle('m5-precio-content')" style="width: 100%; background: #ffffff; border: 2px solid #E10078; border-radius: 8px; padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Precio Final
+                </button>
+                <div id="m5-precio-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 8px 0;">Ingresa los costos de cada componente para obtener tu precio de venta sugerido.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Cera ($)</label>
+                            <input type="number" id="m5-costo-cera" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Fragancia ($)</label>
+                            <input type="number" id="m5-costo-fragancia" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mecha ($)</label>
+                            <input type="number" id="m5-costo-mecha" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Vaso ($)</label>
+                            <input type="number" id="m5-costo-envase" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Color/Toppings ($)</label>
+                            <input type="number" id="m5-costo-top" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mano de Obra ($)</label>
+                            <input type="number" id="m5-costo-mo" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; align-items: flex-end; margin-bottom: 8px;">
+                        <div style="width: 55px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Margen (x)</label>
+                            <input type="number" id="m5-margen" value="3" min="1" max="10" step="0.1" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 5px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <button onclick="m5CalcularPrecio()" style="background: #E10078; border: none; border-radius: 5px; padding: 6px 10px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 32px;" onmouseover="this.style.background='#c1006a';" onmouseout="this.style.background='#E10078';">CALCULAR</button>
+                    </div>
+                    <div id="m5-precio-resultados" style="display: none; background: rgba(225, 0, 120, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #E10078; text-transform: uppercase; font-weight: 700;">Costo Total</div>
+                                <div id="m5-res-costo" style="font-size: 16px; color: #E10078; font-weight: 900;">$0.00</div>
+                            </div>
+                            <div style="flex: 1; min-width: 90px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #7BB11D; text-transform: uppercase; font-weight: 700;">Precio de Venta</div>
+                                <div id="m5-res-venta" style="font-size: 18px; color: #7BB11D; font-weight: 900;">$0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTÓN EXPANDIBLE: DIARIO DE INTELIGENCIA EMOCIONAL -->
+    <div style="margin-bottom: 20px;">
+        <button onclick="m5Toggle('m5-diario-content')" style="width: 100%; background: #ffffff; border: 2px solid #5C2066; border-radius: 8px; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='#5C2066'; this.style.color='#ffffff'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Diario de Inteligencia Emocional
+        </button>
+        <div id="m5-diario-content" style="display: none; margin-top: 10px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; padding: 14px; background: rgba(92, 32, 102, 0.02);">
+            <div style="background: rgba(92, 32, 102, 0.05); border-radius: 5px; padding: 10px 12px; margin-bottom: 10px;">
+                <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Durante la elaboración de tu vela gourmet, presta atención a: ¿Disfrutaste el proceso sin exigirte perfección? ¿Qué descubrimiento creativo te sorprendió? ¿Cómo te sentiste al permitirte jugar con colores, texturas y técnicas sin juicio?</p>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Goce creativo (¿Qué experimento o combinación te sorprendió?)</label>
+                <input type="text" id="m5-diario-goce" placeholder="Ej: Mezclar rosa y canela fue una combinación inesperada que me encantó" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"/>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Reflexión personal (experimentar sin juicio)</label>
+                <textarea id="m5-diario-texto" placeholder="Escribe cómo te sentiste al permitirte jugar, crear sin perfeccionismo y disfrutar el proceso..." rows="3" style="width: 100%; background: #ffffff; border: 1px solid #5C2066; border-radius: 5px; padding: 8px 10px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; box-sizing: border-box; outline: none; resize: vertical;" onfocus="this.style.borderColor='#E10078';" onblur="this.style.borderColor='#5C2066';"></textarea>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
+                <button onclick="m5DescargarDiarioPDF()" style="background: #5C2066; border: none; border-radius: 5px; padding: 7px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#4a1a52';" onmouseout="this.style.background='#5C2066';">
+                    <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Descargar Reflexión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RETO DE APRENDIZAJE -->
+    <div style="margin-bottom: 18px; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 8px; overflow: hidden; background: rgba(225, 0, 120, 0.02);">
+        <button onclick="m5Toggle('m5-reto-content')" style="width: 100%; background: #ffffff; border: none; border-bottom: 2px solid #E10078; padding: 12px 16px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;" onmouseover="this.style.background='rgba(225, 0, 120, 0.05)';" onmouseout="this.style.background='#ffffff';">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Reto de Aprendizaje
+        </button>
+        <div id="m5-reto-content" style="display: none; padding: 14px;">
+            <p style="font-size: 12px; color: #666666; margin: 0 0 10px 0;">Responde las siguientes preguntas para evaluar tu comprensión. Necesitas al menos <strong>70 puntos</strong> para aprobar. Puedes reintentarlo las veces que necesites.</p>
+
+            <div id="m5-quiz-container">
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">1. ¿A qué temperatura se debe agregar el colorante a la cera derretida para velas gourmet?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q1" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> 85°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q1" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> 70°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q1" value="c" style="width: 14px; height: 14px; accent-color: #E10078;"/> 50°C</label>
+                    </div>
+                </div>
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">2. ¿Cuál es la temperatura ideal para verter una capa sobre otra ya cristalizada?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q2" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> 45-50°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q2" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> 55-58°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q2" value="c" style="width: 14px; height: 14px; accent-color: #E10078;"/> 70-75°C</label>
+                    </div>
+                </div>
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">3. ¿Qué significa el término "gourmand" en el contexto de las fragancias para velas?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q3" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> Aromas florales y verdes</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q3" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> Aromas que evocan postres y alimentos dulces</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q3" value="c" style="width: 14px; height: 14px; accent-color: #E10078;"/> Aromas cítricos y frescos</label>
+                    </div>
+                </div>
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">4. ¿A qué temperatura se debe batir la cera para lograr el efecto chantilly?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q4" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> 80-85°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q4" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> 65-70°C</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q4" value="c" style="width: 14px; height: 14px; accent-color: #E10078;"/> 45-50°C</label>
+                    </div>
+                </div>
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">5. ¿Qué es la técnica de glaseado en una vela gourmet?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q5" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> Una capa fina de cera derretida que crea un acabado brillante y acristalado</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q5" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> Cera batida que imita crema batida sobre la vela</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q5" value="c" style="width: 14px; height: 14px; accent-color: #E10078;"/> Una mecha especial que produce llama coloreada</label>
+                    </div>
+                </div>
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">6. ¿Es correcto usar colorante alimenticio para teñir las velas gourmet?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q6" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> Verdadero, funciona igual que el colorante para velas</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q6" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> Falso, debe usarse colorante en aceite o polvo específico para velas</label>
+                    </div>
+                </div>
+                <div class="m5-pregunta" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 6px; padding: 10px 12px; margin-bottom: 0;">
+                    <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 6px 0;">7. ¿Cuándo se deben agregar los toppings decorativos?</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q7" value="a" style="width: 14px; height: 14px; accent-color: #E10078;"/> Sobre la superficie aún húmeda, 2-3 min después del vertido</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q7" value="b" style="width: 14px; height: 14px; accent-color: #E10078;"/> Después de 24 horas de curado</label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555555; cursor: pointer;"><input type="radio" name="m5q7" value="c" style="width: 14px; height: 14px; accent-color: #E10078;"/> Cuando la cera está a 80°C</label>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="m5Evaluar()" style="background: #E10078; border: none; border-radius: 5px; padding: 9px 20px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-top: 10px;" onmouseover="this.style.background='#c1006a';" onmouseout="this.style.background='#E10078';">Enviar Respuestas</button>
+
+            <div id="m5-reto-resultado" style="display: none; border-radius: 5px; padding: 12px; margin-top: 10px;">
+                <div id="m5-reto-score" style="font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 5px;"></div>
+                <div id="m5-reto-feedback" style="font-size: 12px; text-align: center; color: #555555; line-height: 1.5;"></div>
+                <div id="m5-reto-botones" style="display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; justify-content: center;">
+                    <button onclick="m5DescargarRetoPDF()" style="background: #E10078; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#c1006a';" onmouseout="this.style.background='#E10078';">
+                        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Descargar Resultado
+                    </button>
+                </div>
+                <div style="text-align: center; margin-top: 8px;">
+                    <button onclick="m5Reintentar()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">Reintentar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÓN DESCARGAR PDF -->
+    <div id="m5-download" style="margin-bottom: 16px; text-align: center;">
+        <button onclick="m5DescargarPDF()" style="background: linear-gradient(90deg, #7BB11D, #E10078); border: none; border-radius: 8px; padding: 10px 24px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.boxShadow='0 3px 12px rgba(225, 0, 120, 0.3)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar Contenido (PDF)
+        </button>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer id="m5-footer" style="background: rgba(225, 0, 120, 0.06); border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: #333333; letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase;">Tecnicatura de Velas Artesanales</div>
+        <div style="font-size: 12px; font-weight: 600; color: #E10078; letter-spacing: 2px; text-transform: uppercase; margin: 0;">Con Enfoque en Inteligencia Emocional</div>
+        <div style="font-size: 10px; color: #5C2066; letter-spacing: 1px; margin-top: 5px; text-transform: uppercase;">Diseño académico y dirección: Prof. María Esther Espinoza Juárez</div>
+    </footer>
+
+    <!-- ÁREA DE IMPRESIÓN (oculta, solo para PDF) -->
+    <div id="m5-print-area" style="display: none;">
+        <div style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; padding: 30px; color: #333333; max-width: 700px; margin: 0 auto;">
+            <h1 style="font-size: 24px; color: #E10078; text-transform: uppercase; margin-bottom: 5px;">Modulo 5: Velas Gourmet</h1>
+            <p style="font-size: 12px; color: #F0A100; margin: 0 0 15px 0;">Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Ano</p>
+            <hr style="border: none; border-top: 3px solid #E10078; margin-bottom: 20px;"/>
+
+            <h2 style="font-size: 16px; color: #E10078; margin-top: 20px;">Informacion Tecnica</h2>
+            <h3 style="font-size: 14px; color: #F0A100;">Que es una vela gourmet?</h3>
+            <p style="font-size: 12px; line-height: 1.6;">Vela artesanal decorativa elaborada con cera de soja que imita visualmente un postre o gourmand. Combina capas de color diferenciadas, fragancias gourmand (vainilla, caramelo, chocolate, canela), toppings texturizados y tecnicas de acabado como glaseado y chantilly.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Temperaturas Clave</h3>
+            <p style="font-size: 12px;">Derretido: <strong>80C</strong> | Colorante: <strong>70C</strong> | Fragancia: <strong>65C</strong> | Vertido base: <strong>58C</strong> | Glaseado: <strong>55-60C</strong> | Chantilly: <strong>45-50C</strong> | Drip: <strong>60-65C</strong></p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Medida Estandar</h3>
+            <p style="font-size: 12px;">Carga de fragancia: 6-8% del peso total. Colorante: 0.01-0.1%. Toppings: 10-15g. Vertido de capas: 55-58C.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Materiales Necesarios</h3>
+            <p style="font-size: 12px;">Cera de soja en escamas (para contenedor), Fragancia gourmand, Colorante en aceite o polvo, Mecha con base metalica, Vaso de vidrio, Toppings, Bascula digital, Termometro, Sticker y centrador de mecha, Pitchers (min. 2), Batidora electrica de mano, Manga pastelera con boquillas, Espatula pequena, Bowl con agua fria, Etiqueta de seguridad.</p>
+
+            <h3 style="font-size: 14px; color: #F0A100; margin-top: 15px;">Procedimiento General</h3>
+            <ol style="font-size: 12px; line-height: 1.8; padding-left: 20px;">
+                <li>Preparar bano Maria y derretir cera a 80C.</li>
+                <li>Preparar vaso: pegar mecha al fondo y centrar.</li>
+                <li>Agregar colorante a 70C y mezclar.</li>
+                <li>RETIRAR del calor, agregar fragancia a 65C. Mezclar 1-2 min.</li>
+                <li>Aplicar tecnica de acabado (capas, glaseado o chantilly).</li>
+                <li>Agregar toppings decorativos si corresponde.</li>
+                <li>Reposo: 24-48h curado inicial.</li>
+                <li>Recortar mecha a 6mm y agregar etiqueta de seguridad.</li>
+            </ol>
+
+            <h2 style="font-size: 16px; color: #7BB11D; margin-top: 25px;">Tips Claves</h2>
+            <h3 style="font-size: 14px; color: #E10078;">Capas de Color y Adherencia</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Cada capa a 55-58C sobre la anterior cristalizada. Temperatura exacta es clave.</p>
+            <h3 style="font-size: 14px; color: #26A3C8;">Fragancias Gourmand</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Gourmand = aromas de postres. Vainilla, caramelo, chocolate, canela, cafe.</p>
+            <h3 style="font-size: 14px; color: #F0A100;">Toppings</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Sobre superficie humeda 2-3 min del vertido. No usar ingredientes que se pudran.</p>
+
+            <h2 style="font-size: 16px; color: #26A3C8; margin-top: 25px;">Tecnicas</h2>
+            <h3 style="font-size: 14px; color: #26A3C8;">Glaseado</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Capa fina de cera a 55-60C para acabado brillante. Para drip: 60-65C desde mayor altura. Es el acabado final, no agregar toppings encima.</p>
+            <h3 style="font-size: 14px; color: #26A3C8;">Chantilly (Whipped Wax)</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Cera batida a 45-50C hasta consistencia cremosa firme. Aplicar con manga pastelera o espatula. Imita crema batida o frosting de reposteria.</p>
+
+            <h2 style="font-size: 16px; color: #5C2066; margin-top: 25px;">Inteligencia Emocional</h2>
+            <h3 style="font-size: 14px; color: #5C2066;">Creatividad y Disfrute Consciente</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Cada capa, topping y combinacion de color es una oportunidad para experimentar sin juicio.</p>
+            <h3 style="font-size: 14px; color: #5C2066;">Jugar sin Juicio</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Soltar la exigencia de perfeccion. No hay errores, solo descubrimientos.</p>
+            <h3 style="font-size: 14px; color: #5C2066;">Permitir el Placer Creativo</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Crear por el placer de crear es una forma de autocuidado emocional.</p>
+            <h3 style="font-size: 14px; color: #5C2066;">El Valor de lo Ludico</h3>
+            <p style="font-size: 12px; line-height: 1.5;">Los adultos necesitan espacios ludicos para mantener la flexibilidad mental y reducir el estres.</p>
+
+            <hr style="border: none; border-top: 2px solid #E10078; margin-top: 25px; margin-bottom: 15px;"/>
+            <p style="font-size: 10px; color: #888888; text-align: center;">Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- COPILOTO PEDAGOGICO IA -->
+<button id="m5-copiloto-btn" onclick="m5ToggleCopiloto()" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #E10078, #5C2066); border: none; color: #ffffff; cursor: pointer; box-shadow: 0 4px 12px rgba(225, 0, 120, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" aria-label="Copiloto Pedagogico IA">
+    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<div id="m5-copiloto-panel" style="display: none; position: fixed; bottom: 82px; right: 20px; width: 280px; max-width: calc(100vw - 40px); max-height: 360px; background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.3); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); z-index: 9999; overflow-y: auto; padding: 12px;">
+    <div style="font-size: 12px; font-weight: 700; color: #E10078; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(225, 0, 120, 0.2);">Copiloto Pedagogico IA</div>
+    <div id="m5-copiloto-content" style="font-size: 12px; color: #555555; line-height: 1.5; margin-bottom: 8px;">
+        <p style="margin: 0 0 5px 0;">Hola! Soy tu asistente de estudio del Modulo 5. Puedo ayudarte con:</p>
+        <ul style="margin: 0 0 6px 0; padding-left: 14px;">
+            <li>Explicar conceptos tecnicos</li>
+            <li>Resumir los tips claves</li>
+            <li>Recomendar que repasar</li>
+        </ul>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <button onclick="m5CopilotoAccion('explicar')" style="background: rgba(225, 0, 120, 0.1); border: 1px solid #E10078; border-radius: 14px; padding: 4px 9px; color: #E10078; font-size: 10px; font-weight: 600; cursor: pointer;">Tecnicas</button>
+        <button onclick="m5CopilotoAccion('resumir')" style="background: rgba(123, 177, 29, 0.1); border: 1px solid #7BB11D; border-radius: 14px; padding: 4px 9px; color: #7BB11D; font-size: 10px; font-weight: 600; cursor: pointer;">Tips</button>
+        <button onclick="m5CopilotoAccion('repaso')" style="background: rgba(240, 161, 0, 0.1); border: 1px solid #F0A100; border-radius: 14px; padding: 4px 9px; color: #F0A100; font-size: 10px; font-weight: 600; cursor: pointer;">Repasar</button>
+    </div>
+</div>
+
+<!-- LIBRERIA JSPDF (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- JAVASCRIPT -->
+<script>
+(function() {
+    window.m5ShowToast = function(msg, isError) {
+        var toast = document.getElementById('m5-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.background = isError ? '#E10078' : '#7BB11D';
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 3500);
+    };
+
+    window.m5Toggle = function(contentId) {
+        var el = document.getElementById(contentId);
+        if (!el) return;
+        el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+    };
+
+    // Calculadora de Formulas
+    window.m5CalcularFormula = function() {
+        var grCera = parseFloat(document.getElementById('m5-gr-cera').value);
+        var pctFrag = parseFloat(document.getElementById('m5-pct-fragancia').value);
+        if (!grCera || grCera <= 0) { m5ShowToast('Ingresa una cantidad valida de cera.', true); return; }
+        if (!pctFrag || pctFrag < 3 || pctFrag > 15) { m5ShowToast('El porcentaje debe estar entre 3% y 15%.', true); return; }
+        var grFragancia = (grCera * pctFrag / 100);
+        var grCeraFinal = grCera - grFragancia;
+        document.getElementById('m5-res-cera').textContent = grCeraFinal.toFixed(1) + 'g';
+        document.getElementById('m5-res-fragancia').textContent = grFragancia.toFixed(1) + 'g';
+        document.getElementById('m5-res-temp').textContent = '65C';
+        document.getElementById('m5-formula-resultados').style.display = 'block';
+        m5ShowToast('Formula calculada exitosamente.');
+    };
+
+    // Calculadora de Precio Final
+    window.m5CalcularPrecio = function() {
+        var cera = parseFloat(document.getElementById('m5-costo-cera').value) || 0;
+        var frag = parseFloat(document.getElementById('m5-costo-fragancia').value) || 0;
+        var mecha = parseFloat(document.getElementById('m5-costo-mecha').value) || 0;
+        var envase = parseFloat(document.getElementById('m5-costo-envase').value) || 0;
+        var top = parseFloat(document.getElementById('m5-costo-top').value) || 0;
+        var mo = parseFloat(document.getElementById('m5-costo-mo').value) || 0;
+        var margen = parseFloat(document.getElementById('m5-margen').value) || 3;
+        var costoTotal = cera + frag + mecha + envase + top + mo;
+        var precioVenta = costoTotal * margen;
+        document.getElementById('m5-res-costo').textContent = '$' + costoTotal.toFixed(2);
+        document.getElementById('m5-res-venta').textContent = '$' + precioVenta.toFixed(2);
+        document.getElementById('m5-precio-resultados').style.display = 'block';
+        m5ShowToast('Precio de venta sugerido calculado.');
+    };
+
+    // Checklist interactiva
+    var m5Steps = {};
+    window.m5ToggleStep = function(stepId) {
+        m5Steps[stepId] = !m5Steps[stepId];
+        var step = document.getElementById(stepId);
+        var checkNum = stepId.split('-').pop();
+        var checkSvg = document.getElementById('m5-check-' + checkNum);
+        if (m5Steps[stepId]) {
+            step.style.borderColor = '#7BB11D';
+            step.style.background = 'rgba(123, 177, 29, 0.08)';
+            checkSvg.style.stroke = '#7BB11D';
+        } else {
+            step.style.borderColor = 'rgba(225, 0, 120, 0.2)';
+            step.style.background = '#ffffff';
+            checkSvg.style.stroke = 'transparent';
+        }
+    };
+
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : null;
+    if (!jsPDF) {
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        s.onload = function() { jsPDF = window.jspdf.jsPDF; };
+        document.head.appendChild(s);
+    }
+
+    // Descarga del Diario como PDF
+    window.m5DescargarDiarioPDF = function() {
+        var goce = document.getElementById('m5-diario-goce').value;
+        var texto = document.getElementById('m5-diario-texto').value;
+        if (!goce && !texto) { m5ShowToast('Escribe al menos una reflexion antes de descargar.', true); return; }
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            doc.setFillColor(92, 32, 102);
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text('Diario de Inteligencia Emocional', 20, 20);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 5: Velas Gourmet | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 20, 28);
+            doc.setDrawColor(92, 32, 102);
+            doc.setLineWidth(0.5);
+            doc.line(20, 32, 190, 32);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(10);
+            doc.text('Fecha: ' + fecha, 20, 40);
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Goce creativo (experimento o combinacion que sorprendio)', 20, 50);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var goceLines = doc.splitTextToSize(goce || '---', 170);
+            doc.text(goceLines, 20, 58);
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            var yReflexion = 58 + (goceLines.length * 6) + 8;
+            doc.text('Reflexion personal (experimentar sin juicio)', 20, yReflexion);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var textoLines = doc.splitTextToSize(texto || '---', 170);
+            doc.text(textoLines, 20, yReflexion + 8);
+            doc.setDrawColor(92, 32, 102);
+            doc.line(20, yReflexion + 8 + (textoLines.length * 6) + 10, 190, yReflexion + 8 + (textoLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 20, yReflexion + 8 + (textoLines.length * 6) + 16);
+            doc.save('diario_emocional_mod5.pdf');
+            m5ShowToast('PDF de tu reflexion descargado.');
+        } catch(e) { m5ShowToast('Error al generar el PDF. Intenta nuevamente.', true); }
+    };
+
+    // Descarga del Resultado del Reto como PDF
+    window.m5DescargarRetoPDF = function() {
+        var scoreText = document.getElementById('m5-reto-score').textContent;
+        var feedbackText = document.getElementById('m5-reto-feedback').textContent;
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            doc.setFillColor(225, 0, 120);
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Certificado de Resultado', 105, 30, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 5: Velas Gourmet | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, 38, { align: 'center' });
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            doc.setFontSize(10);
+            doc.setTextColor(136, 136, 136);
+            doc.text('Fecha: ' + fecha, 105, 53, { align: 'center' });
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(36);
+            doc.setFont(undefined, 'bold');
+            doc.text(scoreText, 105, 80, { align: 'center' });
+            doc.setTextColor(85, 85, 85);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var feedbackLines = doc.splitTextToSize(feedbackText, 150);
+            doc.text(feedbackLines, 105, 95, { align: 'center' });
+            doc.setDrawColor(123, 177, 29);
+            doc.line(20, 95 + (feedbackLines.length * 6) + 10, 190, 95 + (feedbackLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 105, 95 + (feedbackLines.length * 6) + 16, { align: 'center' });
+            doc.save('resultado_reto_mod5.pdf');
+            m5ShowToast('Resultado exportado a PDF.');
+        } catch(e) { m5ShowToast('Error al generar el PDF.', true); }
+    };
+
+    // Reto de Aprendizaje (7 preguntas)
+    var m5Respuestas = { m5q1: 'b', m5q2: 'b', m5q3: 'b', m5q4: 'c', m5q5: 'a', m5q6: 'b', m5q7: 'a' };
+    var m5TotalPreguntas = 7;
+
+    window.m5Evaluar = function() {
+        var correctas = 0;
+        for (var key in m5Respuestas) {
+            var selected = document.querySelector('input[name="' + key + '"]:checked');
+            if (selected && selected.value === m5Respuestas[key]) { correctas++; }
+        }
+        var puntaje = Math.round((correctas / m5TotalPreguntas) * 100);
+        var aprobado = puntaje >= 70;
+        var resultadoDiv = document.getElementById('m5-reto-resultado');
+        var scoreDiv = document.getElementById('m5-reto-score');
+        var feedbackDiv = document.getElementById('m5-reto-feedback');
+        resultadoDiv.style.display = 'block';
+        document.getElementById('m5-reto-botones').style.display = 'flex';
+        scoreDiv.textContent = puntaje + '/100 puntos';
+        scoreDiv.style.color = aprobado ? '#7BB11D' : '#E10078';
+        if (aprobado) {
+            resultadoDiv.style.background = 'rgba(123, 177, 29, 0.08)';
+            resultadoDiv.style.border = '1px solid rgba(123, 177, 29, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #7BB11D;">Felicitaciones! Has aprobado el Reto de Aprendizaje.</strong><br><br>Demuestras comprension de la tecnica gourmet: temperaturas de capas, fragancias gourmand, tecnicas de glaseado y chantilly, y toppings. Puedes avanzar al siguiente modulo.';
+            m5ShowToast('Reto aprobado con exito!');
+        } else {
+            resultadoDiv.style.background = 'rgba(225, 0, 120, 0.05)';
+            resultadoDiv.style.border = '1px solid rgba(225, 0, 120, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #E10078;">Aun no alcanzaste el puntaje minimo (70).</strong><br><br>Repasa las Fichas de Tips Claves y la seccion Tecnica, especialmente sobre temperaturas de glaseado, chantilly, capas y toppings. Puedes reintentar.';
+            m5ShowToast('Resultado evaluado. Revisa las sugerencias.', true);
+        }
+    };
+
+    window.m5Reintentar = function() {
+        var radios = document.querySelectorAll('#m5-quiz-container input[type="radio"]');
+        for (var i = 0; i < radios.length; i++) { radios[i].checked = false; }
+        document.getElementById('m5-reto-resultado').style.display = 'none';
+        document.getElementById('m5-reto-botones').style.display = 'none';
+    };
+
+    // Descarga del Modulo completo como PDF
+    window.m5DescargarPDF = function() {
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            var pageH = 297;
+            var margin = 15;
+            var contentW = 180;
+            var y = 15;
+
+            function checkPage(needed) {
+                if (y + needed > pageH - margin) { doc.addPage(); y = margin; }
+            }
+
+            // ENCABEZADO
+            doc.setFillColor(225, 0, 120);
+            doc.rect(0, 0, 210, 35, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Modulo 5: Velas Gourmet', 105, 15, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional - Primer Ano', 105, 23, { align: 'center' });
+            doc.setFontSize(8);
+            doc.text('Prof. Maria Esther Espinoza Juarez', 105, 30, { align: 'center' });
+            y = 42;
+
+            // OBJETIVOS
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('OBJETIVOS DE APRENDIZAJE', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var obj1 = doc.splitTextToSize('Objetivo Tecnico: Aprender a crear velas gourmet decorativas en vaso o contenedor, combinando capas de color, toppings texturizados, tecnicas de glaseado y chantilly para lograr piezas que imiten postres reales con acabados profesionales.', contentW);
+            checkPage(obj1.length * 4.5 + 12);
+            doc.text(obj1, margin, y); y += obj1.length * 4.5 + 6;
+            var obj2 = doc.splitTextToSize('Enfoque Emocional: Creatividad y disfrute consciente. Jugar sin juicio, permitir el placer creativo y reconocer el valor de lo ludico en la vida adulta.', contentW);
+            checkPage(obj2.length * 4.5 + 6);
+            doc.text(obj2, margin, y); y += obj2.length * 4.5 + 10;
+
+            doc.setDrawColor(225, 0, 120);
+            doc.setLineWidth(0.5);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // INFORMACION TECNICA
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('INFORMACION TECNICA', margin, y); y += 8;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('Que es una vela gourmet?', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var info = doc.splitTextToSize('Vela artesanal decorativa elaborada con cera de soja que imita visualmente un postre o gourmand. Combina capas de color diferenciadas, fragancias gourmand y toppings texturizados. Incluye tecnicas de acabado como glaseado (capa fina brillante) y chantilly (cera batida tipo crema).', contentW);
+            checkPage(info.length * 4.5 + 12);
+            doc.text(info, margin, y); y += info.length * 4.5 + 10;
+
+            // Temperaturas Clave
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Temperaturas Clave', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            doc.text('Base: Derretido 80C | Colorante 70C | Fragancia 65C | Vertido 58C', margin, y); y += 6;
+            doc.text('Tecnicas: Glaseado 55-60C | Chantilly 45-50C | Drip 60-65C', margin, y); y += 10;
+
+            // Medida Estandar
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Medida Estandar', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var medida = doc.splitTextToSize('Carga de fragancia: 6-8% del peso total. Colorante: 0.01-0.1%. Toppings: 10-15g. Regla de capas: 55-58C sobre capa cristalizada.', contentW);
+            checkPage(medida.length * 4.5 + 10);
+            doc.text(medida, margin, y); y += medida.length * 4.5 + 10;
+
+            // Materiales
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(60);
+            doc.text('Materiales Necesarios', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var matList = [
+                '- Cera de soja en escamas (para contenedor, punto de fusion bajo)',
+                '- Fragancia gourmand para velas',
+                '- Colorante en aceite o polvo especifico para velas',
+                '- Mecha con base metalica (segun diametro del vaso)',
+                '- Vaso de vidrio transparente',
+                '- Toppings: cafe, canela, petalos, chispas, glitter',
+                '- Bascula digital + Termometro digital',
+                '- Sticker de mecha + Centrador de mecha',
+                '- Pitchers de aluminio (min. 2)',
+                '- Batidora electrica de mano (dedicada a velas)',
+                '- Manga pastelera con boquillas (para chantilly)',
+                '- Espatula pequena',
+                '- Bowl con agua fria (para enfriamiento rapido)',
+                '- Etiqueta de seguridad'
+            ];
+            for (var m = 0; m < matList.length; m++) {
+                checkPage(6);
+                doc.text(matList[m], margin, y); y += 5;
+            }
+            y += 8;
+
+            // Procedimiento
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(55);
+            doc.text('Procedimiento General', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var procList = [
+                '1. Preparar bano Maria y derretir cera a 80C.',
+                '2. Preparar vaso: pegar mecha al fondo y centrar.',
+                '3. Dividir la cera segun la tecnica elegida.',
+                '4. Agregar colorante a 70C y mezclar suavemente.',
+                '5. RETIRAR del calor, agregar fragancia a 65C. Mezclar 1-2 min.',
+                '6. Aplicar tecnica de acabado: capas, glaseado o chantilly.',
+                '7. Agregar toppings decorativos si corresponde.',
+                '8. Reposo: 24-48h curado inicial, 1-2 semanas completo.',
+                '9. Recortar mecha a 6mm y agregar etiqueta de seguridad.'
+            ];
+            for (var p = 0; p < procList.length; p++) {
+                checkPage(7);
+                doc.text(procList[p], margin, y); y += 6;
+            }
+            y += 5;
+
+            doc.setDrawColor(200, 200, 200);
+            doc.setLineWidth(0.3);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // TIPS CLAVES
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(30);
+            doc.text('FICHAS DE TIPS CLAVES', margin, y); y += 8;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('Capas de Color y Adherencia', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var tip1 = doc.splitTextToSize('Cada capa debe verterse entre 55-58C sobre la anterior ya cristalizada. Si esta muy caliente, fundira la capa inferior. Si esta muy fria, no se adherira. La clave es la temperatura exacta del vertido.', contentW);
+            checkPage(tip1.length * 4.5 + 12);
+            doc.text(tip1, margin, y); y += tip1.length * 4.5 + 10;
+
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Fragancias Gourmand', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var tip2 = doc.splitTextToSize('Gourmand = categoria olfativa que evoca postres y alimentos dulces. Las mas populares: vainilla bourbon, caramelo salado, chocolate caliente, canela especia, cafe, fresa con crema, tarta de manzana. Combinar 2 gourmand diferentes crea una experiencia olfativa compleja y apetitosa.', contentW);
+            checkPage(tip2.length * 4.5 + 12);
+            doc.text(tip2, margin, y); y += tip2.length * 4.5 + 10;
+
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Toppings Decorativos', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var tip3 = doc.splitTextToSize('Se aplican sobre la capa superior aun humeda (2-3 min del vertido) para que se adhieran naturalmente al solidificarse. Opciones: cafe molido fino, canela en polvo, petalos de rosa secos, chispas cosméticas. No usar ingredientes que puedan pudrirse o atraer insectos.', contentW);
+            checkPage(tip3.length * 4.5 + 12);
+            doc.text(tip3, margin, y); y += tip3.length * 4.5 + 10;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // TECNICAS
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(50);
+            doc.text('TECNICAS DE ACABADO', margin, y); y += 8;
+
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(40);
+            doc.text('1. Glaseado', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var glaseado = doc.splitTextToSize('Capa fina de cera derretida que se vierte sobre la vela base para crear un acabado brillante, liso y acristalado. Imita el glaseado de una torta. Derretido: 80-85C. Colorante: 70C. Fragancia: 65C. Vertido glaseado: 55-60C. Para efecto drip: 60-65C desde mayor altura. El glaseado es el acabado final: no agregar toppings encima.', contentW);
+            checkPage(glaseado.length * 4.5 + 12);
+            doc.text(glaseado, margin, y); y += glaseado.length * 4.5 + 10;
+
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(50);
+            doc.text('2. Chantilly (Whipped Wax)', margin, y); y += 6;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var chantilly = doc.splitTextToSize('Cera batida y aireada hasta obtener una textura cremosa similar a la crema chantilly. Se aplica con espatula o manga pastelera para crear efectos de crema batida, merengue o espuma. Derretido: 80C. Punto de batido: 45-50C (cuando los bordes empiezan a solidificar). Procedimiento: derretir a 80C, agregar colorante a 70C y fragancia a 65C, enfriar en bowl con agua fria, batir vigorosamente cuando se forme pelicula opaca, alternar batido y enfriamiento hasta consistencia cremosa firme (3-7 min), aplicar inmediatamente con manga pastelera o espatula.', contentW);
+            checkPage(chantilly.length * 4.5 + 12);
+            doc.text(chantilly, margin, y); y += chantilly.length * 4.5 + 10;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // CALCULADORAS
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('CALCULADORA DE FORMULAS', margin, y); y += 8;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var calc = doc.splitTextToSize('Formula: Fragancia = (Gramos totales x %) / 100. Cera neta = Gramos totales - Fragancia. Temperatura de adicion de fragancia: 65C.', contentW);
+            checkPage(calc.length * 4.5 + 12);
+            doc.text(calc, margin, y); y += calc.length * 4.5 + 10;
+
+            doc.setTextColor(240, 161, 0);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('CALCULADORA DE PRECIO FINAL', margin, y); y += 7;
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var precio = doc.splitTextToSize('Costo Total = Cera + Fragancia + Mecha + Vaso + Color/Toppings + Mano de Obra. Precio de Venta = Costo Total x 3 (margen recomendado para velas gourmet artesanal).', contentW);
+            checkPage(precio.length * 4.5 + 12);
+            doc.text(precio, margin, y); y += precio.length * 4.5 + 10;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // INTELIGENCIA EMOCIONAL
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('INTELIGENCIA EMOCIONAL', margin, y); y += 8;
+
+            var ieItems = [
+                { title: 'Creatividad y Disfrute Consciente', text: 'La creatividad no es un don exclusivo de artistas: es una capacidad humana universal que se activa cuando nos permitimos jugar sin miedo al error. En las velas gourmet, cada capa, cada topping y cada combinacion de color es una oportunidad para experimentar sin juicio y reconectar con el goce creativo.' },
+                { title: 'Jugar sin Juicio', text: 'El juego creativo implica soltar la exigencia de perfeccion. Probar combinaciones de colores inesperadas, toppings fuera de lo convencional y fragancias que no "combinan" en teoria pero que sorprenden en la practica. No hay errores, solo descubrimientos.' },
+                { title: 'Permitir el Placer Creativo', text: 'El placer creativo es el disfrute intrinseco del proceso de crear. Incluye la satisfaccion de ver una capa adherirse perfectamente, la alegria de elegir un color vibrante o la ternura de decorar con petalos. Crear por el placer de crear es una forma de autocuidado emocional.' },
+                { title: 'El Valor de lo Ludico en la Vida Adulta', text: 'La psicologia del desarrollo reconoce que el juego no es exclusivo de la infancia. Los adultos necesitamos espacios ludicos para mantener la flexibilidad mental, reducir el estres y fortalecer la resiliencia. Este modulo es un espacio seguro para reconectar con la alegria de experimentar.' }
+            ];
+            for (var ie = 0; ie < ieItems.length; ie++) {
+                doc.setTextColor(92, 32, 102);
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'bold');
+                checkPage(25);
+                doc.text(ieItems[ie].title, margin, y); y += 6;
+                doc.setTextColor(51, 51, 51);
+                doc.setFontSize(9);
+                doc.setFont(undefined, 'normal');
+                var ieText = doc.splitTextToSize(ieItems[ie].text, contentW);
+                checkPage(ieText.length * 4.5 + 10);
+                doc.text(ieText, margin, y); y += ieText.length * 4.5 + 8;
+            }
+
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            checkPage(15);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(8);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, y, { align: 'center' }); y += 5;
+            doc.text('Prof. Maria Esther Espinoza Juarez | 2026', 105, y, { align: 'center' });
+
+            doc.save('modulo5_velas_gourmet.pdf');
+            m5ShowToast('Documento completo descargado en PDF.');
+        } catch(e) { m5ShowToast('Error al generar el PDF del modulo.', true); }
+    };
+
+    // Copiloto Pedagogico
+    window.m5ToggleCopiloto = function() {
+        var panel = document.getElementById('m5-copiloto-panel');
+        if (!panel) return;
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.m5CopilotoAccion = function(accion) {
+        var content = document.getElementById('m5-copiloto-content');
+        if (accion === 'explicar') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#E10078;">Tecnicas:</strong></p><p style="margin:5px 0 0 0;"><strong>Glaseado:</strong> Capa fina a 55-60C para acabado brillante. Drip: 60-65C desde mayor altura.<br><strong>Chantilly:</strong> Cera batida a 45-50C hasta consistencia cremosa firme. Aplicar con manga pastelera o espatula.<br><strong>Capas:</strong> 55-58C sobre capa cristalizada, esperando 15-20 min entre cada una.</p>';
+        } else if (accion === 'resumir') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#7BB11D;">Tips clave:</strong></p><p style="margin:5px 0 0 0;">1. Capas a 55-58C sobre capa cristalizada.<br>2. Gourmand = aromas de postres (vainilla, caramelo, cafe).<br>3. Toppings sobre superficie humeda, 2-3 min del vertido.<br>4. Glaseado es el acabado final: no toppings encima.<br>5. Chantilly: batir cuando la cera tiene 45-50C.</p>';
+        } else if (accion === 'repaso') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#F0A100;">Sugerencia de Repaso:</strong></p><p style="margin:5px 0 0 0;">Repasa la seccion Tecnica (glaseado, chantilly y toppings) y las temperaturas de vertido antes de realizar el Reto de Aprendizaje.</p>';
+        }
+    };
+})();
+</script>
+
+</body>
+</html>
