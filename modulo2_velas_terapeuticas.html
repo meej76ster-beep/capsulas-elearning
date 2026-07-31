@@ -35,6 +35,54 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    /* ================= BARRA DE NAVEGACIÓN ================= */
+    .m1-nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%);
+      border-radius: 12px 12px 0 0;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .m1-nav-bar a,
+    .m1-nav-bar button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+
+    .m1-nav-btn-back {
+      background: #ffffff;
+      color: #7BB11D;
+    }
+    .m1-nav-btn-back:hover {
+      background: rgba(255,255,255,0.85);
+      transform: translateY(-1px);
+    }
+
+    .m1-nav-title {
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body style="margin: 0; padding: 10px; background-color: #f8f9fa;">
@@ -43,7 +91,19 @@
 <div id="m2-toast" class="m2-toast-notify"></div>
 
 <div id="m2-container" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background-color: #ffffff; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px; box-sizing: border-box; position: relative; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
-
+<!-- ================= BARRA DE NAVEGACIÓN ================= -->
+    <nav class="m1-nav-bar">
+        <div class="m1-nav-title">Tecnicatura de Velas Artesanales</div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <!-- Reemplaza "menu_principal.html" por la URL de tu menú principal -->
+            <a href="index.html" class="m1-nav-btn-back" title="Regresar al menú principal">
+                <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:none; stroke:#7BB11D; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                Regresar al menú principal
+            </a>
+        </div>
+    </nav>
     <!-- ================= ENCABEZADO ================= -->
     <header id="m2-header" style="margin-bottom: 20px;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
