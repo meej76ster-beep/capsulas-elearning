@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Tecnicatura de Velas Artesanales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        epDarkPurple: '#2C1236',
+                        epPurple: '#5C2066',
+                        epPink: '#E10078',
+                        epOrange: '#F0A100',
+                        epGreen: '#7BB11D',
+                        epBlue: '#26A3C8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2C1236 0%, #5C2066 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .card-shadow {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-between p-4 md:p-8">
+
+    <!-- Top Header -->
+    <header class="w-full max-w-5xl mx-auto text-center mb-6">
+        <div class="inline-block bg-epOrange text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-md">
+            Ciclo Lectivo 2026
+        </div>
+        <h1 class="title-font text-3xl md:text-5xl font-bold text-white tracking-wide">
+            Tecnicatura de Velas Artesanales
+        </h1>
+        <p class="text-epBlue font-semibold text-lg md:text-xl mt-1 tracking-wider uppercase">
+            Primer Año
+        </p>
+    </header>
+
+    <!-- Main Content Dashboard Area -->
+    <main class="w-full max-w-4xl mx-auto my-auto">
+        <div class="bg-white rounded-3xl p-6 md:p-12 card-shadow border-t-8 border-epPink relative overflow-hidden">
+            
+            <!-- Decorative accents -->
+            <div class="absolute -right-12 -top-12 w-40 h-40 bg-epOrange/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -left-12 -bottom-12 w-40 h-40 bg-epGreen/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="text-center relative z-10 space-y-6">
+                <!-- Icon / Candle Badge -->
+                <div class="w-20 h-20 bg-epDarkPurple text-epOrange rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-inner border border-epOrange/30">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+
+                <!-- Main Motivational Message -->
+                <div class="max-w-2xl mx-auto space-y-3">
+                    <h2 class="title-font text-2xl md:text-3xl font-bold text-epDarkPurple">
+                        Construyendo Comunidad y Buenas Prácticas
+                    </h2>
+                    <p class="text-gray-600 text-base md:text-lg leading-relaxed">
+                        Continuamos fomentando un espacio de crecimiento colectivo, integrando las buenas prácticas artesanales con un profundo <span class="font-semibold text-epPink">enfoque en inteligencia emocional</span> para cada creación.
+                    </p>
+                </div>
+
+                <!-- Status Banner: Disponible Próximamente -->
+                <div class="py-6 my-6 bg-gradient-to-r from-epPurple/5 via-epBlue/10 to-epPurple/5 rounded-2xl border border-epBlue/30">
+                    <h3 class="title-font text-3xl md:text-4xl font-extrabold text-epPink tracking-wider animate-pulse">
+                        Disponible Próximamente
+                    </h3>
+                </div>
+
+                <!-- Quick Action/Info Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-100 text-left">
+                    <div class="p-4 bg-gray-50 rounded-xl border-l-4 border-epGreen">
+                        <div class="text-epGreen font-semibold text-sm">Metodología</div>
+                        <div class="text-gray-700 font-medium text-sm mt-1">Práctica y Sensorial</div>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border-l-4 border-epOrange">
+                        <div class="text-epOrange font-semibold text-sm">Enfoque</div>
+                        <div class="text-gray-700 font-medium text-sm mt-1">Inteligencia Emocional</div>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border-l-4 border-epBlue">
+                        <div class="text-epBlue font-semibold text-sm">Comunidad</div>
+                        <div class="text-gray-700 font-medium text-sm mt-1">Artesanos Unidos</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="w-full max-w-4xl mx-auto text-center mt-6 text-white/80 space-y-2 border-t border-white/10 pt-4">
+        <p class="text-sm font-medium tracking-wide">
+            Tecnicatura de Velas Artesanales con Inteligencia Emocional
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-4 text-xs text-white/60">
+            <span>Diseño académico <strong class="text-epOrange">EpartnerClass</strong> | Año 2026</span>
+            <span class="hidden sm:inline">•</span>
+            <span>Prof. María Esther Espinoza Juárez</span>
+        </div>
+    </footer>
+
+</body>
+</html>
