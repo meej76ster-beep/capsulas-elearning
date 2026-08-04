@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Académico - Instrucciones del Curso</title>
+    <style>
+        /* ============================================ */
+        /* PALETA DE COLORES EPARTNERCLASS              */
+        /* ============================================ */
+        :root {
+            --color-verde-lima: #7BB11D;
+            --color-amarillo-dorado: #F0A100;
+            --color-azul-turquesa: #26A3C8;
+            --color-fucsia-acento: #E10078;
+            --color-purpura-class: #5C2066;
+            --color-bg-light: #F0F7FC;
+            --color-card-bg: #FFFFFF;
+            --color-text-dark: #333333;
+            --color-text-muted: #666666;
+            --border-radius: 16px;
+            --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7fc 0%, #e8f4f8 50%, #f5f0fa 100%);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        /* ============================================ */
+        /* BARRA DE NAVEGACIÓN SUPERIOR (MENÚ PRINCIPAL) */
+        /* ============================================ */
+        .ep-nav-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(90deg, var(--color-verde-lima) 0%, var(--color-azul-turquesa) 35%, var(--color-amarillo-dorado) 65%, var(--color-fucsia-acento) 100%);
+            border-radius: 12px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            margin-bottom: 20px;
+        }
+
+        .ep-nav-btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            color: var(--color-purpura-class);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .ep-nav-btn-back:hover {
+            background: #f8f8f8;
+            transform: translateY(-1px);
+            color: var(--color-fucsia-acento);
+        }
+
+        .ep-nav-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .ep-nav-tag {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* ============================================ */
+        /* CONTENEDOR PRINCIPAL DASHBOARD               */
+        /* ============================================ */
+        .velas-dashboard {
+            max-width: 920px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(38, 163, 200, 0.15);
+        }
+
+        /* ============================================ */
+        /* ENCABEZADO PRINCIPAL                         */
+        /* ============================================ */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--color-verde-lima);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-info {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .badge-academic {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffffff;
+            background: var(--color-verde-lima);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .subtitle-brand {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-purpura-class);
+            letter-spacing: 3px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--color-azul-turquesa);
+            text-transform: uppercase;
+        }
+
+        .sub-title-emotional {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-fucsia-acento);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-box {
+            width: 85px;
+            height: 85px;
+            background: radial-gradient(circle, #ffffff 0%, #e8f4f8 100%);
+            border: 2px solid var(--color-verde-lima);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(123, 177, 29, 0.2);
+        }
+
+        /* ============================================ */
+        /* SECCIÓN DESTACADA: INSTRUCCIONES (CENTRO)    */
+        /* ============================================ */
+        .instrucciones-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fffdf8 100%);
+            border: 2px solid var(--color-amarillo-dorado);
+            border-top: 6px solid var(--color-amarillo-dorado);
+            border-radius: 16px;
+            padding: 26px 22px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(240, 161, 0, 0.12);
+            position: relative;
+        }
+
+        .instrucciones-tag {
+            background: rgba(240, 161, 0, 0.12);
+            color: var(--color-amarillo-dorado);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .instrucciones-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--color-purpura-class);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .instrucciones-sub {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-fucsia-acento);
+            margin-bottom: 18px;
+        }
+
+        .instrucciones-box {
+            text-align: left;
+            max-width: 760px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .paragraph-card {
+            background: #ffffff;
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: 1px dashed rgba(240, 161, 0, 0.3);
+            font-size: 13.5px;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+        }
+
+        .paragraph-card h3 {
+            font-size: 14px;
+            color: var(--color-purpura-class);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================ */
+        /* PIE DE PÁGINA                                */
+        /* ============================================ */
+        .footer-dashboard {
+            border-top: 2px solid var(--color-fucsia-acento);
+            padding-top: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .footer-subtitle {
+            font-size: 11px;
+            color: var(--color-purpura-class);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .footer-author {
+            font-size: 10px;
+            color: var(--color-azul-turquesa);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN (VOLVER AL MENÚ PRINCIPAL) -->
+    <nav class="ep-nav-bar">
+        <a href="#" class="ep-nav-btn-back" title="Regresar a la plataforma de cursos">
+            ⬅️ Volver al Menú Principal
+        </a>
+        <span class="ep-nav-title">Tecnicatura de Velas Artesanales con I.E.</span>
+        <span class="ep-nav-tag">EpartnerClass 2026</span>
+    </nav>
+
+    <!-- DASHBOARD PRINCIPAL -->
+    <div class="velas-dashboard">
+
+        <!-- ENCABEZADO INSTITUCIONAL -->
+        <header class="dashboard-header">
+            <div class="header-info">
+                <span class="badge-academic">Primer Año 2026</span>
+                <div class="subtitle-brand">E-PartnerClass</div>
+                <h1 class="main-title">Tecnicatura de Velas Artesanales</h1>
+                <div class="sub-title-emotional">con Inteligencia Emocional</div>
+            </div>
+
+            <div class="logo-box">
+                <svg viewBox="0 0 60 60" style="width: 42px; height: 42px;" fill="none">
+                    <rect x="22" y="28" width="16" height="26" rx="2" fill="#E10078" opacity="0.85"/>
+                    <line x1="30" y1="28" x2="30" y2="18" stroke="#F0A100" stroke-width="2.5" stroke-linecap="round"/>
+                    <ellipse cx="30" cy="15" rx="5" ry="8" fill="#F0A100" opacity="0.95"/>
+                    <ellipse cx="30" cy="14" rx="3" ry="5" fill="#ffffff" opacity="0.5"/>
+                </svg>
+                <span style="font-size: 7.5px; color: #7BB11D; letter-spacing: 2px; margin-top: 2px; font-weight: bold;">VELAS</span>
+            </div>
+        </header>
+
+        <!-- SECCIÓN CENTRADA: INSTRUCCIONES -->
+        <section class="instrucciones-card">
+            <span class="instrucciones-tag">Primer Año · Tecnicatura de Velas Artesanales con Inteligencia Emocional</span>
+            <h2 class="instrucciones-title">Instrucciones del Curso</h2>
+            <div class="instrucciones-sub">Reglas de Convivencia, Metodología B-Learning y Aprendizaje por Proyectos</div>
+            
+            <div class="instrucciones-box">
+                <!-- PÁRRAFO 1: REGLAS Y NORMAS BÁSICAS -->
+                <div class="paragraph-card">
+                    <h3>📜 Reglas Básicas y Convivencia Académica</h3>
+                    <p>
+                        Para garantizar una experiencia académica enriquecedora y armoniosa, nos comprometemos a mantener la puntualidad en los encuentros, la entrega oportuna de los ejercicios en el aula virtual y un trato basado en la empatía y la escucha activa. Es requisito fundamental asistir con puntualidad a los <strong>dos talleres presenciales mensuales de cada módulo</strong>, llevar la bitácora de reflexión personal al día y manipular los materiales artesanales (ceras, aceites y fuentes de calor) siguiendo estrictamente las medidas de seguridad e higiene indicadas. El respeto por el proceso y el tiempo de cada compañera es la base de nuestra comunidad de aprendizaje.
+                    </p>
+                </div>
+
+                <!-- PÁRRAFO 2: METODOLOGÍA B-LEARNING Y APRENDIZAJE POR PROYECTOS -->
+                <div class="paragraph-card">
+                    <h3>💡 Metodología B-Learning y Aprendizaje por Proyectos</h3>
+                    <p>
+                        Nuestra tecnicatura combina lo mejor del entorno digital con la práctica sensorial presencial a través de la metodología <strong>B-Learning (Blended Learning)</strong>. En el campus virtual accederás a la teoría técnica, las calculadoras de formulación y los diarios de Inteligencia Emocional, mientras que en las dos clases presenciales de cada módulo pondrás las manos en la cera para experimentar texturas, temperaturas y fragancias bajo supervisión directa. Mediante el <strong>Aprendizaje Basado en Proyectos (ABP)</strong>, al finalizar cada módulo habrás diseñado una pieza única con valor estético, técnico y emocional, consolidando tus competencias tanto creativas como emprendedoras.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="footer-dashboard">
+            <div class="footer-subtitle">
+                Diseño Académico EpartnerClass
+            </div>
+            <div class="footer-author">
+                Prof. María Esther Espinoza Juárez
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
