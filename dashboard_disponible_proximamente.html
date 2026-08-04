@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Tecnicatura de Velas Artesanales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        epDarkPurple: '#2C1236',
+                        epPurple: '#5C2066',
+                        epPink: '#E10078',
+                        epOrange: '#F0A100',
+                        epGreen: '#7BB11D',
+                        epBlue: '#26A3C8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2C1236 0%, #5C2066 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .card-shadow {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .m7-nav-bar {
+            background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%);
+            border-radius: 16px 16px 0 0;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .m7-nav-btn-back {
+            background: #ffffff;
+            color: #7BB11D;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .m7-nav-btn-back:hover {
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-1px);
+        }
+        .m7-nav-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-between p-4 md:p-8">
+
+    <!-- Wrapper Principal -->
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-3xl card-shadow overflow-hidden flex flex-col my-auto border-t-8 border-epPink">
+        
+        <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+        <nav class="m7-nav-bar">
+            <div class="m7-nav-title">Tecnicatura de Velas Artesanales</div>
+            <div>
+                <a href="index.html" class="m7-nav-btn-back" title="Regresar al menú principal">
+                    <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:none; stroke:#7BB11D; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    Regresar al menú principal
+                </a>
+            </div>
+        </nav>
+
+        <!-- Contenido Interno del Dashboard -->
+        <div class="p-6 md:p-10 relative">
+            
+            <!-- Elementos Decorativos -->
+            <div class="absolute -right-12 -top-12 w-40 h-40 bg-epOrange/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -left-12 -bottom-12 w-40 h-40 bg-epGreen/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="text-center relative z-10 space-y-6">
+                <!-- Top Header Info dentro del cuerpo -->
+                <header class="space-y-2">
+                    <div class="inline-block bg-epOrange text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                        Ciclo Lectivo 2026
+                    </div>
+                    <h1 class="title-font text-3xl md:text-4xl font-bold text-epDarkPurple tracking-wide">
+                        Tecnicatura de Velas Artesanales
+                    </h1>
+                    <p class="text-epBlue font-semibold text-base md:text-lg tracking-wider uppercase">
+                        Primer Año
+                    </p>
+                </header>
+
+                <!-- Icon / Candle Badge -->
+                <div class="w-16 h-16 bg-epDarkPurple text-epOrange rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-epOrange/30">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </div>
+
+                <!-- Main Motivational Message -->
+                <div class="max-w-2xl mx-auto space-y-3">
+                    <h2 class="title-font text-xl md:text-2xl font-bold text-epDarkPurple">
+                        Construyendo Comunidad y Buenas Prácticas
+                    </h2>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                        Continuamos fomentando un espacio de crecimiento colectivo, integrando las buenas prácticas artesanales con un profundo <span class="font-semibold text-epPink">enfoque en inteligencia emocional</span> para cada creación.
+                    </p>
+                </div>
+
+                <!-- Status Banner: Disponible Próximamente -->
+                <div class="py-5 my-4 bg-gradient-to-r from-epPurple/5 via-epBlue/10 to-epPurple/5 rounded-2xl border border-epBlue/30">
+                    <h3 class="title-font text-2xl md:text-3xl font-extrabold text-epPink tracking-wider animate-pulse">
+                        Disponible Próximamente
+                    </h3>
+                </div>
+
+                <!-- Quick Action/Info Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t border-gray-100 text-left">
+                    <div class="p-3 bg-gray-50 rounded-xl border-l-4 border-epGreen">
+                        <div class="text-epGreen font-semibold text-xs uppercase">Metodología</div>
+                        <div class="text-gray-700 font-medium text-sm mt-1">Práctica y Sensorial</div>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-xl border-l-4 border-epOrange">
+                        <div class="text-epOrange font-semibold text-xs uppercase">Enfoque</div>
+                        <div class="text-gray-700 font-medium text-sm mt-1">Inteligencia Emocional</div>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-xl border-l-4 border-epBlue">
+                        <div class="text-epBlue font-semibold text-xs uppercase">Comunidad</div>
+                        <div class="text-gray-700 font-medium text-sm mt-1">Artesanos Unidos</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Area Integrado -->
+        <footer class="bg-gray-50 text-gray-600 text-center py-4 px-6 border-t border-gray-100 space-y-1">
+            <p class="text-xs md:text-sm font-medium tracking-wide text-epDarkPurple">
+                Tecnicatura de Velas Artesanales con Inteligencia Emocional
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-3 text-xs text-gray-500">
+                <span>Diseño académico <strong class="text-epOrange">EpartnerClass</strong> | Año 2026</span>
+                <span class="hidden sm:inline">•</span>
+                <span>Prof. María Esther Espinoza Juárez</span>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
