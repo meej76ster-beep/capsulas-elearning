@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 7: Velas Globo de Nieve - Tecnicatura de Velas Artesanales</title>
+  
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #m7-print-area, #m7-print-area * { visibility: visible; }
+      #m7-print-area { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; background: #fff; }
+      .m7-print-hide { display: none !important; }
+      .m7-print-show { display: block !important; }
+    }
+    .m7-toast-notify {
+      position: fixed; top: 20px; right: 20px; padding: 12px 20px; color: #ffffff;
+      font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600;
+      border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 10000; display: none; animation: fadeInToast 0.3s ease;
+    }
+    @keyframes fadeInToast {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .m7-nav-bar {
+      position: sticky; top: 0; z-index: 1000;
+      background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%);
+      border-radius: 12px 12px 0 0; padding: 10px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px; margin-bottom: 0;
+    }
+    .m7-nav-bar a, .m7-nav-bar button {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: all 0.2s ease; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+    .m7-nav-btn-back { background: #ffffff; color: #7BB11D; }
+    .m7-nav-btn-back:hover { background: rgba(255,255,255,0.85); transform: translateY(-1px); }
+    .m7-nav-title { color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .m7-subsection { margin-bottom: 14px; }
+    .m7-subsection p { font-size: 12px; color: #555555; line-height: 1.5; margin: 0; }
+    .m7-subsection .m7-list { font-size: 12px; color: #555555; line-height: 1.7; }
+    .m7-subsection .m7-list > div { margin-bottom: 2px; }
+    .m7-btn-expand {
+      width: 100%; background: #ffffff; border: 2px solid; border-radius: 8px;
+      padding: 11px 14px; color: #333333; font-family: 'Segoe UI', sans-serif;
+      font-size: 13px; font-weight: 700; text-align: left; cursor: pointer;
+      transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+    }
+    .m7-btn-expand:hover { transform: translateY(-1px); }
+    .m7-tip-card { border-radius: 4px; padding: 10px 12px; margin-bottom: 6px; }
+    .m7-tip-card:last-child { margin-bottom: 0; }
+    .m7-tip-card p:first-child { font-size: 12px; font-weight: 700; margin: 0 0 3px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+    .m7-tip-card p:last-child { font-size: 12px; color: #555555; line-height: 1.5; margin: 0; }
+    .m7-technique-block { background: #ffffff; border: 1px solid rgba(38, 163, 200, 0.2); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
+    .m7-technique-block h5 { font-size: 12px; font-weight: 700; color: #26A3C8; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 6px 0; }
+    .m7-technique-block .m7-list { font-size: 12px; color: #555555; line-height: 1.6; }
+    .m7-technique-block .m7-list > div { margin-bottom: 3px; }
+    .m7-temp-box { flex: 1; min-width: 80px; background: #ffffff; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; padding: 8px 6px; text-align: center; }
+    .m7-temp-box .m7-temp-label { font-size: 9px; color: rgba(255,255,255,0.8); text-transform: uppercase; font-weight: 600; }
+    .m7-temp-box .m7-temp-value { font-size: 17px; font-weight: 900; }
+  </style>
+</head>
+<body style="margin: 0; padding: 10px; background-color: #f8f9fa;">
+
+<div id="m7-toast" class="m7-toast-notify"></div>
+
+<div id="m7-container" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background-color: #ffffff; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px; box-sizing: border-box; position: relative; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="m7-nav-bar">
+        <div class="m7-nav-title">Tecnicatura de Velas Artesanales</div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <a href="index.html" class="m7-nav-btn-back" title="Regresar al menú principal">
+                <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:none; stroke:#7BB11D; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                Regresar al menú principal
+            </a>
+        </div>
+    </nav>
+
+    <!-- ENCABEZADO -->
+    <header id="m7-header" style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div style="font-size: 11px; font-weight: 700; color: #E10078; background: rgba(225, 0, 120, 0.1); padding: 3px 10px; border-radius: 4px; display: inline-block; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">
+                    Módulo 7
+                </div>
+                <div style="font-size: 12px; color: #F0A100; letter-spacing: 3px; margin: 0 0 4px 0; text-transform: uppercase; font-weight: 600;">
+                    Primer Año - Bases Técnicas
+                </div>
+                <h1 style="font-size: 26px; font-weight: 800; line-height: 1.1; margin: 0; color: #E10078; text-transform: uppercase;">
+                    Velas Globo de Nieve
+                </h1>
+            </div>
+            <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;" fill="none">
+                    <rect x="15" y="20" width="30" height="32" rx="4" fill="#26A3C8" opacity="0.1" stroke="#26A3C8" stroke-width="1"/>
+                    <circle cx="30" cy="16" rx="10" ry="10" fill="#E10078" opacity="0.08" stroke="#E10078" stroke-width="0.8"/>
+                    <circle cx="26" cy="30" r="2" fill="#26A3C8" opacity="0.5"/>
+                    <circle cx="34" cy="32" r="1.5" fill="#F0A100" opacity="0.4"/>
+                    <circle cx="28" cy="36" r="1" fill="#E10078" opacity="0.3"/>
+                    <circle cx="32" cy="26" r="1.5" fill="#7BB11D" opacity="0.3"/>
+                    <line x1="30" y1="52" x2="30" y2="46" stroke="#F0A100" stroke-width="1.5" stroke-linecap="round"/>
+                    <ellipse cx="30" cy="44" rx="2.5" ry="4" fill="#F0A100" opacity="0.3"/>
+                </svg>
+            </div>
+        </div>
+        <div style="height: 3px; background: linear-gradient(90deg, #7BB11D 0%, #26A3C8 40%, #F0A100 70%, #E10078 100%); border-radius: 2px; margin-top: 15px;"></div>
+    </header>
+
+    <!-- OBJETIVOS -->
+    <section id="m7-objetivos" style="background: rgba(225, 0, 120, 0.05); border-left: 4px solid #E10078; border-radius: 6px; padding: 16px 18px; margin-bottom: 22px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #E10078; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Objetivos de Aprendizaje</h2>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #E10078;">Objetivo Técnico:</strong> Aprender a crear velas globo de nieve combinando gel transparente con cera fundida, incorporando inserciones decorativas, purpurina biodegradable y capas contrastantes para lograr piezas con efecto mágico y acabado profesional.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0 0 6px 0;"><strong style="color: #5C2066;">Enfoque Emocional:</strong> Memoria emocional y nostalgia. Conectar con recuerdos significativos, trabajar con emociones del pasado y reconocer la historia personal a través del proceso creativo.</p>
+        <p style="font-size: 13px; color: #555555; line-height: 1.5; margin: 0;"><strong style="color: #7BB11D;">Resultados Esperados:</strong> Al finalizar este módulo, la estudiante será capaz de elaborar una vela globo de nieve con capas de gel y cera, seleccionar inserciones decorativas seguras, calcular su precio de venta y reflexionar sobre la memoria emocional durante el proceso.</p>
+    </section>
+
+    <!-- CONTENIDO DEL MÓDULO -->
+    <div style="margin-bottom: 18px;">
+        <h2 style="font-size: 13px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 2px; margin: 0;">Contenido del Módulo</h2>
+        <div style="height: 2px; background: linear-gradient(90deg, #F0A100, transparent); border-radius: 1px; margin-top: 6px;"></div>
+    </div>
+
+    <!-- DOS PANELES FIJOS: INFORMACIÓN TÉCNICA + INTELIGENCIA EMOCIONAL -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 22px;">
+
+        <!-- PANEL IZQUIERDO: INFORMACIÓN TÉCNICA -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(225, 0, 120, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(225, 0, 120, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #E10078; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Información Técnica</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <!-- Qué es -->
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">¿Qué es una vela globo de nieve?</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Vela artesanal decorativa que combina una capa inferior de <strong>gel transparente</strong> con inserciones decorativas que simulan el interior de un globo de nieve, sellada por una capa superior de <strong>cera fundida</strong> (soja o parafina). El resultado visual muestra elementos suspendidos en un "líquido" transparente con partículas de "nieve" (purpurina biodegradable), creando un efecto mágico que evoca recuerdos invernales, momentos especiales y nostalgia. Es una de las piezas más demandadas en temporada navideña y como regalo personalizado.</p>
+                </div>
+
+                <!-- Temperaturas -->
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas Clave (Base)</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Derretido gel</div>
+                            <div class="m7-temp-value" style="color: #E10078;">84-95°C</div>
+                        </div>
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Fragancia gel</div>
+                            <div class="m7-temp-value" style="color: #F0A100;">95-105°C</div>
+                        </div>
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Vertido gel</div>
+                            <div class="m7-temp-value" style="color: #26A3C8;">85-95°C</div>
+                        </div>
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Cera superior</div>
+                            <div class="m7-temp-value" style="color: #7BB11D;">60-65°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temperaturas técnicas especiales -->
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Temperaturas Técnicas Especiales</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Endurec. gel</div>
+                            <div class="m7-temp-value" style="color: #5C2066;">60-75°C</div>
+                        </div>
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Pre-calentar</div>
+                            <div class="m7-temp-value" style="color: #7BB11D;">55-70°C</div>
+                        </div>
+                        <div class="m7-temp-box">
+                            <div class="m7-temp-label">Máx cera sup.</div>
+                            <div class="m7-temp-value" style="color: #E10078;">65°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medida estándar -->
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Medida Estándar</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Carga de fragancia para gel: <strong>3-5%</strong> del peso total (según densidad del gel). Gel media densidad CG-2 es el más versátil. Colorante líquido para gel: <strong>cantidad mínima</strong> (1 onza tiñe ~100 libras). Proporción gel/cera superior: aproximadamente <strong>2/3 gel + 1/3 cera</strong>. El gel debe estar completamente solidificado (2-4h mínimo) antes de verter la capa superior.</p>
+                </div>
+
+                <!-- Materiales -->
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Materiales Necesarios</h4>
+                    <div class="m7-list">
+                        <div>Contenedor de vidrio transparente resistente al calor</div>
+                        <div>Cera en gel (media densidad, estándar)</div>
+                        <div>Cera fundida (soja o parafina) para la capa superior</div>
+                        <div>Purpurina biodegradable o "nieve" decorativa</div>
+                        <div>Miniaturas decorativas NO inflamables (resina, cerámica, metal)</div>
+                        <div>Mecha LX o de núcleo de zinc (según diámetro del vaso)</div>
+                        <div>Sticker de mecha + centrador de mecha</div>
+                        <div>Fragancia compatible con gel (no-polar, flash point >170°F/77°C)</div>
+                        <div>Colorante líquido específico para gel (cantidad mínima)</div>
+                        <div>Báscula digital + Termómetro digital</div>
+                        <div>Pitcher de aluminio o doble boiler</div>
+                        <div>Etiqueta de seguridad</div>
+                    </div>
+                </div>
+
+                <!-- Procedimiento genérico -->
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #F0A100; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(240, 161, 0, 0.15); padding-bottom: 3px;">Procedimiento General (Base)</h4>
+                    <div class="m7-list">
+                        <div><strong style="color: #E10078;">1.</strong> Preparar el contenedor de vidrio: limpiar y secar completamente.</div>
+                        <div><strong style="color: #E10078;">2.</strong> Colocar purpurina biodegradable o "nieve" decorativa en el fondo.</div>
+                        <div><strong style="color: #E10078;">3.</strong> Preparar la mecha: pegar al fondo con sticker y centrar.</div>
+                        <div><strong style="color: #E10078;">4.</strong> Calentar el gel a 84-95°C en baño María (NO superar 110°C).</div>
+                        <div><strong style="color: #E10078;">5.</strong> Agregar fragancia a 95-105°C y colorante líquido (mínima cantidad). Mezclar suavemente.</div>
+                        <div><strong style="color: #E10078;">6.</strong> Verter el gel lentamente sobre las inserciones hasta cubrir ~1/3 del contenedor.</div>
+                        <div><strong style="color: #E10078;">7.</strong> Esperar 2-4 horas hasta que el gel esté COMPLETAMENTE solidificado.</div>
+                        <div><strong style="color: #E10078;">8.</strong> Derretir cera de soja a 65°C (NO más caliente). Agregar fragancia y color si corresponde.</div>
+                        <div><strong style="color: #E10078;">9.</strong> Verter la cera fundida sobre el gel solidificado a 60-65°C.</div>
+                        <div><strong style="color: #E10078;">10.</strong> Reposo 24-48h para cristalización completa. Recortar mecha a 6-8mm y agregar etiqueta.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO: INTELIGENCIA EMOCIONAL -->
+        <div style="flex: 1; min-width: 280px; border: 1px solid rgba(92, 32, 102, 0.15); border-radius: 8px; overflow: hidden;">
+            <div style="background: rgba(92, 32, 102, 0.08); padding: 10px 14px;">
+                <h3 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Inteligencia Emocional</h3>
+            </div>
+            <div style="padding: 14px;">
+
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Memoria Emocional y Nostalgia</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La nostalgia es una experiencia social y emocional compleja que implica autorreflexión, significado personal y conexión con los demás. Es una mezcla de calidez, añoranza y, a veces, una suave tristeza. A diferencia del simple recuerdo, la nostalgia tiene un <strong>significado emocional profundo</strong>: es la diferencia entre recordar hechos y sentirlos (Newman, Sachs, Stone & Schwarz, 2019; APA, 2023).</p>
+                </div>
+
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Conectar con Recuerdos Significativos</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">¿Qué momento de tu vida evoca un globo de nieve? Un momento mágico, inesperado, donde todo parecía perfecto. Cada miniatura que eliges para tu vela puede representar un <strong>recuerdo que te define</strong>. El acto de crearlas invita a conectar con memorias significativas y transformarlas en algo tangible y regalable.</p>
+                </div>
+
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Trabajo con Emociones del Pasado</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">La nostalgia no es debilidad ni regresión. Es una <strong>herramienta de regulación emocional</strong> que permite honrar lo vivido sin quedarse atrapado en él. La nostalgia reduce la ansiedad, fortalece lazos sociales, aumenta la autoestima y libera dopamina al activar el sistema de recompensa del cerebro. Este módulo es un espacio seguro para explorar esas emociones.</p>
+                </div>
+
+                <div class="m7-subsection">
+                    <h4 style="font-size: 12px; font-weight: 700; color: #5C2066; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(92, 32, 102, 0.15); padding-bottom: 3px;">Reconocer la Historia Personal</h4>
+                    <p style="font-size: 12px; color: #555555; line-height: 1.5; margin: 0;">Cada capa de la vela es como una capa de tu historia. El gel transparente representa la <strong>memoria</strong> (todo visible, nada oculto). Las miniaturas suspendidas son los <strong>momentos significativos</strong> que flotan en nuestra memoria. La purpurina representa los <strong>detalles pequeños</strong> que hacen mágicos los recuerdos. La mecha encendida representa la <strong>continuidad</strong> del pasado que ilumina el presente.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: BOTONES EXPANDIBLES -->
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+
+            <!-- COLUMNA IZQUIERDA: Tips Claves + Técnica + Checklist -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Tips Claves -->
+                <button onclick="m7Toggle('m7-tips-content')" class="m7-btn-expand" style="border-color: #7BB11D;" onmouseover="this.style.background='#7BB11D'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Tips Claves
+                </button>
+                <div id="m7-tips-content" style="display: none; margin-bottom: 10px;">
+                    <div class="m7-tip-card" style="background: rgba(123, 177, 29, 0.06); border-left: 3px solid #7BB11D;">
+                        <p style="color: #7BB11D;">Gel Completamente Solidificado</p>
+                        <p>El gel DEBE estar completamente solidificado antes de verter la capa superior de cera. Espera mínimo 2-4 horas. Si el gel no está firme, la cera superior lo derretirá y arruinará las capas del efecto.</p>
+                    </div>
+                    <div class="m7-tip-card" style="background: rgba(38, 163, 200, 0.06); border-left: 3px solid #26A3C8;">
+                        <p style="color: #26A3C8;">Cera Superior NO más de 65°C</p>
+                        <p>La cera fundida para la capa superior debe estar entre <strong>60-65°C</strong> al verter. Si supera los 65°C, derretirá el gel inferior y destruirá el efecto globo de nieve. Esta es la temperatura crítica más importante del módulo.</p>
+                    </div>
+                    <div class="m7-tip-card" style="background: rgba(225, 0, 120, 0.06); border-left: 3px solid #E10078;">
+                        <p style="color: #E10078;">Mechas LX o Zinc Core</p>
+                        <p>Para velas globo de nieve se recomienda mecha LX o de núcleo de zinc, ya que deben funcionar en la combinación de gel + cera. Las mechas de algodón estándar no son adecuadas para esta combinación de materiales.</p>
+                    </div>
+                    <div class="m7-tip-card" style="background: rgba(92, 32, 102, 0.06); border-left: 3px solid #5C2066;">
+                        <p style="color: #5C2066;">Fragancias No-Polares para el Gel</p>
+                        <p>Las fragancias para la capa de gel DEBEN ser no-polares con flash point >170°F (77°C). Las fragancias polares causan nubosidad y migran fuera del gel. La cera superior puede usar fragancias estándar.</p>
+                    </div>
+                    <div class="m7-tip-card" style="background: rgba(240, 161, 0, 0.06); border-left: 3px solid #F0A100;">
+                        <p style="color: #F0A100;">Fragancias Nostálgicas Recomendadas</p>
+                        <p>Para reforzar el efecto emocional: <strong>Vainilla</strong> (confort, recuerdos de infancia), <strong>Canela y especias</strong> (nostalgia navideña), <strong>Pino/Abeto</strong> (bosque invernal), <strong>Manzana y caramelo</strong> (gourmand nostálgico), <strong>Lavanda y menta</strong> (calma y recuerdos).</p>
+                    </div>
+                    <div class="m7-tip-card" style="background: rgba(123, 177, 29, 0.06); border-left: 3px solid #7BB11D;">
+                        <p style="color: #7BB11D;">Inserciones Solo NO Inflamables</p>
+                        <p>SOLO usar materiales no inflamables como inserciones: purpurina biodegradable, miniaturas de resina, figuras de cerámica, abalorios metálicos, conchas, piedras decorativas. <strong>NO usar:</strong> plástico, madera sin sellar, papel, alimentos reales, glitter plástico.</p>
+                    </div>
+                </div>
+
+                <!-- Botón Técnica -->
+                <button onclick="m7Toggle('m7-tecnica-content')" class="m7-btn-expand" style="border-color: #26A3C8;" onmouseover="this.style.background='#26A3C8'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Técnica
+                </button>
+                <div id="m7-tecnica-content" style="display: none; margin-bottom: 10px;">
+
+                    <!-- Técnica: Globo Interior -->
+                    <div class="m7-technique-block">
+                        <h5>Técnica de Globo de Nieve Interior (Dentro del Contenedor)</h5>
+                        <div class="m7-list">
+                            <div><strong style="color: #26A3C8;">Qué es:</strong> Versión más popular donde el efecto globo de nieve está dentro del propio contenedor de la vela. Combina una capa inferior de gel transparente con purpurina y miniaturas, sellada por una capa superior de cera fundida.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #F0A100;">Procedimiento:</strong></div>
+                            <div>1. Preparar contenedor de vidrio limpio y seco.</div>
+                            <div>2. Colocar purpurina biodegradable y "nieve" en el fondo.</div>
+                            <div>3. Agregar agua caliente (poca cantidad) para espacio visual.</div>
+                            <div>4. Calentar gel a 84-95°C. Verter lentamente creando capa sello.</div>
+                            <div>5. Colocar mecha en el centro.</div>
+                            <div>6. Agregar inserciones decorativas sobre la capa de gel.</div>
+                            <div>7. Verter más gel para cubrir inserciones hasta ~1/3 del contenedor.</div>
+                            <div>8. Esperar 2-4h hasta solidificación completa del gel.</div>
+                            <div>9. Derretir cera de soja a 65°C (NO más caliente). Agregar fragancia y color.</div>
+                            <div>10. Verter cera sobre gel solidificado a 60-65°C.</div>
+                            <div>11. Reposo 24-48h. Recortar mecha a 6-8mm.</div>
+                        </div>
+                    </div>
+
+                    <!-- Técnica: Globo Exterior / Topper -->
+                    <div class="m7-technique-block">
+                        <h5>Técnica de Globo de Nieve Exterior (Topper / Encima de la Vela)</h5>
+                        <div class="m7-list">
+                            <div><strong style="color: #26A3C8;">Qué es:</strong> Cúpula de vidrio transparente con miniaturas y "nieve" falsa dentro, que se coloca encima de la vela ya terminada. La cera derretida actúa como adhesivo para pegar la cúpula.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #F0A100;">Procedimiento:</strong></div>
+                            <div>1. Crear la vela base (soja o gel) con la técnica que prefieras.</div>
+                            <div>2. Preparar cúpula de vidrio transparente (media esfera o campana).</div>
+                            <div>3. Colocar miniaturas y purpurina dentro de la cúpula.</div>
+                            <div>4. Calentar ligeramente el borde de la cúpula.</div>
+                            <div>5. Aplicar sobre la superficie de la vela recién vertida (cera aún tibia) como adhesivo.</div>
+                            <div>6. Presionar suavemente y dejar enfriar.</div>
+                            <div>7. El resultado: una vela con "globo de nieve" encima.</div>
+                            <div><strong style="color: #E10078;">Nota:</strong> Esta versión no incluye gel en el interior de la cúpula.</div>
+                        </div>
+                    </div>
+
+                    <!-- Técnica: Capas de Color en Gel -->
+                    <div class="m7-technique-block">
+                        <h5>Técnica de Capas de Color en el Gel</h5>
+                        <div class="m7-list">
+                            <div><strong style="color: #26A3C8;">Qué es:</strong> Crear capas de gel con diferentes intensidades de color para dar profundidad visual al globo de nieve.</div>
+                            <div style="margin-top: 6px;"><strong style="color: #F0A100;">Procedimiento:</strong></div>
+                            <div>1. Preparar 2-3 porciones de gel a diferentes temperaturas de colorante.</div>
+                            <div>2. Verter primera capa con colorante mínimo (casi transparente).</div>
+                            <div>3. Esperar 5-10 min hasta que la superficie esté parcialmente firme.</div>
+                            <div>4. Verter segunda capa con ligeramente más colorante.</div>
+                            <div>5. Repetir hasta lograr la profundidad deseada.</div>
+                            <div><strong style="color: #7BB11D;">Regla:</strong> Menos es más. Poco colorante mantiene la transparencia de cada capa.</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botón Checklist -->
+                <button onclick="m7Toggle('m7-checklist-content')" class="m7-btn-expand" style="border-color: #E10078;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Checklist de Pasos
+                </button>
+                <div id="m7-checklist-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #888888; margin: 0 0 8px 0;">Marca cada paso completado durante tu proceso.</p>
+                    <div id="m7-step-1" onclick="m7ToggleStep('m7-step-1')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-1" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Preparar contenedor de vidrio y pegar mecha</div>
+                    </div>
+                    <div id="m7-step-2" onclick="m7ToggleStep('m7-step-2')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-2" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Colocar purpurina y elementos decorativos en el fondo</div>
+                    </div>
+                    <div id="m7-step-3" onclick="m7ToggleStep('m7-step-3')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-3" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Calentar gel a 84-95°C, agregar fragancia y colorante mínimo</div>
+                    </div>
+                    <div id="m7-step-4" onclick="m7ToggleStep('m7-step-4')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-4" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Verter gel sobre inserciones hasta cubrir 1/3 del contenedor</div>
+                    </div>
+                    <div id="m7-step-5" onclick="m7ToggleStep('m7-step-5')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-5" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Esperar 2-4h hasta que el gel esté completamente solidificado</div>
+                    </div>
+                    <div id="m7-step-6" onclick="m7ToggleStep('m7-step-6')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-6" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Derretir cera superior a 65°C (NO más caliente)</div>
+                    </div>
+                    <div id="m7-step-7" onclick="m7ToggleStep('m7-step-7')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-7" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Verter cera superior a 60-65°C sobre gel solidificado</div>
+                    </div>
+                    <div id="m7-step-8" onclick="m7ToggleStep('m7-step-8')" style="background: #ffffff; border: 1px solid rgba(225, 0, 120, 0.2); border-radius: 6px; padding: 9px 12px; margin-bottom: 0; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #E10078; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ffffff;"><svg id="m7-check-8" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke: transparent; stroke-width: 3; fill: none;"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div style="font-size: 12px; color: #444444;">Reposo 24-48h, recortar mecha y agregar etiqueta de seguridad</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: Calculadoras + Diario + Reto -->
+            <div style="flex: 1; min-width: 280px;">
+
+                <!-- Botón Calculadora de Fórmulas -->
+                <button onclick="m7Toggle('m7-formula-content')" class="m7-btn-expand" style="border-color: #F0A100;" onmouseover="this.style.background='#F0A100'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Fórmulas
+                </button>
+                <div id="m7-formula-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 10px 0;">Ingresa la cantidad total de gel (en gramos) que deseas preparar. La carga de fragancia para gel es menor que para cera de soja.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; margin-bottom: 10px;">
+                        <div style="flex: 1; min-width: 100px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Gramos de gel total</label>
+                            <input type="number" id="m7-gr-cera" placeholder="Ej: 400" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <div style="width: 70px;">
+                            <label style="font-size: 10px; color: #5C2066; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">% Fragancia</label>
+                            <input type="number" id="m7-pct-fragancia" value="4" min="2" max="6" style="width: 100%; background: #ffffff; border: 1px solid #F0A100; border-radius: 5px; padding: 7px 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#F0A100';"/>
+                        </div>
+                        <button onclick="m7CalcularFormula()" style="background: #F0A100; border: none; border-radius: 5px; padding: 7px 12px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 34px;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">CALCULAR</button>
+                    </div>
+                    <div id="m7-formula-resultados" style="display: none; background: rgba(240, 161, 0, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Gel neto</div>
+                                <div id="m7-res-cera" style="font-size: 16px; color: #7BB11D; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Fragancia</div>
+                                <div id="m7-res-fragancia" style="font-size: 16px; color: #26A3C8; font-weight: 900;">0g</div>
+                            </div>
+                            <div style="flex: 1; min-width: 80px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Temp. Frag.</div>
+                                <div id="m7-res-temp" style="font-size: 16px; color: #E10078; font-weight: 900;">95°C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Calculadora de Precio Final -->
+                <button onclick="m7Toggle('m7-precio-content')" class="m7-btn-expand" style="border-color: #E10078;" onmouseover="this.style.background='#E10078'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Calculadora de Precio Final
+                </button>
+                <div id="m7-precio-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 8px 0;">Ingresa los costos de cada componente para obtener tu precio de venta sugerido.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Gel ($)</label>
+                            <input type="number" id="m7-costo-cera" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Fragancia ($)</label>
+                            <input type="number" id="m7-costo-fragancia" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mecha ($)</label>
+                            <input type="number" id="m7-costo-mecha" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px;">
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Recipiente ($)</label>
+                            <input type="number" id="m7-costo-envase" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Inserciones ($)</label>
+                            <input type="number" id="m7-costo-top" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <div style="flex: 1; min-width: 80px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Mano de obra ($)</label>
+                            <input type="number" id="m7-costo-mo" placeholder="0.00" step="0.01" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px;">
+                        <div style="width: 60px;">
+                            <label style="font-size: 9px; color: #5C2066; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Margen x</label>
+                            <input type="number" id="m7-margen" value="3" min="1" max="5" step="0.1" style="width: 100%; background: #ffffff; border: 1px solid #E10078; border-radius: 4px; padding: 6px 7px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='#E10078';"/>
+                        </div>
+                        <button onclick="m7CalcularPrecio()" style="background: #E10078; border: none; border-radius: 5px; padding: 7px 16px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; height: 32px;" onmouseover="this.style.background='#c1006a';" onmouseout="this.style.background='#E10078';">CALCULAR</button>
+                    </div>
+                    <div id="m7-precio-resultados" style="display: none; background: rgba(225, 0, 120, 0.06); border-radius: 5px; padding: 10px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div style="flex: 1; min-width: 100px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #F0A100; text-transform: uppercase; font-weight: 700;">Costo Total</div>
+                                <div id="m7-res-costo" style="font-size: 16px; color: #F0A100; font-weight: 900;">$0.00</div>
+                            </div>
+                            <div style="flex: 1; min-width: 100px; background: #ffffff; border-radius: 5px; padding: 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                <div style="font-size: 9px; color: #7BB11D; text-transform: uppercase; font-weight: 700;">Precio de Venta</div>
+                                <div id="m7-res-venta" style="font-size: 18px; color: #7BB11D; font-weight: 900;">$0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Diario Emocional -->
+                <button onclick="m7Toggle('m7-diario-content')" class="m7-btn-expand" style="border-color: #5C2066;" onmouseover="this.style.background='#5C2066'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Diario Emocional
+                </button>
+                <div id="m7-diario-content" style="display: none; margin-bottom: 10px;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 8px 0;">Reflexiona sobre tu experiencia emocional durante la creación de tu vela globo de nieve.</p>
+                    <div style="margin-bottom: 8px;">
+                        <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Memoria emocional (¿Qué recuerdo significati
+vo eligiste para tu globo de nieve?)</label>
+                        <textarea id="m7-diario-claridad" rows="3" style="width: 100%; background: #ffffff; border: 1px solid rgba(92, 32, 102, 0.3); border-radius: 5px; padding: 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 12px; box-sizing: border-box; resize: vertical; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='rgba(92, 32, 102, 0.3)';" placeholder="¿Qué momento de tu vida evoca esta vela? Describe el recuerdo que representa..."></textarea>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Emociones del pasado (¿Qué sentiste al elegir las miniaturas?)</label>
+                        <textarea id="m7-diario-orden" rows="3" style="width: 100%; background: #ffffff; border: 1px solid rgba(92, 32, 102, 0.3); border-radius: 5px; padding: 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 12px; box-sizing: border-box; resize: vertical; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='rgba(92, 32, 102, 0.3)';" placeholder="¿Qué emoción surgió al seleccionar las inserciones decorativas? Nostalgia, alegría, ternura..."></textarea>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <label style="font-size: 11px; color: #5C2066; display: block; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Historia personal (¿Qué capa de tu historia representa esta vela?)</label>
+                        <textarea id="m7-diario-texto" rows="3" style="width: 100%; background: #ffffff; border: 1px solid rgba(92, 32, 102, 0.3); border-radius: 5px; padding: 8px; color: #333333; font-family: 'Segoe UI', sans-serif; font-size: 12px; box-sizing: border-box; resize: vertical; outline: none;" onfocus="this.style.borderColor='#7BB11D';" onblur="this.style.borderColor='rgba(92, 32, 102, 0.3)';" placeholder="Si cada capa de la vela es una capa de tu historia, ¿qué representa cada una para ti?"></textarea>
+                    </div>
+                    <button onclick="m7DescargarDiarioPDF()" style="background: #5C2066; border: none; border-radius: 5px; padding: 7px 16px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#3d1544';" onmouseout="this.style.background='#5C2066';">Descargar Diario (PDF)</button>
+                </div>
+
+                <!-- Botón Reto de Aprendizaje -->
+                <button onclick="m7Toggle('m7-reto-content')" class="m7-btn-expand" style="border-color: #F0A100;" onmouseover="this.style.background='#F0A100'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#333333';">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Reto de Aprendizaje
+                </button>
+                <div id="m7-reto-content" style="display: none; margin-bottom: 0;">
+                    <p style="font-size: 11px; color: #666666; margin: 0 0 10px 0;">Responde las siguientes preguntas sobre el Módulo 7: Velas Globo de Nieve. Aprobación mínima: 70 puntos.</p>
+                    <div id="m7-quiz-container">
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">1. ¿A qué temperatura se derrite la cera en gel para una vela globo de nieve?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q1" value="a" style="accent-color: #F0A100;"/> 60-65°C</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q1" value="b" style="accent-color: #F0A100;"/> 84-95°C</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q1" value="c" style="accent-color: #F0A100;"/> 45-50°C</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q1" value="d" style="accent-color: #F0A100;"/> 120-130°C</label>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">2. ¿A qué temperatura máxima se debe verter la capa superior de cera?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q2" value="a" style="accent-color: #F0A100;"/> 80°C</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q2" value="b" style="accent-color: #F0A100;"/> 75°C</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q2" value="c" style="accent-color: #F0A100;"/> 65°C</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q2" value="d" style="accent-color: #F0A100;"/> 90°C</label>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">3. ¿Cuánto tiempo mínimo debe esperar que el gel se solidifique antes de verter la cera superior?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q3" value="a" style="accent-color: #F0A100;"/> 30 minutos</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q3" value="b" style="accent-color: #F0A100;"/> 2-4 horas</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q3" value="c" style="accent-color: #F0A100;"/> 10 minutos</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q3" value="d" style="accent-color: #F0A100;"/> 24 horas</label>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">4. ¿Qué tipo de fragancia es compatible con la capa de gel?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q4" value="a" style="accent-color: #F0A100;"/> Aceites esenciales naturales</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q4" value="b" style="accent-color: #F0A100;"/> Perfume para piel</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q4" value="c" style="accent-color: #F0A100;"/> Fragancias no-polares con flash point >170°F</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q4" value="d" style="accent-color: #F0A100;"/> Cualquiera con aroma agradable</label>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">5. ¿Cuál de estos materiales es seguro como inserción decorativa en gel?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q5" value="a" style="accent-color: #F0A100;"/> Plástico</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q5" value="b" style="accent-color: #F0A100;"/> Papel</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q5" value="c" style="accent-color: #F0A100;"/> Madera sin sellar</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q5" value="d" style="accent-color: #F0A100;"/> Miniaturas de resina</label>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">6. ¿Qué tipo de mecha se recomienda para velas globo de nieve?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q6" value="a" style="accent-color: #F0A100;"/> Mecha de algodón trenzada</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q6" value="b" style="accent-color: #F0A100;"/> Mecha LX o de núcleo de zinc</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q6" value="c" style="accent-color: #F0A100;"/> Mecha de madera</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q6" value="d" style="accent-color: #F0A100;"/> Mecha de papel</label>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <p style="font-size: 12px; font-weight: 700; color: #333333; margin: 0 0 5px 0;">7. ¿Qué representa la nostalgia según la psicología moderna?</p>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q7" value="a" style="accent-color: #F0A100;"/> Una debilidad emocional</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q7" value="b" style="accent-color: #F0A100;"/> Una experiencia social y emocional compleja que implica autorreflexión y conexión</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px; margin-bottom: 3px;"><input type="radio" name="m7q7" value="c" style="accent-color: #F0A100;"/> Un simple recuerdo sin significado</label>
+                            <label style="font-size: 11px; color: #555555; display: flex; align-items: center; gap: 6px;"><input type="radio" name="m7q7" value="d" style="accent-color: #F0A100;"/> Una regresión emocional</label>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <button onclick="m7Evaluar()" style="background: #7BB11D; border: none; border-radius: 5px; padding: 8px 24px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#659916';" onmouseout="this.style.background='#7BB11D';">EVALUAR</button>
+                    </div>
+                    <div id="m7-reto-resultado" style="display: none; margin-top: 12px; border-radius: 6px; padding: 14px; text-align: center;">
+                        <div id="m7-reto-score" style="font-size: 24px; font-weight: 900; margin-bottom: 6px;"></div>
+                        <div id="m7-reto-feedback" style="font-size: 12px; color: #555555; line-height: 1.5;"></div>
+                    </div>
+                    <div id="m7-reto-botones" style="display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; justify-content: center;">
+                        <button onclick="m7DescargarRetoPDF()" style="background: #26A3C8; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='#1a8aa8';" onmouseout="this.style.background='#26A3C8';">
+                            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Descargar Resultado
+                        </button>
+                    </div>
+                    <div style="text-align: center; margin-top: 8px;">
+                        <button onclick="m7Reintentar()" style="background: #F0A100; border: none; border-radius: 5px; padding: 6px 14px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;" onmouseover="this.style.background='#d48e00';" onmouseout="this.style.background='#F0A100';">Reintentar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BOTÓN DESCARGAR PDF -->
+    <div id="m7-download" style="margin-bottom: 16px; text-align: center;">
+        <button onclick="m7DescargarPDF()" style="background: linear-gradient(90deg, #7BB11D, #26A3C8); border: none; border-radius: 8px; padding: 10px 24px; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.boxShadow='0 3px 12px rgba(123, 177, 29, 0.3)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar Contenido (PDF)
+        </button>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer id="m7-footer" style="background: rgba(123, 177, 29, 0.06); border: 1px solid rgba(123, 177, 29, 0.15); border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: #333333; letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase;">Tecnicatura de Velas Artesanales</div>
+        <div style="font-size: 12px; font-weight: 600; color: #26A3C8; letter-spacing: 2px; text-transform: uppercase; margin: 0;">Con Enfoque en Inteligencia Emocional</div>
+        <div style="font-size: 10px; color: #5C2066; letter-spacing: 1px; margin-top: 5px; text-transform: uppercase;">Diseño académico y dirección: Prof. María Esther Espinoza Juárez</div>
+    </footer>
+
+</div>
+
+<!-- COPILOTO PEDAGÓGICO IA -->
+<button id="m7-copiloto-btn" onclick="m7ToggleCopiloto()" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7BB11D, #26A3C8); border: none; color: #ffffff; cursor: pointer; box-shadow: 0 4px 12px rgba(123, 177, 29, 0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" aria-label="Copiloto Pedagógico IA">
+    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<div id="m7-copiloto-panel" style="display: none; position: fixed; bottom: 82px; right: 20px; width: 280px; max-width: calc(100vw - 40px); max-height: 360px; background: #ffffff; border: 1px solid rgba(123, 177, 29, 0.3); border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); z-index: 9999; overflow-y: auto; padding: 12px;">
+    <div style="font-size: 12px; font-weight: 700; color: #7BB11D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(123, 177, 29, 0.2);">Copiloto Pedagógico IA</div>
+    <div id="m7-copiloto-content" style="font-size: 12px; color: #555555; line-height: 1.5; margin-bottom: 8px;">
+        <p style="margin: 0 0 5px 0;">Hola! Soy tu asistente de estudio del Módulo 7: Velas Globo de Nieve. Puedo ayudarte con:</p>
+        <ul style="margin: 0 0 6px 0; padding-left: 14px;">
+            <li>Explicar conceptos técnicos</li>
+            <li>Resumir los tips claves</li>
+            <li>Recomendar qué repasar</li>
+        </ul>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <button onclick="m7CopilotoAccion('explicar')" style="background: rgba(123, 177, 29, 0.1); border: 1px solid #7BB11D; border-radius: 14px; padding: 4px 9px; color: #7BB11D; font-size: 10px; font-weight: 600; cursor: pointer;">Fórmulas</button>
+        <button onclick="m7CopilotoAccion('resumir')" style="background: rgba(38, 163, 200, 0.1); border: 1px solid #26A3C8; border-radius: 14px; padding: 4px 9px; color: #26A3C8; font-size: 10px; font-weight: 600; cursor: pointer;">Tips</button>
+        <button onclick="m7CopilotoAccion('repaso')" style="background: rgba(225, 0, 120, 0.1); border: 1px solid #E10078; border-radius: 14px; padding: 4px 9px; color: #E10078; font-size: 10px; font-weight: 600; cursor: pointer;">Repasar</button>
+    </div>
+</div>
+
+<!-- LIBRERIA JSPDF (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+(function() {
+    window.m7ShowToast = function(msg, isError) {
+        var toast = document.getElementById('m7-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.background = isError ? '#E10078' : '#7BB11D';
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 3500);
+    };
+
+    window.m7Toggle = function(contentId) {
+        var el = document.getElementById(contentId);
+        if (!el) return;
+        el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+    };
+
+    // Calculadora de Fórmulas
+    window.m7CalcularFormula = function() {
+        var grCera = parseFloat(document.getElementById('m7-gr-cera').value);
+        var pctFrag = parseFloat(document.getElementById('m7-pct-fragancia').value);
+        if (!grCera || grCera <= 0) { m7ShowToast('Ingresa una cantidad valida de gel.', true); return; }
+        if (!pctFrag || pctFrag < 2 || pctFrag > 6) { m7ShowToast('El porcentaje debe estar entre 2% y 6%.', true); return; }
+        var grFragancia = (grCera * pctFrag / 100);
+        var grCeraFinal = grCera - grFragancia;
+        document.getElementById('m7-res-cera').textContent = grCeraFinal.toFixed(1) + 'g';
+        document.getElementById('m7-res-fragancia').textContent = grFragancia.toFixed(1) + 'g';
+        document.getElementById('m7-res-temp').textContent = '95°C';
+        document.getElementById('m7-formula-resultados').style.display = 'block';
+        m7ShowToast('Formula calculada exitosamente.');
+    };
+
+    // Calculadora de Precio Final
+    window.m7CalcularPrecio = function() {
+        var cera = parseFloat(document.getElementById('m7-costo-cera').value) || 0;
+        var frag = parseFloat(document.getElementById('m7-costo-fragancia').value) || 0;
+        var mecha = parseFloat(document.getElementById('m7-costo-mecha').value) || 0;
+        var envase = parseFloat(document.getElementById('m7-costo-envase').value) || 0;
+        var top = parseFloat(document.getElementById('m7-costo-top').value) || 0;
+        var mo = parseFloat(document.getElementById('m7-costo-mo').value) || 0;
+        var margen = parseFloat(document.getElementById('m7-margen').value) || 3;
+        var costoTotal = cera + frag + mecha + envase + top + mo;
+        var precioVenta = costoTotal * margen;
+        document.getElementById('m7-res-costo').textContent = '$' + costoTotal.toFixed(2);
+        document.getElementById('m7-res-venta').textContent = '$' + precioVenta.toFixed(2);
+        document.getElementById('m7-precio-resultados').style.display = 'block';
+        m7ShowToast('Precio de venta sugerido calculado.');
+    };
+
+    // Checklist interactiva
+    var m7Steps = {};
+    window.m7ToggleStep = function(stepId) {
+        m7Steps[stepId] = !m7Steps[stepId];
+        var step = document.getElementById(stepId);
+        var checkNum = stepId.split('-').pop();
+        var checkSvg = document.getElementById('m7-check-' + checkNum);
+        if (m7Steps[stepId]) {
+            step.style.borderColor = '#7BB11D';
+            step.style.background = 'rgba(123, 177, 29, 0.08)';
+            checkSvg.style.stroke = '#7BB11D';
+        } else {
+            step.style.borderColor = 'rgba(225, 0, 120, 0.2)';
+            step.style.background = '#ffffff';
+            checkSvg.style.stroke = 'transparent';
+        }
+    };
+
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : null;
+    if (!jsPDF) {
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        s.onload = function() { jsPDF = window.jspdf.jsPDF; };
+        document.head.appendChild(s);
+    }
+
+    // Descarga del Diario como PDF
+    window.m7DescargarDiarioPDF = function() {
+        var claridad = document.getElementById('m7-diario-claridad').value;
+        var orden = document.getElementById('m7-diario-orden').value;
+        var texto = document.getElementById('m7-diario-texto').value;
+        if (!claridad && !orden && !texto) { m7ShowToast('Escribe al menos una reflexion antes de descargar.', true); return; }
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            doc.setFillColor(92, 32, 102);
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text('Diario de Inteligencia Emocional', 20, 20);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 7: Velas Globo de Nieve | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 20, 28);
+            doc.setDrawColor(92, 32, 102);
+            doc.setLineWidth(0.5);
+            doc.line(20, 32, 190, 32);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(10);
+            doc.text('Fecha: ' + fecha, 20, 40);
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Memoria emocional', 20, 50);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var claridadLines = doc.splitTextToSize(claridad || '---', 170);
+            doc.text(claridadLines, 20, 58);
+            var yOrden = 58 + (claridadLines.length * 6) + 8;
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Emociones del pasado', 20, yOrden);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var ordenLines = doc.splitTextToSize(orden || '---', 170);
+            doc.text(ordenLines, 20, yOrden + 8);
+            var yReflexion = yOrden + 8 + (ordenLines.length * 6) + 8;
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            doc.text('Historia personal', 20, yReflexion);
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var textoLines = doc.splitTextToSize(texto || '---', 170);
+            doc.text(textoLines, 20, yReflexion + 8);
+            doc.setDrawColor(92, 32, 102);
+            var lastY = yReflexion + 8 + (textoLines.length * 6) + 10;
+            doc.line(20, lastY, 190, lastY);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 20, lastY + 6);
+            doc.save('diario_emocional_mod7.pdf');
+            m7ShowToast('PDF de tu reflexion descargado.');
+        } catch(e) { m7ShowToast('Error al generar el PDF. Intenta nuevamente.', true); }
+    };
+
+    // Descarga del Resultado del Reto como PDF
+    window.m7DescargarRetoPDF = function() {
+        var scoreText = document.getElementById('m7-reto-score').textContent;
+        var feedbackText = document.getElementById('m7-reto-feedback').textContent;
+        var fecha = new Date().toLocaleDateString('es-AR');
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            doc.setFillColor(38, 163, 200);
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Certificado de Resultado', 105, 30, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(136, 136, 136);
+            doc.text('Modulo 7: Velas Globo de Nieve | Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, 38, { align: 'center' });
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            doc.setFontSize(10);
+            doc.setTextColor(136, 136, 136);
+            doc.text('Fecha: ' + fecha, 105, 53, { align: 'center' });
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(36);
+            doc.setFont(undefined, 'bold');
+            doc.text(scoreText, 105, 80, { align: 'center' });
+            doc.setTextColor(85, 85, 85);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            var feedbackLines = doc.splitTextToSize(feedbackText, 150);
+            doc.text(feedbackLines, 105, 95, { align: 'center' });
+            doc.setDrawColor(123, 177, 29);
+            doc.line(20, 95 + (feedbackLines.length * 6) + 10, 190, 95 + (feedbackLines.length * 6) + 10);
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(9);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional | Prof. Maria Esther Espinoza Juarez', 105, 95 + (feedbackLines.length * 6) + 16, { align: 'center' });
+            doc.save('resultado_reto_mod7.pdf');
+            m7ShowToast('Resultado exportado a PDF.');
+        } catch(e) { m7ShowToast('Error al generar el PDF.', true); }
+    };
+
+    // Reto de Aprendizaje (7 preguntas)
+    var m7Respuestas = { m7q1: 'b', m7q2: 'c', m7q3: 'b', m7q4: 'c', m7q5: 'd', m7q6: 'b', m7q7: 'b' };
+    var m7TotalPreguntas = 7;
+
+    window.m7Evaluar = function() {
+        var correctas = 0;
+        for (var key in m7Respuestas) {
+            var selected = document.querySelector('input[name="' + key + '"]:checked');
+            if (selected && selected.value === m7Respuestas[key]) { correctas++; }
+        }
+        var puntaje = Math.round((correctas / m7TotalPreguntas) * 100);
+        var aprobado = puntaje >= 70;
+        var resultadoDiv = document.getElementById('m7-reto-resultado');
+        var scoreDiv = document.getElementById('m7-reto-score');
+        var feedbackDiv = document.getElementById('m7-reto-feedback');
+        resultadoDiv.style.display = 'block';
+        document.getElementById('m7-reto-botones').style.display = 'flex';
+        scoreDiv.textContent = puntaje + '/100 puntos';
+        scoreDiv.style.color = aprobado ? '#7BB11D' : '#E10078';
+        if (aprobado) {
+            resultadoDiv.style.background = 'rgba(123, 177, 29, 0.08)';
+            resultadoDiv.style.border = '1px solid rgba(123, 177, 29, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #7BB11D;">Felicitaciones! Has aprobado el Reto de Aprendizaje.</strong><br><br>Demuestras comprension de la tecnica de velas globo de nieve: temperaturas de derretido del gel, temperatura critica de la cera superior (65°C), fragancias no-polares, mechas LX/zinc, inserciones seguras y el concepto emocional de nostalgia como regulador del estado de animo. Puedes avanzar al siguiente modulo.';
+            m7ShowToast('Reto aprobado con exito!');
+        } else {
+            resultadoDiv.style.background = 'rgba(225, 0, 120, 0.05)';
+            resultadoDiv.style.border = '1px solid rgba(225, 0, 120, 0.3)';
+            feedbackDiv.innerHTML = '<strong style="color: #E10078;">Aun no alcanzaste el puntaje minimo (70).</strong><br><br>Repasa los Tips Claves y la seccion Tecnica, especialmente sobre temperaturas criticas (gel 84-95°C, cera superior max 65°C), fragancias no-polares, mechas LX/zinc, inserciones seguras y el concepto de nostalgia como herramienta emocional. Puedes reintentar.';
+            m7ShowToast('Resultado evaluado. Revisa las sugerencias.', true);
+        }
+    };
+
+    window.m7Reintentar = function() {
+        var radios = document.querySelectorAll('#m7-quiz-container input[type="radio"]');
+        for (var i = 0; i < radios.length; i++) { radios[i].checked = false; }
+        document.getElementById('m7-reto-resultado').style.display = 'none';
+        document.getElementById('m7-reto-botones').style.display = 'none';
+    };
+
+    // Descarga del Modulo completo como PDF
+    window.m7DescargarPDF = function() {
+        try {
+            if (!jsPDF && window.jspdf) jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            var pageH = 297;
+            var margin = 15;
+            var contentW = 180;
+            var y = 15;
+
+            function checkPage(needed) {
+                if (y + needed > pageH - margin) { doc.addPage(); y = margin; }
+            }
+
+            // ENCABEZADO
+            doc.setFillColor(225, 0, 120);
+            doc.rect(0, 0, 210, 35, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(22);
+            doc.setFont(undefined, 'bold');
+            doc.text('Modulo 7: Velas Globo de Nieve', 105, 20, { align: 'center' });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, 28, { align: 'center' });
+            doc.text('Primer Ano - Bases Tecnicas | Prof. Maria Esther Espinoza Juarez', 105, 33, { align: 'center' });
+            y = 45;
+
+            // INFORMACION TECNICA
+            doc.setTextColor(225, 0, 120);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('INFORMACION TECNICA', margin, y); y += 8;
+
+            doc.setTextColor(51, 51, 51);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('Que es una vela globo de nieve?', margin, y); y += 6;
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            var q1 = doc.splitTextToSize('Vela artesanal decorativa que combina una capa inferior de gel transparente con inserciones decorativas que simulan el interior de un globo de nieve, sellada por una capa superior de cera fundida (soja o parafina). El resultado visual muestra elementos suspendidos en un liquido transparente con particulas de nieve, creando un efecto magico que evoca recuerdos invernales, momentos especiales y nostalgia.', contentW);
+            checkPage(q1.length * 4.5 + 12);
+            doc.text(q1, margin, y); y += q1.length * 4.5 + 10;
+
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Temperaturas Clave', margin, y); y += 6;
+            doc.setFont(undefined, 'normal');
+            doc.text('Derretido gel: 84-95°C | Fragancia gel: 95-105°C | Vertido gel: 85-95°C | Cera superior: 60-65°C', margin, y); y += 12;
+
+            doc.setFont(undefined, 'bold');
+            checkPage(20);
+            doc.text('Medida Estandar', margin, y); y += 6;
+            doc.setFont(undefined, 'normal');
+            var medida = doc.splitTextToSize('Carga de fragancia para gel: 3-5% del peso total. Gel media densidad CG-2 es el mas versatil. Colorante liquido para gel: cantidad minima. Proporcion gel/cera superior: ~2/3 gel + 1/3 cera. El gel debe estar completamente solidificado (2-4h minimo) antes de verter la capa superior.', contentW);
+            checkPage(medida.length * 4.5 + 12);
+            doc.text(medida, margin, y); y += medida.length * 4.5 + 10;
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // TIPS CLAVES
+            doc.setTextColor(123, 177, 29);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('TIPS CLAVES', margin, y); y += 8;
+
+            var tipItems = [
+                { title: 'Gel Completamente Solidificado', text: 'El gel DEBE estar completamente solidificado antes de verter la capa superior de cera. Espera minimo 2-4 horas. Si el gel no esta firme, la cera superior lo derretira y arruinara las capas.' },
+                { title: 'Cera Superior NO mas de 65°C', text: 'La cera fundida para la capa superior debe estar entre 60-65°C al verter. Si supera los 65°C, derretira el gel inferior y destruira el efecto globo de nieve.' },
+                { title: 'Mechas LX o Zinc Core', text: 'Para velas globo de nieve se recomienda mecha LX o de nucleo de zinc, ya que deben funcionar en la combinacion de gel + cera.' },
+                { title: 'Fragancias No-Polares para el Gel', text: 'Las fragancias para la capa de gel DEBEN ser no-polares con flash point >170°F (77°C). Las fragancias polares causan nubosidad y migran fuera del gel.' },
+                { title: 'Inserciones Solo NO Inflamables', text: 'SOLO usar materiales no inflamables como inserciones: purpurina biodegradable, miniaturas de resina, figuras de ceramica, abalorios metallicos, conchas, piedras. NO usar: plastico, madera sin sellar, papel, alimentos reales.' }
+            ];
+            for (var ti = 0; ti < tipItems.length; ti++) {
+                doc.setTextColor(51, 51, 51);
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'bold');
+                checkPage(25);
+                doc.text(tipItems[ti].title, margin, y); y += 6;
+                doc.setFontSize(9);
+                doc.setFont(undefined, 'normal');
+                var tipText = doc.splitTextToSize(tipItems[ti].text, contentW);
+                checkPage(tipText.length * 4.5 + 12);
+                doc.text(tipText, margin, y); y += tipText.length * 4.5 + 10;
+            }
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // TECNICAS
+            doc.setTextColor(38, 163, 200);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('TECNICAS', margin, y); y += 8;
+
+            var tecItems = [
+                { title: 'Globo de Nieve Interior (Dentro del Contenedor)', text: 'Version mas popular. Combina una capa inferior de gel transparente con purpurina y miniaturas, sellada por una capa superior de cera fundida. Proporción: ~2/3 gel + 1/3 cera.' },
+                { title: 'Globo de Nieve Exterior (Topper / Encima de la Vela)', text: 'Cupula de vidrio transparente con miniaturas y nieve falsa dentro, que se coloca encima de la vela ya terminada. La cera derretida actua como adhesivo para pegar la cupula.' },
+                { title: 'Capas de Color en el Gel', text: 'Crear capas de gel con diferentes intensidades de color para dar profundidad visual. Regla: menos es mas. Poco colorante mantiene la transparencia de cada capa.' }
+            ];
+            for (var tc = 0; tc < tecItems.length; tc++) {
+                doc.setTextColor(51, 51, 51);
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'bold');
+                checkPage(25);
+                doc.text(tecItems[tc].title, margin, y); y += 6;
+                doc.setFontSize(9);
+                doc.setFont(undefined, 'normal');
+                var tecText = doc.splitTextToSize(tecItems[tc].text, contentW);
+                checkPage(tecText.length * 4.5 + 12);
+                doc.text(tecText, margin, y); y += tecText.length * 4.5 + 10;
+            }
+
+            doc.setDrawColor(200, 200, 200);
+            checkPage(10);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            // INTELIGENCIA EMOCIONAL
+            doc.setTextColor(92, 32, 102);
+            doc.setFontSize(13);
+            doc.setFont(undefined, 'bold');
+            checkPage(25);
+            doc.text('INTELIGENCIA EMOCIONAL', margin, y); y += 8;
+
+            var ieItems = [
+                { title: 'Memoria Emocional y Nostalgia', text: 'La nostalgia es una experiencia social y emocional compleja que implica autorreflexion, significado personal y conexion con los demas. Es una mezcla de calidez, anoranza y, a veces, una suave tristeza (Newman et al., 2019; APA, 2023).' },
+                { title: 'Conectar con Recuerdos Significativos', text: 'Cada miniatura que eliges para tu vela puede representar un recuerdo que te define. El acto de crearlas invita a conectar con memorias significativas y transformarlas en algo tangible y regalable.' },
+                { title: 'Trabajo con Emociones del Pasado', text: 'La nostalgia no es debilidad ni regresion. Es una herramienta de regulacion emocional que permite honrar lo vivido sin quedarse atrapado en el. Reduce la ansiedad, fortalece lazos sociales, aumenta la autoestima y libera dopamina.' },
+                { title: 'Reconocer la Historia Personal', text: 'Cada capa de la vela es como una capa de tu historia. El gel transparente representa la memoria (todo visible). Las miniaturas son los momentos significativos. La purpurina representa los detalles que hacen magicos los recuerdos. La mecha encendida representa la continuidad del pasado que ilumina el presente.' }
+            ];
+            for (var ie = 0; ie < ieItems.length; ie++) {
+                doc.setTextColor(92, 32, 102);
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'bold');
+                checkPage(25);
+                doc.text(ieItems[ie].title, margin, y); y += 6;
+                doc.setTextColor(51, 51, 51);
+                doc.setFontSize(9);
+                doc.setFont(undefined, 'normal');
+                var ieText = doc.splitTextToSize(ieItems[ie].text, contentW);
+                checkPage(ieText.length * 4.5 + 10);
+                doc.text(ieText, margin, y); y += ieText.length * 4.5 + 8;
+            }
+
+            doc.setDrawColor(123, 177, 29);
+            doc.setLineWidth(0.5);
+            checkPage(15);
+            doc.line(margin, y, margin + contentW, y); y += 8;
+
+            doc.setTextColor(136, 136, 136);
+            doc.setFontSize(8);
+            doc.text('Tecnicatura de Velas Artesanales con Inteligencia Emocional', 105, y, { align: 'center' }); y += 5;
+            doc.text('Prof. Maria Esther Espinoza Juarez | 2026', 105, y, { align: 'center' });
+
+            doc.save('modulo7_velas_globo_de_nieve.pdf');
+            m7ShowToast('Documento completo descargado en PDF.');
+        } catch(e) { m7ShowToast('Error al generar el PDF del modulo.', true); }
+    };
+
+    // Copiloto Pedagógico
+    window.m7ToggleCopiloto = function() {
+        var panel = document.getElementById('m7-copiloto-panel');
+        if (!panel) return;
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.m7CopilotoAccion = function(accion) {
+        var content = document.getElementById('m7-copiloto-content');
+        if (accion === 'explicar') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#26A3C8;">Tecnicas:</strong></p><p style="margin:5px 0 0 0;"><strong>Globo Interior:</strong> Capa inferior de gel transparente + purpurina + miniaturas, sellada con cera superior a 60-65°C.<br><strong>Globo Exterior (Topper):</strong> Cupula de vidrio con miniaturas que se coloca encima de la vela terminada.<br><strong>Capas de color:</strong> Verter capas de gel con diferente intensidad de colorante, esperar 5-10 min entre capas.</p>';
+        } else if (accion === 'resumir') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#7BB11D;">Tips clave:</strong></p><p style="margin:5px 0 0 0;">1. Gel completamente solidificado antes de verter cera superior.<br>2. Cera superior NO mas de 65°C (temperatura critica).<br>3. Mechas LX o zinc core para combinacion gel+cera.<br>4. Fragancias no-polares para la capa de gel.<br>5. Inserciones SOLO no inflamables (resina, ceramica, metal).<br>6. Esperar 2-4h minimo para solidificacion del gel.</p>';
+        } else if (accion === 'repaso') {
+            content.innerHTML = '<p style="margin:0;"><strong style="color:#F0A100;">Sugerencia de Repaso:</strong></p><p style="margin:5px 0 0 0;">Repasa la seccion de Tips Claves (especialmente la temperatura critica de la cera superior a 65°C, fragancias no-polares y mechas LX/zinc) y la seccion Tecnica antes de realizar el Reto de Aprendizaje.</p>';
+        }
+    };
+})();
+</script>
+
+</body>
+</html>
